@@ -6,7 +6,7 @@
 /*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 11:12:00 by juramos           #+#    #+#             */
-/*   Updated: 2024/02/06 12:55:56 by juramos          ###   ########.fr       */
+/*   Updated: 2024/02/06 13:02:23 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,14 +81,12 @@ int	*convert_to_arr(int argc, char *argv[])
 	return (arr);
 }
 
-void	print_arr(int *arr)
+void	print_arr(int *arr, int arr_size)
 {
 	int	pos;
 
 	pos = 0;
-	// zero is currently not being printed - check whether it is due to
-	// printing reasons or a failure in the atoi.
-	while (arr[pos])
+	while (pos < arr_size)
 	{
 		ft_printf("%d ", arr[pos]);
 		pos++;
@@ -108,7 +106,7 @@ int	main(int argc, char *argv[])
 	else
 	{
 		arr = convert_to_arr(argc, argv);
-		print_arr(arr);
+		print_arr(arr, argc - 1);
 		if (!arr)
 		// there is a function to be created, message_and_exit or smth like that
 		{
