@@ -6,7 +6,7 @@
 /*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 11:12:00 by juramos           #+#    #+#             */
-/*   Updated: 2024/02/06 12:42:03 by juramos          ###   ########.fr       */
+/*   Updated: 2024/02/06 12:55:56 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,18 @@ int	is_arg_unique(char *arr[], int pos)
 	return (1);
 }
 
-int	*convert_to_arr(int argc, char	*argv[])
+int	is_eq_or_less_int_max(char *str)
+{
+	int	val;
+
+	val = ft_atoi(str);
+	if ((val < 0 && str[0] != '-')
+		|| (ft_strlen(str) != ft_strlen(ft_itoa(val))))
+		return (0);
+	return (1);
+}
+
+int	*convert_to_arr(int argc, char *argv[])
 {
 	int	*arr;
 	int	argv_pos;
@@ -57,8 +68,8 @@ int	*convert_to_arr(int argc, char	*argv[])
 	argv_pos = 0;
 	while (argv[++argv_pos])
 	{
-		// todo: pending to check whether arg is greater than max int 
-		if (is_str_digit(argv[argv_pos]) && is_arg_unique(argv, argv_pos))
+		if (is_str_digit(argv[argv_pos]) && is_arg_unique(argv, argv_pos)
+			&& is_eq_or_less_int_max(argv[argv_pos]))
 			arr[argv_pos - 1] = ft_atoi(argv[argv_pos]);
 		else
 		{
