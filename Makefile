@@ -6,7 +6,7 @@
 #    By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/15 16:43:25 by juramos           #+#    #+#              #
-#    Updated: 2024/02/06 11:24:34 by juramos          ###   ########.fr        #
+#    Updated: 2024/02/06 11:36:29 by juramos          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -74,12 +74,12 @@ ft_printf:
 
 clean:
 	@rm -rf $(OBJ_DIR)
-	@make clean $(FT_PRINTF_PATH)
+	@make clean -sC $(FT_PRINTF_PATH)
 	@echo "$(BLUE)push_swap object files cleaned!$(DEF_COLOR)"
 
 fclean: clean
-	# @rm -f $(NAME)
-	@make fclean $(FT_PRINTF_PATH)
+	@rm -f $(NAME)
+	@make fclean -sC $(FT_PRINTF_PATH)
 	@echo "$(CYAN)push_swap executable files cleaned!$(DEF_COLOR)"
 
 re: fclean all
