@@ -6,7 +6,7 @@
 #    By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/15 16:43:25 by juramos           #+#    #+#              #
-#    Updated: 2024/02/06 11:36:29 by juramos          ###   ########.fr        #
+#    Updated: 2024/02/07 15:30:52 by juramos          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ CFLAGS 		= 	-Wall -Werror -Wextra
 
 # Sources
 SRC_DIR 	= 	src/
-SRC_FILES 	= 	main
+SRC_FILES 	= 	main args_parse utils
 SRC 		=	$(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))
 
 # Objects
