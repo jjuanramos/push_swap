@@ -6,7 +6,7 @@
 /*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 15:27:52 by juramos           #+#    #+#             */
-/*   Updated: 2024/02/11 16:46:58 by juramos          ###   ########.fr       */
+/*   Updated: 2024/02/11 17:07:24 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,17 +63,17 @@ t_stack	*init_stack_on_value(int val)
 t_stack	*arr_to_stack(int *arr, int len)
 {
 	t_stack	*stck;
-	t_stack	*tmp;
+	t_stack	*new;
 	int		pos;
 
 	stck = init_stack_on_value(arr[0]);
 	pos = 0;
 	while (++pos < len)
 	{
-		tmp = init_stack_on_value(arr[pos]);
-		stck->next = tmp;
-		tmp->prev = stck;
-		stck = tmp;
+		new = init_stack_on_value(arr[pos]);
+		stck->next = new;
+		new->prev = stck;
+		stck = new;
 	}
 	return (stck);
 }
