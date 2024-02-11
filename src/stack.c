@@ -6,25 +6,11 @@
 /*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 15:27:52 by juramos           #+#    #+#             */
-/*   Updated: 2024/02/11 16:20:53 by juramos          ###   ########.fr       */
+/*   Updated: 2024/02/11 16:46:58 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-static void	stck_add_back(t_stack **stck, int val)
-{
-	t_stack	*t;
-
-	t = ft_calloc(1, sizeof(t_stack));
-	if (!t)
-		message_and_exit("Exit\n", 2, 1);
-	t->prev = *stck;
-	t->value = val;
-	t->next = NULL;
-	t->size = (*stck)->size;
-	(*stck)->next = t;
-}
 
 t_stack	*get_head(t_stack *stck)
 {
@@ -46,35 +32,48 @@ t_stack	*get_tail(t_stack *stck)
 	return (tail);
 }
 
-t_stack	*arr_to_stack(int *arr, int len)
+int	get_stack_size(t_stack *stck)
+{
+	int		n;
+	t_stack	*t;
+
+	t = stck;
+	n = 0;
+	while (t)
+	{
+		n++;
+		t = t->next;
+	}
+	return (n);
+}
+
+t_stack	*init_stack_on_value(int val)
 {
 	t_stack	*stck;
-	int		pos;
 
 	stck = ft_calloc(1, sizeof(t_stack));
 	if (!stck)
 		message_and_exit("Exit\n", 2, 1);
 	stck->prev = NULL;
-	stck->value = arr[0];
-	stck->size = len;
-	pos = 0;
-	while (++pos < len)
-	{
-		stck_add_back(&stck, arr[pos]);
-		stck = stck->next;
-	}
+	stck->value = val;
+	stck->next = NULL;
 	return (stck);
 }
 
-void	print_stack(t_stack	*stck)
+t_stack	*arr_to_stack(int *arr, int len)
 {
-	t_stack	*t;
+	t_stack	*stck;
+	t_stack	*tmp;
+	int		pos;
 
-	t = get_head(stck);
-	while (t)
+	stck = init_stack_on_value(arr[0]);
+	pos = 0;
+	while (++pos < len)
 	{
-		ft_printf("%d ", t->value);
-		t = t->next;
+		tmp = init_stack_on_value(arr[pos]);
+		stck->next = tmp;
+		tmp->prev = stck;
+		stck = tmp;
 	}
-	ft_printf("\n");
+	return (stck);
 }
