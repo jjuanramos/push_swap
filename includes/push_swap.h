@@ -6,7 +6,7 @@
 /*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 10:35:27 by juramos           #+#    #+#             */
-/*   Updated: 2024/02/07 15:30:42 by juramos          ###   ########.fr       */
+/*   Updated: 2024/02/11 10:58:36 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,6 @@
 
 int		*convert_to_arr(int argc, char *argv[]);
 void	message_and_exit(char *str, int out, int exit_code);
+int		*quicksort(int *stack_a, int *stack_b, int len);
 
 #endif
