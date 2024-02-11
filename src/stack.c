@@ -6,7 +6,7 @@
 /*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 15:27:52 by juramos           #+#    #+#             */
-/*   Updated: 2024/02/11 15:28:44 by juramos          ###   ########.fr       */
+/*   Updated: 2024/02/11 15:34:45 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,17 +54,13 @@ t_stack	*arr_to_stack(int *arr, int len)
 void	print_stack(t_stack	*stck)
 {
 	t_stack	*t;
-	int		pos;
 
-	pos = 0;
 	t = stck->head;
-	while (pos < t->size)
+	while (t->next)
 	{
 		ft_printf("%d", t->value);
-		if (t->next)
-			t = t->next;
-		else
-			break ;
+		t = t->next;
 	}
+	ft_printf("%d", t->value);
 	ft_printf("\n");
 }
