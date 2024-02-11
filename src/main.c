@@ -6,7 +6,7 @@
 /*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 11:12:00 by juramos           #+#    #+#             */
-/*   Updated: 2024/02/09 17:21:35 by juramos          ###   ########.fr       */
+/*   Updated: 2024/02/11 12:12:04 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,18 +19,18 @@ void	leaks(void)
 }
 
 // debugging
-void	print_arr(int *arr, int arr_size)
-{
-	int	pos;
+// void	print_arr(int *arr, int arr_size)
+// {
+// 	int	pos;
 
-	pos = 0;
-	while (pos < arr_size)
-	{
-		ft_printf("%d ", arr[pos]);
-		pos++;
-	}
-	ft_printf("\n");
-}
+// 	pos = 0;
+// 	while (pos < arr_size)
+// 	{
+// 		ft_printf("%d ", arr[pos]);
+// 		pos++;
+// 	}
+// 	ft_printf("\n");
+// }
 
 int	main(int argc, char *argv[])
 {
@@ -46,9 +46,9 @@ int	main(int argc, char *argv[])
 		if (!stack_a || !stack_b)
 			message_and_exit("Error\n", 2, 1);
 	}
-	print_arr(stack_a, argc - 1);
-	quicksort(stack_a, stack_b, argc - 1);
-	print_arr(stack_a, argc - 1);
+	// print_arr(stack_a, argc - 1);
+	// quicksort(stack_a, stack_b, argc - 1);
+	// print_arr(stack_a, argc - 1);
 	atexit(leaks);
 	return (0);
 }
