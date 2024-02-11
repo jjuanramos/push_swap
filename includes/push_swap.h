@@ -6,7 +6,7 @@
 /*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 10:35:27 by juramos           #+#    #+#             */
-/*   Updated: 2024/02/11 12:10:49 by juramos          ###   ########.fr       */
+/*   Updated: 2024/02/11 15:32:54 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,15 @@ typedef struct s_stack {
 	int				size;
 }	t_stack;
 
-int		*convert_to_arr(int argc, char *argv[]);
+/* args_parse */
+t_stack	*parse_to_stck(int argc, char *argv[]);
+
+/* utils */
 void	message_and_exit(char *str, int out, int exit_code);
+
+/* stack */
+t_stack	*arr_to_stack(int *arr, int len);
+void	print_stack(t_stack	*stck);
+
 // void	quicksort(int *stack_a, int *stack_b, int len);
 #endif
