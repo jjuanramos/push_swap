@@ -6,7 +6,7 @@
 /*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 15:36:04 by juramos           #+#    #+#             */
-/*   Updated: 2024/02/11 17:31:19 by juramos          ###   ########.fr       */
+/*   Updated: 2024/02/11 17:38:56 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,8 @@ void	sa(t_stack	*stack_a)
 	new_head = old_head->next;
 	old_head->next = new_head->next;
 	new_head->next = old_head;
-	old_head->previous = new_head;
-	new_head->previous = NULL;
+	old_head->prev = new_head;
+	new_head->prev = NULL;
 	ft_printf("sa\n");
 }
 
@@ -90,8 +90,8 @@ void	sb(t_stack	*stack_b)
 	new_head = old_head->next;
 	old_head->next = new_head->next;
 	new_head->next = old_head;
-	old_head->previous = new_head;
-	new_head->previous = NULL;
+	old_head->prev = new_head;
+	new_head->prev = NULL;
 	ft_printf("sb\n");
 }
 
