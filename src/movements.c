@@ -6,7 +6,7 @@
 /*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 15:36:04 by juramos           #+#    #+#             */
-/*   Updated: 2024/02/11 17:17:16 by juramos          ###   ########.fr       */
+/*   Updated: 2024/02/11 17:31:19 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 	(check if only stack B can get empty), we free it. This way,
 	we can make sure to check the right size.
 */
-void	pa(t_stack **stack_b, t_stack **stack_a)
+void	pa(t_stack *stack_b, t_stack *stack_a)
 {
 	t_stack	*head_b;
 	t_stack	*head_a;
