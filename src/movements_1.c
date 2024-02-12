@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   movements.c                                        :+:      :+:    :+:   */
+/*   movements_1.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 15:36:04 by juramos           #+#    #+#             */
-/*   Updated: 2024/02/11 17:38:56 by juramos          ###   ########.fr       */
+/*   Updated: 2024/02/12 12:02:44 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,24 +25,17 @@ void	pa(t_stack *stack_b, t_stack *stack_a)
 	if (get_stack_size(stack_b) != 0)
 	{
 		head_b = get_head(stack_b);
-		if (get_stack_size(stack_a) == 0)
-		{
-			stack_a = init_stack_on_value(head_b->value);
-			head_b = head_b->next;
-			head_b->prev = NULL;
-		}
-		else
-		{
-			head_a = get_head(stack_a);
-			head_a->prev = head_b;
-			(head_b->next)->prev = NULL;
-			head_b->next = head_a;
-		}
+		head_a = get_head(stack_a);
+		head_a->prev = head_b;
+		(head_b->next)->prev = NULL;
+		head_b->next = head_a;
+		if (get_head(stack_b) == get_head(stack_a))
+			free(stack_b);
+		ft_printf("pa\n");
 	}
-	ft_printf("pa\n");
 }
 
-void	pb(t_stack *stack_a, t_stack *stack_b)
+t_stack	*pb(t_stack *stack_a, t_stack *stack_b)
 {
 	t_stack	*head_a;
 	t_stack	*head_b;
@@ -52,7 +45,7 @@ void	pb(t_stack *stack_a, t_stack *stack_b)
 		head_a = get_head(stack_a);
 		if (get_stack_size(stack_b) == 0)
 		{
-			stack_b = init_stack_on_value(head_a->value);
+			head_b = init_stack_on_value(head_a->value);
 			head_a = head_a->next;
 			head_a->prev = NULL;
 		}
@@ -65,6 +58,7 @@ void	pb(t_stack *stack_a, t_stack *stack_b)
 		}
 	}
 	ft_printf("pb\n");
+	return (head_b);
 }
 
 void	sa(t_stack	*stack_a)
