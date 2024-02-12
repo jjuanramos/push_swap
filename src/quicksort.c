@@ -6,11 +6,63 @@
 /*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 11:25:37 by juramos           #+#    #+#             */
-/*   Updated: 2024/02/11 12:11:32 by juramos          ###   ########.fr       */
+/*   Updated: 2024/02/12 13:18:03 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+int	is_greater_than(t_stack *stck, int to_left)
+{
+	t_stack	*t;
+
+	t = stck;
+	if (to_left)
+	{
+		while (t->prev)
+		{
+			if ((t->prev)->value > t->value)
+				return (0);
+			t = t->prev;
+		}
+	}
+	else
+	{
+		while (t->next)
+		{
+			if ((t->next)->value > t->value)
+				return (0);
+			t = t->next;
+		}
+	}
+	return (1);
+}
+
+static int	is_smaller_than(t_stack *stck, int to_right)
+{
+	t_stack	*t;
+
+	t = stck;
+	if (to_right)
+	{
+		while (t->next)
+		{
+			if ((t->next)->value > t->value)
+				return (0);
+			t = t->next;
+		}
+	}
+	else
+	{
+		while (t->prev)
+		{
+			if ((t->prev)->value > t->value)
+				return (0);
+			t = t->prev;
+		}
+	}
+	return (1);
+}
 
 /* quicksort
 	1. checking:
@@ -37,6 +89,26 @@
 		- else if last pivot pos == len of stack B - 1 -> pa
 		- else if last pivot pos != len - 1 && stack B -> pivot + 1 and repeat
 */
-// void	quicksort(int *stack_a, int *stack_b, int len)
-// {
-// }
+void	quicksort(t_stack *stack_a)
+{
+	t_stack	*a;
+	t_stack	*b;
+
+	a = get_tail(stack_a);
+	b = NULL;
+	while (a->prev)
+	{
+		if (is_greater_than(stack_a, 1) && is_smaller_than(stack_a, 1))
+			a = a->prev;
+		else
+		{
+			b = order(a, b, 1);
+			a = get_tail(a);
+		}
+	}
+	while (b)
+	{
+		b = get_head(b);
+		order(a, b, 0);
+	}
+}
