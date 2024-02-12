@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   movements_left.c                                   :+:      :+:    :+:   */
+/*   movements_2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 15:38:39 by juramos           #+#    #+#             */
-/*   Updated: 2024/02/11 17:37:48 by juramos          ###   ########.fr       */
+/*   Updated: 2024/02/12 17:51:03 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,20 @@ void	rr(t_stack *stack_a, t_stack *stack_b)
 	ra(stack_a);
 	rb(stack_b);
 	ft_printf("rr\n");
+}
+
+void	rra(t_stack *stack_a)
+{
+	t_stack	*head;
+	t_stack	*tail;
+
+	head = get_head(stack_a);
+	tail = get_tail(stack_a);
+	tail->next = head;
+	head->prev = tail;
+	(tail->prev)->next = NULL;
+	tail->prev = NULL;
+	ft_printf("rra\n");
 }
 
 void	rrb(t_stack *stack_b)

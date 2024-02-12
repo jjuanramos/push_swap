@@ -6,7 +6,7 @@
 /*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 11:25:37 by juramos           #+#    #+#             */
-/*   Updated: 2024/02/12 14:18:37 by juramos          ###   ########.fr       */
+/*   Updated: 2024/02/12 17:41:45 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	is_greater_than(t_stack *stck, int to_left)
 	{
 		while (t->prev)
 		{
-			if ((t->prev)->value > t->value)
+			if ((t->prev)->value > stck->value)
 				return (0);
 			t = t->prev;
 		}
@@ -30,7 +30,7 @@ int	is_greater_than(t_stack *stck, int to_left)
 	{
 		while (t->next)
 		{
-			if ((t->next)->value > t->value)
+			if ((t->next)->value > stck->value)
 				return (0);
 			t = t->next;
 		}
@@ -47,7 +47,7 @@ static int	is_smaller_than(t_stack *stck, int to_right)
 	{
 		while (t->next)
 		{
-			if ((t->next)->value < t->value)
+			if ((t->next)->value < stck->value)
 				return (0);
 			t = t->next;
 		}
@@ -56,7 +56,7 @@ static int	is_smaller_than(t_stack *stck, int to_right)
 	{
 		while (t->prev)
 		{
-			if ((t->prev)->value > t->value)
+			if ((t->prev)->value > stck->value)
 				return (0);
 			t = t->prev;
 		}
@@ -102,8 +102,12 @@ void	quicksort(t_stack *stack_a)
 			a = a->prev;
 		else
 		{
+			ft_printf("now checking for %d\n", a->value);
+			print_stack(get_head(a), "start:\t");
 			b = order(a, b, 1);
 			a = get_tail(a);
+			print_stack(get_head(a), "result:\t");
+			ft_printf("\n\n");
 		}
 	}
 	while (b)

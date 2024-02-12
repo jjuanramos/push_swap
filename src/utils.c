@@ -6,7 +6,7 @@
 /*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 15:28:38 by juramos           #+#    #+#             */
-/*   Updated: 2024/02/11 16:37:56 by juramos          ###   ########.fr       */
+/*   Updated: 2024/02/12 17:22:24 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,12 @@ void	message_and_exit(char *str, int out, int exit_code)
 	exit(exit_code);
 }
 
-void	print_stack(t_stack	*stck)
+void	print_stack(t_stack	*stck, char *pre)
 {
 	t_stack	*t;
 
 	t = get_head(stck);
+	ft_printf("%s", pre);
 	ft_printf("|");
 	while (t)
 	{

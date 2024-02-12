@@ -6,7 +6,7 @@
 /*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 10:35:27 by juramos           #+#    #+#             */
-/*   Updated: 2024/02/12 13:20:57 by juramos          ###   ########.fr       */
+/*   Updated: 2024/02/12 17:51:31 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ t_stack	*parse_to_stck(int argc, char *argv[]);
 
 /* utils */
 void	message_and_exit(char *str, int out, int exit_code);
-void	print_stack(t_stack	*stck);
+void	print_stack(t_stack	*stck, char *pre);
 
 /* stack */
 t_stack	*arr_to_stack(int *arr, int len);
@@ -50,6 +50,7 @@ void	ss(t_stack *stack_a, t_stack *stack_b);
 void	ra(t_stack *stack_a);
 void	rb(t_stack *stack_b);
 void	rr(t_stack *stack_a, t_stack *stack_b);
+void	rra(t_stack *stack_a);
 void	rrb(t_stack *stack_b);
 
 /* order */

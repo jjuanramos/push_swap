@@ -6,7 +6,7 @@
 /*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 11:05:05 by juramos           #+#    #+#             */
-/*   Updated: 2024/02/12 14:22:01 by juramos          ###   ########.fr       */
+/*   Updated: 2024/02/12 17:51:51 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,29 +38,16 @@
 
 #include "push_swap.h"
 
-static void	check_three(t_stack *stack_a, t_stack *stack_b)
+static void	check_three(t_stack *stack_a)
 {
 	t_stack	*a;
 
 	a = get_head(stack_a);
 	if (a->value > (a->next)->value && a->value < (get_tail(a))->value)
-	{
-		if (stack_b && get_head(stack_b) && get_head(stack_b)->next
-			&& get_head(stack_b)->value < (get_head(stack_b)->next)->value)
-			ss(stack_a, stack_b);
-		else
-			sa(stack_a);
-	}
+		sa(stack_a);
 	else if (a->value < (a->next)->value
 		&& (a->next)->value > (get_tail(a))->value)
-	{
-		if (stack_b && get_head(stack_b) && get_head(stack_b)->next
-			&& get_head(stack_b)->value < (get_head(stack_b)->next)->value)
-			ss(stack_a, stack_b);
-		else
-			sa(stack_a);
-		ra(stack_a);
-	}
+		rra(stack_a);
 	else
 		ra(stack_a);
 }
@@ -73,7 +60,10 @@ t_stack	*order(t_stack *stack_a, t_stack *stack_b, int is_a)
 	if (is_a)
 	{
 		if (get_stack_size(get_head(stack_a)) <= 3)
-			check_three(stack_a, stack_b);
+			check_three(stack_a);
+		else if (get_head(stack_a) == stack_a->prev
+			&& get_head(stack_a)->value > stack_a->value)
+			sa(stack_a);
 		else if (get_head(stack_a)->value < stack_a->value)
 			b = pb(get_head(stack_a), stack_b);
 		else if (get_head(stack_a)->value > stack_a->value)
