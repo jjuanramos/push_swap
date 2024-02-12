@@ -6,7 +6,7 @@
 /*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 11:25:37 by juramos           #+#    #+#             */
-/*   Updated: 2024/02/12 13:18:03 by juramos          ###   ########.fr       */
+/*   Updated: 2024/02/12 14:18:37 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static int	is_smaller_than(t_stack *stck, int to_right)
 	{
 		while (t->next)
 		{
-			if ((t->next)->value > t->value)
+			if ((t->next)->value < t->value)
 				return (0);
 			t = t->next;
 		}
@@ -98,7 +98,7 @@ void	quicksort(t_stack *stack_a)
 	b = NULL;
 	while (a->prev)
 	{
-		if (is_greater_than(stack_a, 1) && is_smaller_than(stack_a, 1))
+		if (is_greater_than(a, 1) && is_smaller_than(a, 1))
 			a = a->prev;
 		else
 		{
