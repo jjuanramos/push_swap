@@ -6,7 +6,7 @@
 #    By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/15 16:43:25 by juramos           #+#    #+#              #
-#    Updated: 2024/02/11 17:38:34 by juramos          ###   ########.fr        #
+#    Updated: 2024/02/12 10:28:46 by juramos          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ CFLAGS 		= 	-Wall -Werror -Wextra
 # Sources
 SRC_DIR 	= 	src/
 SRC_FILES 	= 	main args_parse utils quicksort stack \
-				movements movements_left
+				movements_1 movements_2
 SRC 		=	$(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))
 
 # Objects
