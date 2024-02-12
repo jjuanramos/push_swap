@@ -6,7 +6,7 @@
 /*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 11:25:37 by juramos           #+#    #+#             */
-/*   Updated: 2024/02/12 17:41:45 by juramos          ###   ########.fr       */
+/*   Updated: 2024/02/12 17:54:22 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,10 +103,12 @@ void	quicksort(t_stack *stack_a)
 		else
 		{
 			ft_printf("now checking for %d\n", a->value);
-			print_stack(get_head(a), "start:\t");
+			print_stack(get_head(a), "start of A:\t");
+			print_stack(get_head(b), "start of B:\t");
 			b = order(a, b, 1);
 			a = get_tail(a);
-			print_stack(get_head(a), "result:\t");
+			print_stack(get_head(a), "result of A:\t");
+			print_stack(get_head(b), "result of B:\t");
 			ft_printf("\n\n");
 		}
 	}

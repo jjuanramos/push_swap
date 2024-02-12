@@ -6,7 +6,7 @@
 /*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 15:27:52 by juramos           #+#    #+#             */
-/*   Updated: 2024/02/11 17:07:24 by juramos          ###   ########.fr       */
+/*   Updated: 2024/02/12 18:00:00 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ t_stack	*get_head(t_stack *stck)
 {
 	t_stack	*head;
 
+	if (!stck)
+		return (NULL);
 	head = stck;
 	while (head->prev)
 		head = head->prev;
@@ -26,6 +28,8 @@ t_stack	*get_tail(t_stack *stck)
 {
 	t_stack	*tail;
 
+	if (!stck)
+		return (NULL);
 	tail = stck;
 	while (tail->next)
 		tail = tail->next;
