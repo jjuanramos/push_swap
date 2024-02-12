@@ -6,7 +6,7 @@
 /*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 11:05:05 by juramos           #+#    #+#             */
-/*   Updated: 2024/02/12 13:53:15 by juramos          ###   ########.fr       */
+/*   Updated: 2024/02/12 14:22:01 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ static void	check_three(t_stack *stack_a, t_stack *stack_b)
 			sa(stack_a);
 		ra(stack_a);
 	}
+	else
+		ra(stack_a);
 }
 
 t_stack	*order(t_stack *stack_a, t_stack *stack_b, int is_a)
