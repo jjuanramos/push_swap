@@ -1,2 +1,2 @@
 ./push_swap 13 3  6 100 4 5 10 12 1 14 2 >> tmp.txt # 28 movements
-./push_swap 13 3  6 100 4 5 10 12 1 >> tmp.txt # 18 movements
+./push_swap 13 3  6 100 4 5 10 12 1 >> tmp.txt # 22 movements
