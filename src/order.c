@@ -6,7 +6,7 @@
 /*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 11:05:05 by juramos           #+#    #+#             */
-/*   Updated: 2024/02/13 10:17:00 by juramos          ###   ########.fr       */
+/*   Updated: 2024/02/13 10:31:50 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ t_stack	*order(t_stack *stack_a, t_stack *stack_b, int is_a)
 	else
 	{
 		if (is_greater_than(stack_b, 0))
-			stack_b = pa(get_head(stack_a), stack_b);
+			stack_b = pa(get_head(stack_b), stack_a);
 		else if (is_greater_than(get_tail(stack_b), 1))
 			rrb(stack_b);
 		else if (get_head(stack_b)->value < (get_head(stack_b)->next)->value)
