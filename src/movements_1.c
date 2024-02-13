@@ -6,7 +6,7 @@
 /*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 15:36:04 by juramos           #+#    #+#             */
-/*   Updated: 2024/02/13 10:12:20 by juramos          ###   ########.fr       */
+/*   Updated: 2024/02/13 10:55:24 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,19 +21,19 @@ t_stack	*pa(t_stack *stack_b, t_stack *stack_a)
 {
 	t_stack	*head_b;
 	t_stack	*head_a;
-	t_stack	*tmp;
+	t_stack	*new_head_a;
 
 	if (get_stack_size(stack_b) != 0)
 	{
 		head_b = get_head(stack_b);
+		new_head_a = init_stack_on_value(head_b->value);
 		head_a = get_head(stack_a);
-		head_a->prev = head_b;
+		head_a->prev = new_head_a;
+		new_head_a->next = head_a;
 		if (head_b->next)
 		{
-			tmp = head_b->next;
-			(head_b->next)->prev = NULL;
-			head_b->next = head_a;
-			stack_b = tmp;
+			stack_b = head_b->next;
+			stack_b->prev = NULL;
 		}
 		ft_printf("pa\n");
 	}

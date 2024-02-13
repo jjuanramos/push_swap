@@ -6,7 +6,7 @@
 /*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 11:25:37 by juramos           #+#    #+#             */
-/*   Updated: 2024/02/12 17:54:22 by juramos          ###   ########.fr       */
+/*   Updated: 2024/02/13 10:59:17 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ void	quicksort(t_stack *stack_a)
 			a = a->prev;
 		else
 		{
-			ft_printf("now checking for %d\n", a->value);
+			ft_printf("now checking for %d in A\n", a->value);
 			print_stack(get_head(a), "start of A:\t");
 			print_stack(get_head(b), "start of B:\t");
 			b = order(a, b, 1);
@@ -112,9 +112,17 @@ void	quicksort(t_stack *stack_a)
 			ft_printf("\n\n");
 		}
 	}
-	while (b)
+	while (b && b->value != get_head(stack_a)->value)
 	{
 		b = get_head(b);
-		order(a, b, 0);
+		ft_printf("now checking for %d in B\n", b->value);
+		print_stack(get_head(a), "start of A:\t");
+		print_stack(get_head(b), "start of B:\t");
+		b = order(a, b, 0);
+		print_stack(get_head(a), "result of A:\t");
+		print_stack(get_head(b), "result of B:\t");
+		ft_printf("\n\n");
 	}
+	if (b)
+		free(b);
 }
