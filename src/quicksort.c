@@ -6,7 +6,7 @@
 /*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 11:25:37 by juramos           #+#    #+#             */
-/*   Updated: 2024/02/13 10:59:17 by juramos          ###   ########.fr       */
+/*   Updated: 2024/02/13 12:20:30 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,7 @@ void	quicksort(t_stack *stack_a)
 	while (b && b->value != get_head(stack_a)->value)
 	{
 		b = get_head(b);
+		a = get_tail(a);
 		ft_printf("now checking for %d in B\n", b->value);
 		print_stack(get_head(a), "start of A:\t");
 		print_stack(get_head(b), "start of B:\t");
