@@ -6,7 +6,7 @@
 /*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 11:05:05 by juramos           #+#    #+#             */
-/*   Updated: 2024/02/13 10:31:50 by juramos          ###   ########.fr       */
+/*   Updated: 2024/02/13 12:02:39 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,24 +52,57 @@ static void	check_three(t_stack *stack_a)
 		ra(stack_a);
 }
 
+static int	how_many_smaller(t_stack *stck)
+{
+	int		n;
+	t_stack	*t;
+
+	t = get_head(stck);
+	n = 0;
+	while (t)
+	{
+		if (t->value < stck->value)
+			n++;
+		t = t->next;
+	}
+	return (n);
+}
+
+t_stack	*check_a(t_stack *stack_a, t_stack *stack_b)
+{
+	int		stack_size;
+	t_stack	*head_a;
+
+	head_a = get_head(stack_a);
+	stack_size = get_stack_size(head_a);
+	if (stack_size <= 3)
+		check_three(stack_a);
+	else if (head_a == stack_a->prev
+		&& head_a->value > stack_a->value)
+		sa(stack_a);
+	else if (head_a->value < stack_a->value)
+		stack_b = pb(head_a, stack_b);
+	else if (head_a->value > stack_a->value)
+	{
+		if (how_many_smaller(stack_a) < stack_size / 2)
+			rra(stack_a);
+		else
+			ra(stack_a);
+	}
+	return (stack_b);
+}
+
 t_stack	*order(t_stack *stack_a, t_stack *stack_b, int is_a)
 {
 	if (is_a)
-	{
-		if (get_stack_size(get_head(stack_a)) <= 3)
-			check_three(stack_a);
-		else if (get_head(stack_a) == stack_a->prev
-			&& get_head(stack_a)->value > stack_a->value)
-			sa(stack_a);
-		else if (get_head(stack_a)->value < stack_a->value)
-			stack_b = pb(get_head(stack_a), stack_b);
-		else if (get_head(stack_a)->value > stack_a->value)
-			ra(stack_a);
-	}
+		stack_b = check_a(stack_a, stack_b);
 	else
 	{
 		if (is_greater_than(stack_b, 0))
+		{
 			stack_b = pa(get_head(stack_b), stack_a);
+			stack_b = check_a(stack_a, stack_b); // we should check whether this is necessary, or caused by a bug in B
+		}
 		else if (is_greater_than(get_tail(stack_b), 1))
 			rrb(stack_b);
 		else if (get_head(stack_b)->value < (get_head(stack_b)->next)->value)
