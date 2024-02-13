@@ -1,3 +1,3 @@
-./push_swap 13 3  6 100 4 5 10 12 1 14 2 >> tmp.txt # 28 movements
-./push_swap 13 3  6 100 4 5 10 12 1 >> tmp.txt # 24 movements
-./push_swap 13 3  6 100 5 1 >> # 12 movements
+ARG="6 100 4 5 10 12 1 14 2"; ./push_swap $ARG | ./checker_linux $ARG
+ARG="13 3  6 100 4 5 10 12 1"; ./push_swap $ARG | ./checker_linux $ARG
+ARG="13 3  6 100 5 1"; ./push_swap $ARG | ./checker_linux $ARG

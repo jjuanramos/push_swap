@@ -6,7 +6,7 @@
 /*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 11:25:37 by juramos           #+#    #+#             */
-/*   Updated: 2024/02/13 12:49:00 by juramos          ###   ########.fr       */
+/*   Updated: 2024/02/13 17:59:13 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,14 +104,14 @@ void	quicksort(t_stack *stack_a)
 			a = a->prev;
 		else
 		{
-			ft_printf("now checking for %d in A\n", a->value);
-			print_stack(get_head(a), "start of A:\t");
-			print_stack(get_head(b), "start of B:\t");
+			// ft_printf("now checking for %d in A\n", a->value);
+			// print_stack(get_head(a), "start of A:\t");
+			// print_stack(get_head(b), "start of B:\t");
 			b = order(a, b, 1);
 			a = get_tail(a);
-			print_stack(get_head(a), "result of A:\t");
-			print_stack(get_head(b), "result of B:\t");
-			ft_printf("\n---------------------------------\n\n");
+			// print_stack(get_head(a), "result of A:\t");
+			// print_stack(get_head(b), "result of B:\t");
+			// ft_printf("\n---------------------------------\n\n");
 			movements++;
 		}
 	}
@@ -119,18 +119,18 @@ void	quicksort(t_stack *stack_a)
 	a = get_tail(a);
 	while (b)
 	{
-		ft_printf("now checking for %d in B\n", b->value);
-		print_stack(get_head(a), "start of A:\t");
-		print_stack(get_head(b), "start of B:\t");
+		// ft_printf("now checking for %d in B\n", b->value);
+		// print_stack(get_head(a), "start of A:\t");
+		// print_stack(get_head(b), "start of B:\t");
 		b = order(a, b, 0);
 		b = get_head(b);
 		a = get_tail(a);
-		print_stack(get_head(a), "result of A:\t");
-		print_stack(get_head(b), "result of B:\t");
-		ft_printf("\n---------------------------------\n\n");
+		// print_stack(get_head(a), "result of A:\t");
+		// print_stack(get_head(b), "result of B:\t");
+		// ft_printf("\n---------------------------------\n\n");
 		movements++;
 	}
-	ft_printf("\t>>>> required %d movements. <<<<\n", movements);
+	// ft_printf("\t>>>> required %d movements. <<<<\n", movements);
 	if (b)
 		free(b);
 }
