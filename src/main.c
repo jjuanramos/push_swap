@@ -6,7 +6,7 @@
 /*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 11:12:00 by juramos           #+#    #+#             */
-/*   Updated: 2024/02/12 17:40:54 by juramos          ###   ########.fr       */
+/*   Updated: 2024/02/13 18:13:00 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,6 @@ void	leaks(void)
 	system("leaks -q ./push_swap");
 }
 
-/*
-	TODO: does not work for neg numbers
-*/
 int	main(int argc, char *argv[])
 {
 	t_stack	*stack_a;
