@@ -6,7 +6,7 @@
 /*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 11:05:05 by juramos           #+#    #+#             */
-/*   Updated: 2024/02/13 13:54:25 by juramos          ###   ########.fr       */
+/*   Updated: 2024/02/13 14:05:26 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@
 
 #include "push_swap.h"
 
-static int	pos_to_left_of_max(t_stack *head)
+static int	pos_til_left_of_max(t_stack *head)
 {
 	int		max;
 	int		n;
@@ -76,7 +76,7 @@ t_stack	*order(t_stack *stack_a, t_stack *stack_b, int is_a)
 			sb(stack_b);
 		else
 		{
-			if (pos_to_left_of_max(head_b) < get_stack_size(head_b) / 2)
+			if (pos_til_left_of_max(head_b) < get_stack_size(head_b) / 2)
 				rb(stack_b);
 			else
 				rrb(stack_b);
