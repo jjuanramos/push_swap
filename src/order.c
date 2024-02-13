@@ -6,7 +6,7 @@
 /*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 11:05:05 by juramos           #+#    #+#             */
-/*   Updated: 2024/02/12 17:51:51 by juramos          ###   ########.fr       */
+/*   Updated: 2024/02/13 10:17:00 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,6 @@ static void	check_three(t_stack *stack_a)
 
 t_stack	*order(t_stack *stack_a, t_stack *stack_b, int is_a)
 {
-	t_stack	*b;
-
-	b = NULL;
 	if (is_a)
 	{
 		if (get_stack_size(get_head(stack_a)) <= 3)
@@ -65,14 +62,14 @@ t_stack	*order(t_stack *stack_a, t_stack *stack_b, int is_a)
 			&& get_head(stack_a)->value > stack_a->value)
 			sa(stack_a);
 		else if (get_head(stack_a)->value < stack_a->value)
-			b = pb(get_head(stack_a), stack_b);
+			stack_b = pb(get_head(stack_a), stack_b);
 		else if (get_head(stack_a)->value > stack_a->value)
 			ra(stack_a);
 	}
 	else
 	{
 		if (is_greater_than(stack_b, 0))
-			pa(stack_b, stack_a);
+			stack_b = pa(get_head(stack_a), stack_b);
 		else if (is_greater_than(get_tail(stack_b), 1))
 			rrb(stack_b);
 		else if (get_head(stack_b)->value < (get_head(stack_b)->next)->value)
@@ -80,5 +77,5 @@ t_stack	*order(t_stack *stack_a, t_stack *stack_b, int is_a)
 		else
 			rrb(stack_b);
 	}
-	return (b);
+	return (stack_b);
 }
