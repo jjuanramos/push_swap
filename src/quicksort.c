@@ -6,7 +6,7 @@
 /*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 11:25:37 by juramos           #+#    #+#             */
-/*   Updated: 2024/02/13 12:20:30 by juramos          ###   ########.fr       */
+/*   Updated: 2024/02/13 12:39:39 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,9 +93,11 @@ void	quicksort(t_stack *stack_a)
 {
 	t_stack	*a;
 	t_stack	*b;
+	int		movements;
 
 	a = get_tail(stack_a);
 	b = NULL;
+	movements = 0;
 	while (a->prev)
 	{
 		if (is_greater_than(a, 1) && is_smaller_than(a, 1))
@@ -111,19 +113,24 @@ void	quicksort(t_stack *stack_a)
 			print_stack(get_head(b), "result of B:\t");
 			ft_printf("\n\n");
 		}
+		movements++;
 	}
-	while (b && b->value != get_head(stack_a)->value)
+	b = get_head(b);
+	a = get_tail(a);
+	while (b)
 	{
-		b = get_head(b);
-		a = get_tail(a);
 		ft_printf("now checking for %d in B\n", b->value);
 		print_stack(get_head(a), "start of A:\t");
 		print_stack(get_head(b), "start of B:\t");
 		b = order(a, b, 0);
+		b = get_head(b);
+		a = get_tail(a);
 		print_stack(get_head(a), "result of A:\t");
 		print_stack(get_head(b), "result of B:\t");
 		ft_printf("\n\n");
+		movements++;
 	}
+	ft_printf("required %d movements.\n", movements);
 	if (b)
 		free(b);
 }
