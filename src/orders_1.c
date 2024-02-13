@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   order_a.c                                          :+:      :+:    :+:   */
+/*   orders_1.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 13:51:48 by juramos           #+#    #+#             */
-/*   Updated: 2024/02/13 13:52:41 by juramos          ###   ########.fr       */
+/*   Updated: 2024/02/13 14:38:15 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "push_swap.h"
+#include "push_swap.h"
 
 static void	check_three(t_stack *stack_a)
 {
@@ -70,11 +70,13 @@ t_stack	*order_a(t_stack *stack_a, t_stack *stack_b)
 	else if (head_a == stack_a->prev
 		&& head_a->value > stack_a->value)
 		sa(stack_a);
-	else if (head_a->value < stack_a->value)
+	else if (head_a->value < stack_a->value
+		|| head_a->value < get_max_to_right(stack_a))
 		stack_b = pb(head_a, stack_b);
 	else if (head_a->value > stack_a->value)
 	{
-		if (how_many_smaller(head_a) < how_many_greater(head_a))
+		if (how_many_smaller(head_a) < how_many_greater(head_a)
+			&& get_max_to_right(head_a) != get_tail(head_a)->value)
 			rra(stack_a);
 		else
 			ra(stack_a);

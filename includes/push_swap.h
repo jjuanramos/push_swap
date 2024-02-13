@@ -6,7 +6,7 @@
 /*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 10:35:27 by juramos           #+#    #+#             */
-/*   Updated: 2024/02/13 13:55:23 by juramos          ###   ########.fr       */
+/*   Updated: 2024/02/13 14:38:15 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	print_stack(t_stack	*stck, char *pre);
 t_stack	*get_head(t_stack *stck);
 t_stack	*get_tail(t_stack *stck);
 int		get_stack_size(t_stack *stck);
-int		get_max_val_from_stack(t_stack *stck);
+int		get_max_to_right(t_stack *stck);
 t_stack	*init_stack_on_value(int val);
 
 /* movements_1 */

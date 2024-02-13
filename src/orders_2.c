@@ -6,7 +6,7 @@
 /*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 11:05:05 by juramos           #+#    #+#             */
-/*   Updated: 2024/02/13 14:08:19 by juramos          ###   ########.fr       */
+/*   Updated: 2024/02/13 14:38:34 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static int	pos_til_left_of_max(t_stack *head)
 	int		n;
 	t_stack	*t;
 
-	max = get_max_val_from_stack(head);
+	max = get_max_to_right(head);
 	t = head;
 	n = 0;
 	while (t->next && (t->next)->value != max)
@@ -63,7 +63,7 @@ static t_stack	*order_b(t_stack *stack_a, t_stack *stack_b)
 
 	head_a = get_head(stack_a);
 	head_b = get_head(stack_b);
-	max_b = get_max_val_from_stack(stack_b);
+	max_b = get_max_to_right(head_b);
 	if (head_a->value < max_b)
 		stack_b = pb(head_a, stack_b);
 	else if (head_b->value == max_b)
