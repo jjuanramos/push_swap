@@ -6,7 +6,7 @@
 /*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 10:35:27 by juramos           #+#    #+#             */
-/*   Updated: 2024/02/13 10:09:25 by juramos          ###   ########.fr       */
+/*   Updated: 2024/02/13 12:08:26 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,10 @@ void	message_and_exit(char *str, int out, int exit_code);
 void	print_stack(t_stack	*stck, char *pre);
 
 /* stack */
-t_stack	*arr_to_stack(int *arr, int len);
 t_stack	*get_head(t_stack *stck);
 t_stack	*get_tail(t_stack *stck);
 int		get_stack_size(t_stack *stck);
+int		get_max_val_from_stack(t_stack *stck);
 t_stack	*init_stack_on_value(int val);
 
 /* movements_1 */

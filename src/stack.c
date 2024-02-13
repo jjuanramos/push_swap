@@ -6,7 +6,7 @@
 /*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 15:27:52 by juramos           #+#    #+#             */
-/*   Updated: 2024/02/12 18:00:00 by juramos          ###   ########.fr       */
+/*   Updated: 2024/02/13 12:10:21 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,20 +64,18 @@ t_stack	*init_stack_on_value(int val)
 	return (stck);
 }
 
-t_stack	*arr_to_stack(int *arr, int len)
+int	get_max_val_from_stack(t_stack *stck)
 {
-	t_stack	*stck;
-	t_stack	*new;
-	int		pos;
+	int		max;
+	t_stack	*t;
 
-	stck = init_stack_on_value(arr[0]);
-	pos = 0;
-	while (++pos < len)
+	t = get_head(stck);
+	max = t->value;
+	while (t->next)
 	{
-		new = init_stack_on_value(arr[pos]);
-		stck->next = new;
-		new->prev = stck;
-		stck = new;
+		t = t->next;
+		if (t->value > max)
+			max = t->value;
 	}
-	return (stck);
+	return (max);
 }

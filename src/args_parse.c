@@ -6,7 +6,7 @@
 /*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 15:24:13 by juramos           #+#    #+#             */
-/*   Updated: 2024/02/11 15:32:02 by juramos          ###   ########.fr       */
+/*   Updated: 2024/02/13 12:07:56 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,24 @@ static int	is_eq_or_less_int_max(char *str)
 		|| (ft_strlen(str) != ft_strlen(ft_itoa(val))))
 		return (0);
 	return (1);
+}
+
+static t_stack	*arr_to_stack(int *arr, int len)
+{
+	t_stack	*stck;
+	t_stack	*new;
+	int		pos;
+
+	stck = init_stack_on_value(arr[0]);
+	pos = 0;
+	while (++pos < len)
+	{
+		new = init_stack_on_value(arr[pos]);
+		stck->next = new;
+		new->prev = stck;
+		stck = new;
+	}
+	return (stck);
 }
 
 t_stack	*parse_to_stck(int argc, char *argv[])
