@@ -6,7 +6,7 @@
 /*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 11:25:37 by juramos           #+#    #+#             */
-/*   Updated: 2024/02/13 12:39:39 by juramos          ###   ########.fr       */
+/*   Updated: 2024/02/13 12:49:00 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,9 +111,9 @@ void	quicksort(t_stack *stack_a)
 			a = get_tail(a);
 			print_stack(get_head(a), "result of A:\t");
 			print_stack(get_head(b), "result of B:\t");
-			ft_printf("\n\n");
+			ft_printf("\n---------------------------------\n\n");
+			movements++;
 		}
-		movements++;
 	}
 	b = get_head(b);
 	a = get_tail(a);
@@ -127,10 +127,10 @@ void	quicksort(t_stack *stack_a)
 		a = get_tail(a);
 		print_stack(get_head(a), "result of A:\t");
 		print_stack(get_head(b), "result of B:\t");
-		ft_printf("\n\n");
+		ft_printf("\n---------------------------------\n\n");
 		movements++;
 	}
-	ft_printf("required %d movements.\n", movements);
+	ft_printf("\t>>>> required %d movements. <<<<\n", movements);
 	if (b)
 		free(b);
 }
