@@ -6,7 +6,7 @@
 /*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 13:51:48 by juramos           #+#    #+#             */
-/*   Updated: 2024/02/13 17:29:02 by juramos          ###   ########.fr       */
+/*   Updated: 2024/02/13 17:50:49 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,9 +67,6 @@ t_stack	*order_a(t_stack *stack_a, t_stack *stack_b)
 	stack_size = get_stack_size(head_a);
 	if (stack_size <= 3)
 		check_three(stack_a);
-	else if (head_a == stack_a->prev
-		&& head_a->value > stack_a->value)
-		sa(stack_a);
 	else if (head_a->value < stack_a->value)
 		stack_b = pb(head_a, stack_b);
 	else if (head_a->value > stack_a->value)
