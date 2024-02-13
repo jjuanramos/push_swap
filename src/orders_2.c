@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   order.c                                            :+:      :+:    :+:   */
+/*   orders_2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 11:05:05 by juramos           #+#    #+#             */
-/*   Updated: 2024/02/13 12:37:30 by juramos          ###   ########.fr       */
+/*   Updated: 2024/02/13 13:54:25 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,58 +38,21 @@
 
 #include "push_swap.h"
 
-static void	check_three(t_stack *stack_a)
+static int	pos_to_left_of_max(t_stack *head)
 {
-	t_stack	*a;
-
-	a = get_head(stack_a);
-	if (a->value > (a->next)->value && a->value < (get_tail(a))->value)
-		sa(stack_a);
-	else if (a->value < (a->next)->value
-		&& (a->next)->value > (get_tail(a))->value)
-		rra(stack_a);
-	else
-		ra(stack_a);
-}
-
-static int	how_many_smaller(t_stack *stck)
-{
+	int		max;
 	int		n;
 	t_stack	*t;
 
-	t = get_head(stck);
+	max = get_max_val_from_stack(head);
+	t = head;
 	n = 0;
-	while (t)
+	while (t->next && (t->next)->value != max)
 	{
-		if (t->value < stck->value)
-			n++;
+		n++;
 		t = t->next;
 	}
 	return (n);
-}
-
-t_stack	*check_a(t_stack *stack_a, t_stack *stack_b)
-{
-	int		stack_size;
-	t_stack	*head_a;
-
-	head_a = get_head(stack_a);
-	stack_size = get_stack_size(head_a);
-	if (stack_size <= 3)
-		check_three(stack_a);
-	else if (head_a == stack_a->prev
-		&& head_a->value > stack_a->value)
-		sa(stack_a);
-	else if (head_a->value < stack_a->value)
-		stack_b = pb(head_a, stack_b);
-	else if (head_a->value > stack_a->value)
-	{
-		if (how_many_smaller(stack_a) < stack_size / 2)
-			rra(stack_a);
-		else
-			ra(stack_a);
-	}
-	return (stack_b);
 }
 
 t_stack	*order(t_stack *stack_a, t_stack *stack_b, int is_a)
@@ -101,7 +64,7 @@ t_stack	*order(t_stack *stack_a, t_stack *stack_b, int is_a)
 	head_a = get_head(stack_a);
 	head_b = get_head(stack_b);
 	if (is_a)
-		stack_b = check_a(stack_a, stack_b);
+		stack_b = order_a(stack_a, stack_b);
 	else
 	{
 		max_b = get_max_val_from_stack(stack_b);
@@ -109,10 +72,15 @@ t_stack	*order(t_stack *stack_a, t_stack *stack_b, int is_a)
 			stack_b = pb(head_a, stack_b);
 		else if (head_b->value == max_b)
 			stack_b = pa(head_b, stack_a);
-		else if ((head_b->next)->value == max_b)
+		else if ((head_b->next) && (head_b->next)->value == max_b)
 			sb(stack_b);
 		else
-			rrb(stack_b);
+		{
+			if (pos_to_left_of_max(head_b) < get_stack_size(head_b) / 2)
+				rb(stack_b);
+			else
+				rrb(stack_b);
+		}
 	}
 	return (stack_b);
 }

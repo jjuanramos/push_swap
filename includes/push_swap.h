@@ -6,7 +6,7 @@
 /*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 10:35:27 by juramos           #+#    #+#             */
-/*   Updated: 2024/02/13 12:08:26 by juramos          ###   ########.fr       */
+/*   Updated: 2024/02/13 13:55:23 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,10 @@ void	rr(t_stack *stack_a, t_stack *stack_b);
 void	rra(t_stack *stack_a);
 void	rrb(t_stack *stack_b);
 
-/* order */
+/*	orders_1 */
+t_stack	*order_a(t_stack *stack_a, t_stack *stack_b);
+
+/*	orders_2 */
 t_stack	*order(t_stack *stack_a, t_stack *stack_b, int is_a);
 
 /* quicksort */
