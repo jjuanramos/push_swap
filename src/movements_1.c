@@ -6,7 +6,7 @@
 /*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 15:36:04 by juramos           #+#    #+#             */
-/*   Updated: 2024/02/13 10:55:24 by juramos          ###   ########.fr       */
+/*   Updated: 2024/02/13 12:38:29 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ t_stack	*pa(t_stack *stack_b, t_stack *stack_a)
 			stack_b = head_b->next;
 			stack_b->prev = NULL;
 		}
+		else
+			stack_b = NULL;
 		ft_printf("pa\n");
 	}
 	return (stack_b);
