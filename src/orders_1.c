@@ -6,7 +6,7 @@
 /*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 13:51:48 by juramos           #+#    #+#             */
-/*   Updated: 2024/02/13 17:50:49 by juramos          ###   ########.fr       */
+/*   Updated: 2024/02/14 11:05:35 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,22 @@ static int	how_many_greater(t_stack *stck)
 	return (n);
 }
 
+static int	get_min_to_right(t_stack *stck)
+{
+	int		min;
+	t_stack	*t;
+
+	t = stck;
+	min = t->value;
+	while (t->next)
+	{
+		t = t->next;
+		if (t->value < min)
+			min = t->value;
+	}
+	return (min);
+}
+
 t_stack	*order_a(t_stack *stack_a, t_stack *stack_b)
 {
 	int		stack_size;
@@ -67,9 +83,13 @@ t_stack	*order_a(t_stack *stack_a, t_stack *stack_b)
 	stack_size = get_stack_size(head_a);
 	if (stack_size <= 3)
 		check_three(stack_a);
+	else if (head_a->next && (head_a->next)->value == get_min_to_right(head_a)
+		&& stack_b
+		&& (head_a->next)->value > get_max_to_right(get_head(stack_b)))
+		sa(stack_a);
 	else if (head_a->value < stack_a->value)
 		stack_b = pb(head_a, stack_b);
-	else if (head_a->value > stack_a->value)
+	else
 	{
 		if (how_many_smaller(head_a) < how_many_greater(head_a)
 			&& get_max_to_right(head_a) != get_tail(head_a)->value)
