@@ -6,7 +6,7 @@
 /*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 13:51:48 by juramos           #+#    #+#             */
-/*   Updated: 2024/02/14 11:05:35 by juramos          ###   ########.fr       */
+/*   Updated: 2024/02/14 13:33:41 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,15 +89,14 @@ t_stack	*order_a(t_stack *stack_a, t_stack *stack_b)
 		sa(stack_a);
 	else if (head_a->value < stack_a->value)
 		stack_b = pb(head_a, stack_b);
-	else
-	{
-		if (how_many_smaller(head_a) < how_many_greater(head_a)
+	else if ((how_many_smaller(head_a) < how_many_greater(head_a)
 			&& get_max_to_right(head_a) != get_tail(head_a)->value)
-			rra(stack_a);
-		else if (how_many_smaller(head_a) < how_many_greater(head_a))
-			stack_b = pb(stack_a, stack_b);
-		else
-			ra(stack_a);
-	}
+		|| (get_tail(stack_a)->value == get_min_to_right(head_a)
+			&& how_many_smaller(stack_a) < how_many_greater(stack_a)))
+		rra(stack_a);
+	else if (how_many_smaller(head_a) < how_many_greater(head_a))
+		stack_b = pb(stack_a, stack_b);
+	else
+		ra(stack_a);
 	return (stack_b);
 }
