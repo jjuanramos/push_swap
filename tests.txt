@@ -3,3 +3,4 @@ ARG="13 3 6 100 4 5 10 12 1"; ./push_swap $ARG | ./checker_linux $ARG # 17 movem
 ARG="13 3 6 100 5 1"; ./push_swap $ARG | ./checker_linux $ARG # 10 movements
 ARG="3 1 2 15 40 -1 0 12 8"; ./push_swap $ARG | ./checker_linux $ARG # 18 movements
 ARG="3 1 5 4 2 100"; ./push_swap $ARG | ./checker_linux $ARG # 12 movements
+ARG="-2 -10 10000"; ./push_swap $ARG | ./checker_linux $ARG # 1 movement
