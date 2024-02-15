@@ -6,7 +6,7 @@
 /*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 15:24:13 by juramos           #+#    #+#             */
-/*   Updated: 2024/02/13 18:12:27 by juramos          ###   ########.fr       */
+/*   Updated: 2024/02/15 11:43:33 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static int	is_str_digit(char *str)
 	while (str[++pos])
 	{
 		if (!ft_isdigit(str[pos])
-			&& (str[pos] == '-' && pos != 0))
+			&& !(str[pos] == '-' && pos == 0))
 			return (0);
 	}
 	return (1);
