@@ -6,7 +6,7 @@
 /*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 11:12:00 by juramos           #+#    #+#             */
-/*   Updated: 2024/02/13 18:13:00 by juramos          ###   ########.fr       */
+/*   Updated: 2024/02/15 11:35:31 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,13 @@ int	main(int argc, char *argv[])
 {
 	t_stack	*stack_a;
 
-	if (argc < 2)
-		message_and_exit("Error\n", 2, 1);
-	else
+	if (argc >= 2)
 	{
 		stack_a = parse_to_stck(argc, argv);
 		if (!stack_a)
 			message_and_exit("Error\n", 2, 1);
+		quicksort(stack_a);
 	}
-	quicksort(stack_a);
 	atexit(leaks);
 	return (0);
 }
