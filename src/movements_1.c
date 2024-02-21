@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movements_1.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juramos <juramos@student.42.fr>            +#+  +:+       +#+        */
+/*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 15:36:04 by juramos           #+#    #+#             */
-/*   Updated: 2024/02/21 10:10:04 by juramos          ###   ########.fr       */
+/*   Updated: 2024/02/21 18:02:19 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,56 +17,60 @@
 	(check if only stack B can get empty), we free it. This way,
 	we can make sure to check the right size.
 */
-t_stack	*pa(t_stack *stack_b, t_stack *stack_a)
+void	pa(t_stack **stack_b, t_stack **stack_a)
 {
 	t_stack	*head_b;
 	t_stack	*head_a;
-	t_stack	*new_head_a;
 
-	if (get_stack_size(stack_b) != 0)
+	head_a = get_head(*stack_a);
+	head_b = get_head(*stack_b);
+	if (get_stack_size(*stack_b) != 0)
 	{
-		head_b = get_head(stack_b);
-		new_head_a = init_stack_on_value(head_b->value);
-		head_a = get_head(stack_a);
-		head_a->prev = new_head_a;
-		new_head_a->next = head_a;
+		*stack_a = head_b;
 		if (head_b->next)
 		{
-			stack_b = head_b->next;
-			stack_b->prev = NULL;
+			*stack_b = head_b->next;
+			(*stack_b)->prev = NULL;
 		}
 		else
-			stack_b = NULL;
-		ft_printf("pa\n");
+			*stack_b = NULL;
+		if (head_a)
+		{
+			(*stack_a)->next = head_a;
+			head_a->prev = *stack_a;
+		}
+		else
+			(*stack_a)->next = NULL;
 	}
-	return (stack_b);
+	ft_printf("pa\n");
 }
 
-t_stack	*pb(t_stack *stack_a, t_stack *stack_b)
+void	pb(t_stack **stack_a, t_stack **stack_b)
 {
 	t_stack	*head_a;
 	t_stack	*head_b;
 
-	head_b = NULL;
-	if (get_stack_size(stack_a) != 0)
+	head_a = get_head(*stack_a);
+	head_b = get_head(*stack_b);
+	if (get_stack_size(*stack_a) != 0)
 	{
-		head_a = get_head(stack_a);
-		if (get_stack_size(stack_b) == 0)
+		*stack_b = head_a;
+		if (head_a->next)
 		{
-			head_b = init_stack_on_value(head_a->value);
-			head_a = head_a->next;
-			head_a->prev = NULL;
+			*stack_a = head_a->next;
+			(*stack_a)->prev = NULL;
 		}
 		else
+			*stack_a = NULL;
+		if (head_b)
 		{
-			head_b = get_head(stack_b);
-			head_b->prev = head_a;
-			(head_a->next)->prev = NULL;
-			head_a->next = head_b;
+			(*stack_b)->next = head_b;
+			head_b->prev = *stack_b;
 		}
+		else
+			(*stack_b)->next = NULL;
 	}
 	ft_printf("pb\n");
-	return (head_b);
 }
 
 void	sa(t_stack	*stack_a)
