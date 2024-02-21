@@ -3,38 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   order_2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
+/*   By: juramos <juramos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 11:05:05 by juramos           #+#    #+#             */
-/*   Updated: 2024/02/15 11:31:04 by juramos          ###   ########.fr       */
+/*   Updated: 2024/02/21 10:10:39 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include "push_swap.h"
-
-/* quicksort
-	1. conquering:
-		- in Stack A:
-			- if pivot - n < pivot -> pb
-			- if pivot - n > pivot
-				-> if len - pos <= 3
-					-> check if sa (0 > 1 && 0 < 2) // check stack B for ss
-					-> check if sa && ra (0 < 1 && 2 < 1) // check stack B for ss & rr
-				-> ra
-		- in Stack B:
-			- if pivot is max -> pa
-			- if last is max -> rrb
-			- if 0 < 1 -> sb // check stack A for ss
-			- else -> rrb
-	2.
-		- else if last pivot pos == len of stack B - 1 -> pa
-		- else if last pivot pos != len - 1 && stack B -> pivot + 1 and repeat
-*/
-
-/*
-	-> check if sa (0 > 1 && 0 < 2) // check stack B for ss
-	-> check if sa && ra (0 < 1 && 2 < 1) // check stack B for ss & rr(?)
-*/
 
 #include "push_swap.h"
 

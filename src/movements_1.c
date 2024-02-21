@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movements_1.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
+/*   By: juramos <juramos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 15:36:04 by juramos           #+#    #+#             */
-/*   Updated: 2024/02/13 13:21:20 by juramos          ###   ########.fr       */
+/*   Updated: 2024/02/21 10:10:04 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ t_stack	*pb(t_stack *stack_a, t_stack *stack_b)
 	t_stack	*head_a;
 	t_stack	*head_b;
 
+	head_b = NULL;
 	if (get_stack_size(stack_a) != 0)
 	{
 		head_a = get_head(stack_a);
