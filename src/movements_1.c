@@ -6,7 +6,7 @@
 /*   By: juramos <juramos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 15:36:04 by juramos           #+#    #+#             */
-/*   Updated: 2024/02/21 10:10:04 by juramos          ###   ########.fr       */
+/*   Updated: 2024/02/21 14:00:44 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,19 +51,11 @@ t_stack	*pb(t_stack *stack_a, t_stack *stack_b)
 	if (get_stack_size(stack_a) != 0)
 	{
 		head_a = get_head(stack_a);
-		if (get_stack_size(stack_b) == 0)
-		{
-			head_b = init_stack_on_value(head_a->value);
-			head_a = head_a->next;
-			head_a->prev = NULL;
-		}
-		else
-		{
-			head_b = get_head(stack_b);
-			head_b->prev = head_a;
-			(head_a->next)->prev = NULL;
-			head_a->next = head_b;
-		}
+		head_b = init_stack_on_value(head_a->value);
+		if (get_stack_size(stack_b) != 0)
+			head_b->next = get_head(stack_b);
+		*head_a = *(head_a->next);
+		head_a->prev = NULL;
 	}
 	ft_printf("pb\n");
 	return (head_b);
