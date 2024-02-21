@@ -6,7 +6,7 @@
 /*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 10:35:27 by juramos           #+#    #+#             */
-/*   Updated: 2024/02/21 18:23:18 by juramos          ###   ########.fr       */
+/*   Updated: 2024/02/21 18:40:06 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ typedef struct s_stack {
 	struct s_stack	*prev;
 	int				value;
 	struct s_stack	*next;
+	int				chunk;
 }	t_stack;
 
 /* args_parse */

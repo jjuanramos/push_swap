@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quicksort.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juramos <juramos@student.42.fr>            +#+  +:+       +#+        */
+/*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 11:25:37 by juramos           #+#    #+#             */
-/*   Updated: 2024/02/21 13:57:03 by juramos          ###   ########.fr       */
+/*   Updated: 2024/02/21 19:03:17 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static int	is_smaller_than(t_stack *stck, int to_right)
 	{
 		while (t->prev)
 		{
-			if ((t->prev)->value > stck->value)
+			if ((t->prev)->value < stck->value)
 				return (0);
 			t = t->prev;
 		}
@@ -79,23 +79,22 @@ int	distance_to_head(t_stack *stck)
 	return (n);
 }
 
-t_stack	*move_to_stack_b(t_stack *a, t_stack *b)
+void	move_to_stack_b(t_stack **a, t_stack **b)
 {
 	t_stack	*head_a;
 
-	head_a = get_head(a);
-	if (head_a->value == a->value)
-		b = pb(a, b);
-	else if ((head_a->next) && (head_a->next)->value == a->value)
-		sa(a);
-	else if (distance_to_head(a) < get_stack_size(head_a) / 2)
-		ra(a);
+	head_a = get_head(*a);
+	if (head_a->value == (*a)->value)
+		pb(a, b);
+	else if ((head_a->next) && (head_a->next)->value == (*a)->value)
+		sa(*a);
+	else if (distance_to_head(*a) < get_stack_size(head_a) / 2)
+		ra(*a);
 	else
-		rra(a);
-	return (b);
+		rra(*a);
 }
 
-t_stack	*check_three_reversed(t_stack *stck)
+void	check_three_reversed(t_stack *stck)
 {
 	t_stack	*s;
 
@@ -106,29 +105,41 @@ t_stack	*check_three_reversed(t_stack *stck)
 		rb(stck);
 	else
 		rrb(stck);
-	return (stck);
 }
 
-t_stack	*reverse_order_chunk_in_b(t_stack *head_a, t_stack *b)
+void	reverse_order_chunk_in_b(t_stack **head_a, t_stack **b)
 {
 	int		max_b;
 	int		size_b;
 	t_stack	*head_b;
 
-	head_b = get_head(b);
+	head_b = get_head(*b);
 	max_b = get_max_to_right(head_b);
 	size_b = get_stack_size(head_b);
 	if (size_b <= 3)
-		b = check_three_reversed(b);
+		check_three_reversed(*b);
 	else if (head_b->value == max_b)
-		b = pa(head_b, head_a);
+		pa(b, head_a);
 	else if ((head_b->next) && (head_b->next)->value == max_b)
-		sb(b);
+		sb(*b);
 	else if (pos_til_max_at_head(head_b) < size_b / 2)
-		rb(b);
+		rb(*b);
 	else
-		rrb(b);
-	return (b);
+		rrb(*b);
+}
+
+void	get_chunks(t_stack *stck, int chunks)
+{
+	t_stack	*s;
+	int		size;
+
+	s = get_head(stck);
+	size = get_stack_size(s);
+	while (s)
+	{
+		s->chunk = how_many_smaller(s) / (size / chunks);
+		s = s->next;
+	}
 }
 
 /*	order_chunks:
@@ -140,10 +151,9 @@ t_stack	*reverse_order_chunk_in_b(t_stack *head_a, t_stack *b)
 	4. do 1-3 until last chunk iter, there, after ordering,
 		make sure all values are push back to A.
 */
-void	order_chunks(t_stack *stack_a, int chunks, int a_size)
+void	order_chunks(t_stack **stack_a, int chunks)
 {
 	int		current_chunk;
-	int		chunk_for_pivot;
 	int		iters;
 	t_stack	*a;
 	t_stack	*b;
@@ -151,19 +161,19 @@ void	order_chunks(t_stack *stack_a, int chunks, int a_size)
 	current_chunk = 0;
 	b = NULL;
 	iters = 0;
+	get_chunks(*stack_a, chunks);
 	while (current_chunk < chunks)
 	{
 		// iter on A
-		a = get_head(stack_a);
+		a = get_head(*stack_a);
 		while (a && a->next)
 		{
-			chunk_for_pivot = how_many_smaller(a) / (a_size / chunks);
-			if (chunk_for_pivot == current_chunk)
+			if (a->chunk == current_chunk)
 			{
-				ft_printf("now checking for %d in A for chunk %d\n", a->value, current_chunk);
+				ft_printf("%d chunk in A: now checking for %d in A\n", a->chunk, a->value);
 				print_stack(get_head(a), "start of A:\t");
 				print_stack(get_head(b), "start of B:\t");
-				b = move_to_stack_b(a, b);
+				move_to_stack_b(&a, &b);
 				a = get_head(a);
 				b = get_head(b);
 				print_stack(get_head(a), "result of A:\t");
@@ -180,34 +190,31 @@ void	order_chunks(t_stack *stack_a, int chunks, int a_size)
 		b = get_head(b);
 		while (b && b->next)
 		{
-			chunk_for_pivot = how_many_smaller(b) / (a_size / chunks);
-			if (chunk_for_pivot == current_chunk
-				&& is_greater_than(b, 0) && is_smaller_than(b, 0))
+			if ((is_greater_than(b, 0) && is_smaller_than(b, 0)) || b->chunk != current_chunk)
+				b = b->next;
+			else
 			{
-				ft_printf("now checking for %d in B for chunk %d\n", b->value, current_chunk);
+				ft_printf("%d chunk in B: now checking for %d in B\n", b->chunk, b->value);
 				print_stack(get_head(a), "start of A:\t");
 				print_stack(get_head(b), "start of B:\t");
-				b = reverse_order_chunk_in_b(a, b);
+				reverse_order_chunk_in_b(&a, &b);
 				b = get_head(b);
 				a = get_head(a);
 				print_stack(get_head(a), "result of A:\t");
 				print_stack(get_head(b), "result of B:\t");
 				ft_printf("\n---------------------------------\n\n");
 			}
-			else
-				b = b->next;
 		}
 		// iter on A
-		a = get_head(stack_a);
+		a = get_head(*stack_a);
 		while (a && a->next)
 		{
-			chunk_for_pivot = how_many_smaller(a) / (a_size / chunks);
-			if (chunk_for_pivot == current_chunk)
+			if (a->chunk == current_chunk)
 			{
-				ft_printf("now checking for %d in A for chunk %d\n", a->value, current_chunk);
+				ft_printf("2nd: now checking for %d in A for chunk %d\n", a->value, current_chunk);
 				print_stack(get_head(a), "start of A:\t");
 				print_stack(get_head(b), "start of B:\t");
-				b = move_to_stack_b(a, b);
+				move_to_stack_b(&a, &b);
 				a = get_head(a);
 				b = get_head(b);
 				print_stack(get_head(a), "result of A:\t");
@@ -217,11 +224,12 @@ void	order_chunks(t_stack *stack_a, int chunks, int a_size)
 			else
 				a = a->next;
 		}
+		exit(0);
 		current_chunk++;
 		if (current_chunk == chunks)
 		{
 			while (b)
-				pa(b, a);
+				pa(&b, &a);
 		}
 	}
 }
@@ -245,7 +253,7 @@ void	quicksort(t_stack *stack_a)
 	else
 		chunks = 1;
 	if (chunks > 1)
-		order_chunks(stack_a, chunks, a_size);
+		order_chunks(&stack_a, chunks);
 	else
 		ft_printf("TODO\n");
 }
