@@ -6,7 +6,7 @@
 /*   By: juramos <juramos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 11:25:37 by juramos           #+#    #+#             */
-/*   Updated: 2024/02/21 13:10:54 by juramos          ###   ########.fr       */
+/*   Updated: 2024/02/21 13:43:56 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,15 +83,15 @@ t_stack	*move_to_stack_b(t_stack *a, t_stack *b)
 {
 	t_stack	*head_a;
 
-	head_a = get_head(stack_a);
+	head_a = get_head(a);
 	if (head_a->value == a->value)
-		b = pb(head_a, b);
+		b = pb(a, b);
 	else if ((head_a->next) && (head_a->next)->value == a->value)
-		sa(stack_a);
+		sa(a);
 	else if (distance_to_head(a) < get_stack_size(head_a) / 2)
-		ra(stack_a);
+		ra(a);
 	else
-		rra(stack_a);
+		rra(a);
 	return (b);
 }
 
@@ -144,11 +144,13 @@ void	order_chunks(t_stack *stack_a, int chunks, int a_size)
 {
 	int		current_chunk;
 	int		chunk_for_pivot;
+	int		iters;
 	t_stack	*a;
 	t_stack	*b;
 
 	current_chunk = 0;
 	b = NULL;
+	iters = 0;
 	while (current_chunk < chunks)
 	{
 		// iter on A
@@ -158,9 +160,18 @@ void	order_chunks(t_stack *stack_a, int chunks, int a_size)
 			chunk_for_pivot = how_many_smaller(a) / (a_size / chunks);
 			if (chunk_for_pivot == current_chunk)
 			{
+				ft_printf("now checking for %d in A for chunk %d\n", a->value, current_chunk);
+				print_stack(get_head(a), "start of A:\t");
+				print_stack(get_head(b), "start of B:\t");
 				b = move_to_stack_b(a, b);
 				a = get_head(a);
 				b = get_head(b);
+				print_stack(get_head(a), "result of A:\t");
+				print_stack(get_head(b), "result of B:\t");
+				ft_printf("\n---------------------------------\n\n");
+				iters++;
+				if (iters == 15)
+					exit(0);
 			}
 			else
 				a = a->next;
@@ -173,9 +184,15 @@ void	order_chunks(t_stack *stack_a, int chunks, int a_size)
 			if (chunk_for_pivot == current_chunk
 				&& is_greater_than(b, 0) && is_smaller_than(b, 0))
 			{
+				ft_printf("now checking for %d in B for chunk %d\n", b->value, current_chunk);
+				print_stack(get_head(a), "start of A:\t");
+				print_stack(get_head(b), "start of B:\t");
 				b = reverse_order_chunk_in_b(a, b);
 				b = get_head(b);
 				a = get_head(a);
+				print_stack(get_head(a), "result of A:\t");
+				print_stack(get_head(b), "result of B:\t");
+				ft_printf("\n---------------------------------\n\n");
 			}
 			else
 				b = b->next;
@@ -187,16 +204,25 @@ void	order_chunks(t_stack *stack_a, int chunks, int a_size)
 			chunk_for_pivot = how_many_smaller(a) / (a_size / chunks);
 			if (chunk_for_pivot == current_chunk)
 			{
+				ft_printf("now checking for %d in A for chunk %d\n", a->value, current_chunk);
+				print_stack(get_head(a), "start of A:\t");
+				print_stack(get_head(b), "start of B:\t");
 				b = move_to_stack_b(a, b);
 				a = get_head(a);
 				b = get_head(b);
+				print_stack(get_head(a), "result of A:\t");
+				print_stack(get_head(b), "result of B:\t");
+				ft_printf("\n---------------------------------\n\n");
 			}
 			else
 				a = a->next;
 		}
 		current_chunk++;
 		if (current_chunk == chunks)
-			push_to_a(a, b);
+		{
+			while (b)
+				pa(b, a);
+		}
 	}
 }
 
@@ -207,7 +233,6 @@ void	order_chunks(t_stack *stack_a, int chunks, int a_size)
 void	quicksort(t_stack *stack_a)
 {
 	int		a_size;
-	int		current_chunk;
 	int		chunks;
 
 	a_size = get_stack_size(get_head(stack_a));
@@ -219,7 +244,8 @@ void	quicksort(t_stack *stack_a)
 		chunks = 3;
 	else
 		chunks = 1;
-	order_chunks(stack_a, chunks, a_size);
-	if (b)
-		clean_stack(b);
+	if (chunks > 1)
+		order_chunks(stack_a, chunks, a_size);
+	else
+		ft_printf("TODO\n");
 }

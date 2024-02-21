@@ -6,7 +6,7 @@
 /*   By: juramos <juramos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 10:35:27 by juramos           #+#    #+#             */
-/*   Updated: 2024/02/21 11:45:53 by juramos          ###   ########.fr       */
+/*   Updated: 2024/02/21 13:14:55 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ int		how_many_smaller(t_stack *stck);
 t_stack	*order_a(t_stack *stack_a, t_stack *stack_b);
 
 /*	order_2 */
+int		pos_til_max_at_head(t_stack *head);
 t_stack	*order(t_stack *stack_a, t_stack *stack_b, int is_a);
 
 /* quicksort */
