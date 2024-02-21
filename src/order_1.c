@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   order_1.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
+/*   By: juramos <juramos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 13:51:48 by juramos           #+#    #+#             */
-/*   Updated: 2024/02/15 11:47:19 by juramos          ###   ########.fr       */
+/*   Updated: 2024/02/21 11:45:21 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	check_three(t_stack *stack_a)
 		ra(stack_a);
 }
 
-static int	how_many_smaller(t_stack *stck)
+int	how_many_smaller(t_stack *stck)
 {
 	int		n;
 	t_stack	*t;
