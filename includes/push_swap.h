@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juramos <juramos@student.42.fr>            +#+  +:+       +#+        */
+/*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 10:35:27 by juramos           #+#    #+#             */
-/*   Updated: 2024/02/21 13:14:55 by juramos          ###   ########.fr       */
+/*   Updated: 2024/02/21 18:23:18 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ int		get_max_to_right(t_stack *stck);
 t_stack	*init_stack_on_value(int val);
 
 /* movements_1 */
-t_stack	*pa(t_stack *stack_b, t_stack *stack_a);
-t_stack	*pb(t_stack *stack_a, t_stack *stack_b);
+void	pa(t_stack **stack_b, t_stack **stack_a);
+void	pb(t_stack **stack_a, t_stack **stack_b);
 void	sa(t_stack	*stack_a);
 void	sb(t_stack	*stack_b);
 void	ss(t_stack *stack_a, t_stack *stack_b);
@@ -56,14 +56,15 @@ void	rrb(t_stack *stack_b);
 
 /*	order_1 */
 int		how_many_smaller(t_stack *stck);
-t_stack	*order_a(t_stack *stack_a, t_stack *stack_b);
+void	order_a(t_stack **stack_a, t_stack **stack_b);
 
 /*	order_2 */
 int		pos_til_max_at_head(t_stack *head);
-t_stack	*order(t_stack *stack_a, t_stack *stack_b, int is_a);
+void	order(t_stack **stack_a, t_stack **stack_b, int is_a);
 
 /* quicksort */
 int		is_greater_than(t_stack *stck, int to_left);
 void	quicksort(t_stack *stack_a);
+void	debug_quicksort(t_stack *stack_a);
 
 #endif
