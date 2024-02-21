@@ -6,7 +6,7 @@
 /*   By: juramos <juramos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 11:25:37 by juramos           #+#    #+#             */
-/*   Updated: 2024/02/21 10:52:30 by juramos          ###   ########.fr       */
+/*   Updated: 2024/02/21 14:10:49 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,4 +91,50 @@ void	quicksort(t_stack *stack_a)
 	}
 	if (b)
 		clean_stack(b);
+}
+
+void	debug_quicksort(t_stack *stack_a)
+{
+	t_stack	*a;
+	t_stack	*b;
+	int		movements;
+
+	a = get_tail(stack_a);
+	b = NULL;
+	movements = 0;
+	while (a->prev)
+	{
+		if (is_greater_than(a, 1) && is_smaller_than(a, 1))
+			a = a->prev;
+		else
+		{
+			ft_printf("now checking for %d in A\n", a->value);
+			print_stack(get_head(a), "start of A:\t");
+			print_stack(get_head(b), "start of B:\t");
+			b = order(a, b, 1);
+			a = get_tail(a);
+			print_stack(get_head(a), "result of A:\t");
+			print_stack(get_head(b), "result of B:\t");
+			ft_printf("\n---------------------------------\n\n");
+			movements++;
+		}
+	}
+	b = get_head(b);
+	a = get_tail(a);
+	while (b)
+	{
+		ft_printf("now checking for %d in B\n", b->value);
+		print_stack(get_head(a), "start of A:\t");
+		print_stack(get_head(b), "start of B:\t");
+		b = order(a, b, 0);
+		b = get_head(b);
+		a = get_tail(a);
+		print_stack(get_head(a), "result of A:\t");
+		print_stack(get_head(b), "result of B:\t");
+		ft_printf("\n---------------------------------\n\n");
+		movements++;
+	}
+	ft_printf("\t>>>> required %d movements. <<<<\n", movements);
+	if (b)
+		free(b);
 }
