@@ -6,7 +6,7 @@
 /*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 11:25:37 by juramos           #+#    #+#             */
-/*   Updated: 2024/02/21 18:13:39 by juramos          ###   ########.fr       */
+/*   Updated: 2024/02/21 19:04:37 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static int	is_smaller_than(t_stack *stck, int to_right)
 	{
 		while (t->prev)
 		{
-			if ((t->prev)->value > stck->value)
+			if ((t->prev)->value < stck->value)
 				return (0);
 			t = t->prev;
 		}
