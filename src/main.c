@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
+/*   By: juramos <juramos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 11:12:00 by juramos           #+#    #+#             */
-/*   Updated: 2024/02/15 11:35:31 by juramos          ###   ########.fr       */
+/*   Updated: 2024/02/21 10:16:38 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 // debugging
 void	leaks(void)
 {
-	system("leaks -q ./push_swap");
+	system("leaks push_swap");
 }
 
 int	main(int argc, char *argv[])
@@ -29,6 +29,6 @@ int	main(int argc, char *argv[])
 			message_and_exit("Error\n", 2, 1);
 		quicksort(stack_a);
 	}
-	atexit(leaks);
+	// atexit(leaks);
 	return (0);
 }
