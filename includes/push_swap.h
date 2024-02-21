@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
+/*   By: juramos <juramos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 10:35:27 by juramos           #+#    #+#             */
-/*   Updated: 2024/02/15 11:26:13 by juramos          ###   ########.fr       */
+/*   Updated: 2024/02/21 10:26:04 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ t_stack	*parse_to_stck(int argc, char *argv[]);
 /* utils */
 void	message_and_exit(char *str, int out, int exit_code);
 void	print_stack(t_stack	*stck, char *pre);
+void	clean_stack(t_stack	*stck);
 
 /* stack */
 t_stack	*get_head(t_stack *stck);

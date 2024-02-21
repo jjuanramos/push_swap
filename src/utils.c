@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
+/*   By: juramos <juramos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 15:28:38 by juramos           #+#    #+#             */
-/*   Updated: 2024/02/12 18:00:45 by juramos          ###   ########.fr       */
+/*   Updated: 2024/02/21 10:30:28 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,21 @@ void	print_stack(t_stack	*stck, char *pre)
 			t = t->next;
 		}
 		ft_printf("\n");
+	}
+}
+
+void	clean_stack(t_stack	*stck)
+{
+	t_stack	*t;
+
+	if (stck)
+	{
+		t = get_head(stck);
+		while (t->next)
+		{
+			t = t->next;
+			free(t->prev);
+		}
+		free(t);
 	}
 }
