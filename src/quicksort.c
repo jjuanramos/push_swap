@@ -6,7 +6,7 @@
 /*   By: juramos <juramos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 11:25:37 by juramos           #+#    #+#             */
-/*   Updated: 2024/02/21 13:03:40 by juramos          ###   ########.fr       */
+/*   Updated: 2024/02/21 13:10:54 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,11 +102,10 @@ t_stack	*check_three_reversed(t_stack *stck)
 	s = get_head(stck);
 	if (s->value < (s->next)->value && s->value > (get_tail(s))->value)
 		sb(stck);
-	else if (s->value > (s->next)->value
-		&& (s->next)->value < (get_tail(s))->value)
-		rrb(stck);
-	else
+	else if (s->value < (s->next)->value && s->value < (get_tail(s))->value)
 		rb(stck);
+	else
+		rrb(stck);
 	return (stck);
 }
 
