@@ -6,7 +6,7 @@
 /*   By: juramos <juramos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 11:25:37 by juramos           #+#    #+#             */
-/*   Updated: 2024/02/21 10:29:21 by juramos          ###   ########.fr       */
+/*   Updated: 2024/02/21 10:52:30 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,5 +91,4 @@ void	quicksort(t_stack *stack_a)
 	}
 	if (b)
 		clean_stack(b);
-	clean_stack(a);
 }

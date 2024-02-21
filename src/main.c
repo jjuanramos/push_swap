@@ -6,7 +6,7 @@
 /*   By: juramos <juramos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 11:12:00 by juramos           #+#    #+#             */
-/*   Updated: 2024/02/21 10:16:38 by juramos          ###   ########.fr       */
+/*   Updated: 2024/02/21 10:54:17 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int	main(int argc, char *argv[])
 		if (!stack_a)
 			message_and_exit("Error\n", 2, 1);
 		quicksort(stack_a);
+		clean_stack(stack_a);
 	}
 	// atexit(leaks);
 	return (0);
