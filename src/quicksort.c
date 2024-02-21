@@ -6,7 +6,7 @@
 /*   By: juramos <juramos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 11:25:37 by juramos           #+#    #+#             */
-/*   Updated: 2024/02/21 13:43:56 by juramos          ###   ########.fr       */
+/*   Updated: 2024/02/21 13:57:03 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,7 +170,7 @@ void	order_chunks(t_stack *stack_a, int chunks, int a_size)
 				print_stack(get_head(b), "result of B:\t");
 				ft_printf("\n---------------------------------\n\n");
 				iters++;
-				if (iters == 15)
+				if (iters > 1000)
 					exit(0);
 			}
 			else
