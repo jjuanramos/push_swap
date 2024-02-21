@@ -6,7 +6,7 @@
 /*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 11:25:37 by juramos           #+#    #+#             */
-/*   Updated: 2024/02/21 18:06:35 by juramos          ###   ########.fr       */
+/*   Updated: 2024/02/21 18:13:39 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	quicksort(t_stack *stack_a)
 			a = a->prev;
 		else
 		{
-			order(a, b, 1);
+			order(&a, &b, 1);
 			a = get_tail(a);
 		}
 	}
@@ -85,7 +85,7 @@ void	quicksort(t_stack *stack_a)
 	a = get_tail(a);
 	while (b)
 	{
-		order(a, b, 0);
+		order(&a, &b, 0);
 		b = get_head(b);
 		a = get_tail(a);
 	}
@@ -111,7 +111,7 @@ void	debug_quicksort(t_stack *stack_a)
 			ft_printf("now checking for %d in A\n", a->value);
 			print_stack(get_head(a), "start of A:\t");
 			print_stack(get_head(b), "start of B:\t");
-			order(a, b, 1);
+			order(&a, &b, 1);
 			a = get_tail(a);
 			print_stack(get_head(a), "result of A:\t");
 			print_stack(get_head(b), "result of B:\t");
@@ -126,7 +126,7 @@ void	debug_quicksort(t_stack *stack_a)
 		ft_printf("now checking for %d in B\n", b->value);
 		print_stack(get_head(a), "start of A:\t");
 		print_stack(get_head(b), "start of B:\t");
-		order(a, b, 0);
+		order(&a, &b, 0);
 		b = get_head(b);
 		a = get_tail(a);
 		print_stack(get_head(a), "result of A:\t");
