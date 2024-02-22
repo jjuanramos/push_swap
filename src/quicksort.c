@@ -6,7 +6,7 @@
 /*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 11:25:37 by juramos           #+#    #+#             */
-/*   Updated: 2024/02/21 19:03:17 by juramos          ###   ########.fr       */
+/*   Updated: 2024/02/22 10:09:52 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,7 +151,7 @@ void	get_chunks(t_stack *stck, int chunks)
 	4. do 1-3 until last chunk iter, there, after ordering,
 		make sure all values are push back to A.
 */
-void	order_chunks(t_stack **stack_a, int chunks)
+void	debug_order_chunks(t_stack **stack_a, int chunks)
 {
 	int		current_chunk;
 	int		iters;
@@ -162,11 +162,14 @@ void	order_chunks(t_stack **stack_a, int chunks)
 	b = NULL;
 	iters = 0;
 	get_chunks(*stack_a, chunks);
-	while (current_chunk < chunks)
+	a = get_head(*stack_a);
+	while (current_chunk <= chunks)
 	{
+		ft_printf("chunk %d out of %d chunks\n\n", current_chunk, chunks);
 		// iter on A
-		a = get_head(*stack_a);
-		while (a && a->next)
+		a = get_head(a);
+		b = get_head(b);
+		while (a)
 		{
 			if (a->chunk == current_chunk)
 			{
@@ -180,40 +183,45 @@ void	order_chunks(t_stack **stack_a, int chunks)
 				print_stack(get_head(b), "result of B:\t");
 				ft_printf("\n---------------------------------\n\n");
 				iters++;
-				if (iters > 1000)
-					exit(0);
 			}
-			else
+			else if (a->next)
 				a = a->next;
+			else
+				break ;
 		}
 		// iter on B
+		a = get_head(a);
 		b = get_head(b);
-		while (b && b->next)
+		while (b)
 		{
-			if ((is_greater_than(b, 0) && is_smaller_than(b, 0)) || b->chunk != current_chunk)
-				b = b->next;
-			else
+			if (!((is_greater_than(b, 0) && is_smaller_than(b, 0)) || b->chunk != current_chunk))
 			{
 				ft_printf("%d chunk in B: now checking for %d in B\n", b->chunk, b->value);
-				print_stack(get_head(a), "start of A:\t");
-				print_stack(get_head(b), "start of B:\t");
+				print_stack(a, "start of A:\t");
+				print_stack(b, "start of B:\t");
 				reverse_order_chunk_in_b(&a, &b);
 				b = get_head(b);
 				a = get_head(a);
-				print_stack(get_head(a), "result of A:\t");
-				print_stack(get_head(b), "result of B:\t");
+				print_stack(a, "result of A:\t");
+				print_stack(b, "result of B:\t");
 				ft_printf("\n---------------------------------\n\n");
 			}
+			else if (b->next)
+				b = b->next;
+			else
+				break ;
 		}
 		// iter on A
-		a = get_head(*stack_a);
-		while (a && a->next)
+		a = get_head(a);
+		b = get_head(b);
+		while (a)
 		{
+			ft_printf("2nd: %d chunk in A, current chunk %d: comprobando for %d in A\n", a->chunk, current_chunk, a->value);
 			if (a->chunk == current_chunk)
 			{
 				ft_printf("2nd: now checking for %d in A for chunk %d\n", a->value, current_chunk);
-				print_stack(get_head(a), "start of A:\t");
-				print_stack(get_head(b), "start of B:\t");
+				print_stack(a, "start of A:\t");
+				print_stack(b, "start of B:\t");
 				move_to_stack_b(&a, &b);
 				a = get_head(a);
 				b = get_head(b);
@@ -221,17 +229,88 @@ void	order_chunks(t_stack **stack_a, int chunks)
 				print_stack(get_head(b), "result of B:\t");
 				ft_printf("\n---------------------------------\n\n");
 			}
-			else
+			else if (a->next)
 				a = a->next;
+			else
+				break ;
 		}
-		exit(0);
 		current_chunk++;
-		if (current_chunk == chunks)
-		{
-			while (b)
-				pa(&b, &a);
-		}
 	}
+	a = get_head(a);
+	b = get_head(b);
+	while (b)
+		pa(&b, &a);
+	print_stack(get_head(a), "end result of A:\t");
+	print_stack(get_head(b), "end result of B:\t");
+	ft_printf("\n---------------------------------\n\n");
+}
+
+void	order_chunks(t_stack **stack_a, int chunks)
+{
+	int		current_chunk;
+	t_stack	*a;
+	t_stack	*b;
+
+	current_chunk = 0;
+	b = NULL;
+	get_chunks(*stack_a, chunks);
+	a = get_head(*stack_a);
+	while (current_chunk <= chunks)
+	{
+		// iter on A
+		a = get_head(a);
+		b = get_head(b);
+		while (a)
+		{
+			if (a->chunk == current_chunk)
+			{
+				move_to_stack_b(&a, &b);
+				a = get_head(a);
+				b = get_head(b);
+			}
+			else if (a->next)
+				a = a->next;
+			else
+				break ;
+		}
+		// iter on B
+		a = get_head(a);
+		b = get_head(b);
+		while (b)
+		{
+			if (!((is_greater_than(b, 0) && is_smaller_than(b, 0)) || b->chunk != current_chunk))
+			{
+				reverse_order_chunk_in_b(&a, &b);
+				b = get_head(b);
+				a = get_head(a);
+			}
+			else if (b->next)
+				b = b->next;
+			else
+				break ;
+		}
+		// iter on A
+		a = get_head(a);
+		b = get_head(b);
+		while (a)
+		{
+			if (a->chunk == current_chunk)
+			{
+				move_to_stack_b(&a, &b);
+				a = get_head(a);
+				b = get_head(b);
+			}
+			else if (a->next)
+				a = a->next;
+			else
+				break ;
+		}
+		current_chunk++;
+	}
+	a = get_head(a);
+	b = get_head(b);
+	while (b)
+		pa(&b, &a);
 }
 
 /*
@@ -252,8 +331,5 @@ void	quicksort(t_stack *stack_a)
 		chunks = 3;
 	else
 		chunks = 1;
-	if (chunks > 1)
-		order_chunks(&stack_a, chunks);
-	else
-		ft_printf("TODO\n");
+	order_chunks(&stack_a, chunks);
 }
