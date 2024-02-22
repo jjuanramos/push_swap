@@ -6,7 +6,7 @@
 /*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 10:35:27 by juramos           #+#    #+#             */
-/*   Updated: 2024/02/22 11:06:12 by juramos          ###   ########.fr       */
+/*   Updated: 2024/02/22 11:06:59 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,11 +55,11 @@ void	rr(t_stack *stack_a, t_stack *stack_b);
 void	rra(t_stack *stack_a);
 void	rrb(t_stack *stack_b);
 
-/*	order_1 */
+/*	small_order_1 */
 int		how_many_smaller(t_stack *stck);
 void	order_a(t_stack **stack_a, t_stack **stack_b);
 
-/*	order_2 */
+/*	small_order_2 */
 int		pos_til_max_at_head(t_stack *head);
 void	order(t_stack **stack_a, t_stack **stack_b, int is_a);
 
