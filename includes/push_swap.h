@@ -6,7 +6,7 @@
 /*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 10:35:27 by juramos           #+#    #+#             */
-/*   Updated: 2024/02/22 11:04:42 by juramos          ###   ########.fr       */
+/*   Updated: 2024/02/22 11:06:12 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	order_a(t_stack **stack_a, t_stack **stack_b);
 int		pos_til_max_at_head(t_stack *head);
 void	order(t_stack **stack_a, t_stack **stack_b, int is_a);
 
-/*	chunk_utils	*/
+/*	chunk_order	*/
 int		distance_to_head(t_stack *stck);
 void	move_to_stack_b(t_stack **a, t_stack **b);
 void	check_three_reversed(t_stack *stck);
