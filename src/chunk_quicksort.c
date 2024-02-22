@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   chunk_order.c                                      :+:      :+:    :+:   */
+/*   chunk_quicksort.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 10:12:29 by juramos           #+#    #+#             */
-/*   Updated: 2024/02/22 11:04:34 by juramos          ###   ########.fr       */
+/*   Updated: 2024/02/22 11:19:20 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ void	chunk_quicksort(t_stack **stack_a, int chunks)
 	while (b)
 		pa(&b, &a);
 }
-
+/*
 static	void	debug__iter_on_a(t_stack **a, t_stack **b, int current_chunk)
 {
 	t_stack	*tmp_a;
@@ -182,3 +182,4 @@ void	debug__chunk_quicksort(t_stack **stack_a, int chunks)
 	print_stack(get_head(b), "end result of B:\t");
 	ft_printf("\n---------------------------------\n\n");
 }
+*/
