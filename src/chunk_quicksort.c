@@ -6,7 +6,7 @@
 /*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 10:12:29 by juramos           #+#    #+#             */
-/*   Updated: 2024/02/22 10:50:52 by juramos          ###   ########.fr       */
+/*   Updated: 2024/02/22 11:04:34 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ static void	iter_on_b(t_stack **a, t_stack **b, int current_chunk)
 	4. do 1-3 until last chunk iter, there, after ordering,
 		make sure all values are push back to A.
 */
-void	order_chunks(t_stack **stack_a, int chunks)
+void	chunk_quicksort(t_stack **stack_a, int chunks)
 {
 	int		current_chunk;
 	t_stack	*a;
@@ -156,7 +156,7 @@ static void	debug__iter_on_b(t_stack **a, t_stack **b, int current_chunk)
 	}
 }
 
-void	debug__order_chunks(t_stack **stack_a, int chunks)
+void	debug__chunk_quicksort(t_stack **stack_a, int chunks)
 {
 	int		current_chunk;
 	t_stack	*a;
