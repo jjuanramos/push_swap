@@ -6,17 +6,11 @@
 /*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 11:12:00 by juramos           #+#    #+#             */
-/*   Updated: 2024/02/22 11:20:00 by juramos          ###   ########.fr       */
+/*   Updated: 2024/02/22 11:39:04 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-// debugging
-void	leaks(void)
-{
-	system("leaks push_swap");
-}
 
 int	main(int argc, char *argv[])
 {
@@ -30,6 +24,5 @@ int	main(int argc, char *argv[])
 		quicksort(stack_a);
 		clean_stack(stack_a);
 	}
-	atexit(leaks);
 	return (0);
 }
