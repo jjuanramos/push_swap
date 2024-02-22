@@ -6,7 +6,7 @@
 /*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 11:25:37 by juramos           #+#    #+#             */
-/*   Updated: 2024/02/22 10:09:52 by juramos          ###   ########.fr       */
+/*   Updated: 2024/02/22 10:17:08 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	is_greater_than(t_stack *stck, int to_left)
 	return (1);
 }
 
-static int	is_smaller_than(t_stack *stck, int to_right)
+int	is_smaller_than(t_stack *stck, int to_right)
 {
 	t_stack	*t;
 
@@ -62,84 +62,6 @@ static int	is_smaller_than(t_stack *stck, int to_right)
 		}
 	}
 	return (1);
-}
-
-int	distance_to_head(t_stack *stck)
-{
-	int		n;
-	t_stack	*t;
-
-	n = 0;
-	t = stck;
-	while (t->prev)
-	{
-		n++;
-		t = t->prev;
-	}
-	return (n);
-}
-
-void	move_to_stack_b(t_stack **a, t_stack **b)
-{
-	t_stack	*head_a;
-
-	head_a = get_head(*a);
-	if (head_a->value == (*a)->value)
-		pb(a, b);
-	else if ((head_a->next) && (head_a->next)->value == (*a)->value)
-		sa(*a);
-	else if (distance_to_head(*a) < get_stack_size(head_a) / 2)
-		ra(*a);
-	else
-		rra(*a);
-}
-
-void	check_three_reversed(t_stack *stck)
-{
-	t_stack	*s;
-
-	s = get_head(stck);
-	if (s->value < (s->next)->value && s->value > (get_tail(s))->value)
-		sb(stck);
-	else if (s->value < (s->next)->value && s->value < (get_tail(s))->value)
-		rb(stck);
-	else
-		rrb(stck);
-}
-
-void	reverse_order_chunk_in_b(t_stack **head_a, t_stack **b)
-{
-	int		max_b;
-	int		size_b;
-	t_stack	*head_b;
-
-	head_b = get_head(*b);
-	max_b = get_max_to_right(head_b);
-	size_b = get_stack_size(head_b);
-	if (size_b <= 3)
-		check_three_reversed(*b);
-	else if (head_b->value == max_b)
-		pa(b, head_a);
-	else if ((head_b->next) && (head_b->next)->value == max_b)
-		sb(*b);
-	else if (pos_til_max_at_head(head_b) < size_b / 2)
-		rb(*b);
-	else
-		rrb(*b);
-}
-
-void	get_chunks(t_stack *stck, int chunks)
-{
-	t_stack	*s;
-	int		size;
-
-	s = get_head(stck);
-	size = get_stack_size(s);
-	while (s)
-	{
-		s->chunk = how_many_smaller(s) / (size / chunks);
-		s = s->next;
-	}
 }
 
 /*	order_chunks:
@@ -243,74 +165,6 @@ void	debug_order_chunks(t_stack **stack_a, int chunks)
 	print_stack(get_head(a), "end result of A:\t");
 	print_stack(get_head(b), "end result of B:\t");
 	ft_printf("\n---------------------------------\n\n");
-}
-
-void	order_chunks(t_stack **stack_a, int chunks)
-{
-	int		current_chunk;
-	t_stack	*a;
-	t_stack	*b;
-
-	current_chunk = 0;
-	b = NULL;
-	get_chunks(*stack_a, chunks);
-	a = get_head(*stack_a);
-	while (current_chunk <= chunks)
-	{
-		// iter on A
-		a = get_head(a);
-		b = get_head(b);
-		while (a)
-		{
-			if (a->chunk == current_chunk)
-			{
-				move_to_stack_b(&a, &b);
-				a = get_head(a);
-				b = get_head(b);
-			}
-			else if (a->next)
-				a = a->next;
-			else
-				break ;
-		}
-		// iter on B
-		a = get_head(a);
-		b = get_head(b);
-		while (b)
-		{
-			if (!((is_greater_than(b, 0) && is_smaller_than(b, 0)) || b->chunk != current_chunk))
-			{
-				reverse_order_chunk_in_b(&a, &b);
-				b = get_head(b);
-				a = get_head(a);
-			}
-			else if (b->next)
-				b = b->next;
-			else
-				break ;
-		}
-		// iter on A
-		a = get_head(a);
-		b = get_head(b);
-		while (a)
-		{
-			if (a->chunk == current_chunk)
-			{
-				move_to_stack_b(&a, &b);
-				a = get_head(a);
-				b = get_head(b);
-			}
-			else if (a->next)
-				a = a->next;
-			else
-				break ;
-		}
-		current_chunk++;
-	}
-	a = get_head(a);
-	b = get_head(b);
-	while (b)
-		pa(&b, &a);
 }
 
 /*

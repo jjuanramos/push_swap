@@ -6,7 +6,7 @@
 /*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 10:35:27 by juramos           #+#    #+#             */
-/*   Updated: 2024/02/21 18:40:06 by juramos          ###   ########.fr       */
+/*   Updated: 2024/02/22 10:17:14 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,19 @@ void	order_a(t_stack **stack_a, t_stack **stack_b);
 int		pos_til_max_at_head(t_stack *head);
 void	order(t_stack **stack_a, t_stack **stack_b, int is_a);
 
+/*	chunk_utils	*/
+int		distance_to_head(t_stack *stck);
+void	move_to_stack_b(t_stack **a, t_stack **b);
+void	check_three_reversed(t_stack *stck);
+void	reverse_order_chunk_in_b(t_stack **head_a, t_stack **b);
+void	get_chunks(t_stack *stck, int chunks);
+
+/*	chunk_order	*/
+void	order_chunks(t_stack **stack_a, int chunks);
+
 /* quicksort */
 int		is_greater_than(t_stack *stck, int to_left);
+int		is_smaller_than(t_stack *stck, int to_right);
 void	quicksort(t_stack *stack_a);
 void	debug_quicksort(t_stack *stack_a);
 
