@@ -6,7 +6,7 @@
 /*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 10:35:27 by juramos           #+#    #+#             */
-/*   Updated: 2024/02/22 10:17:14 by juramos          ###   ########.fr       */
+/*   Updated: 2024/02/22 10:41:28 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ void	get_chunks(t_stack *stck, int chunks);
 
 /*	chunk_order	*/
 void	order_chunks(t_stack **stack_a, int chunks);
+void	debug__order_chunks(t_stack **stack_a, int chunks);
 
 /* quicksort */
 int		is_greater_than(t_stack *stck, int to_left);
