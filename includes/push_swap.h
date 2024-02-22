@@ -6,7 +6,7 @@
 /*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 10:35:27 by juramos           #+#    #+#             */
-/*   Updated: 2024/02/22 11:06:59 by juramos          ###   ########.fr       */
+/*   Updated: 2024/02/22 11:12:34 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ t_stack	*parse_to_stck(int argc, char *argv[]);
 void	message_and_exit(char *str, int out, int exit_code);
 void	print_stack(t_stack	*stck, char *pre);
 void	clean_stack(t_stack	*stck);
+int		is_greater_than(t_stack *stck, int to_left);
+int		is_smaller_than(t_stack *stck, int to_right);
 
 /* stack */
 t_stack	*get_head(t_stack *stck);
@@ -63,6 +65,9 @@ void	order_a(t_stack **stack_a, t_stack **stack_b);
 int		pos_til_max_at_head(t_stack *head);
 void	order(t_stack **stack_a, t_stack **stack_b, int is_a);
 
+/*	small_quicksort	*/
+void	small_quicksort(t_stack **stack_a);
+
 /*	chunk_order	*/
 int		distance_to_head(t_stack *stck);
 void	move_to_stack_b(t_stack **a, t_stack **b);
@@ -75,9 +80,6 @@ void	chunk_quicksort(t_stack **stack_a, int chunks);
 void	debug__chunk_quicksort(t_stack **stack_a, int chunks);
 
 /* quicksort */
-int		is_greater_than(t_stack *stck, int to_left);
-int		is_smaller_than(t_stack *stck, int to_right);
 void	quicksort(t_stack *stack_a);
-void	debug_quicksort(t_stack *stack_a);
 
 #endif

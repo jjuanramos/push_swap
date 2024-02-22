@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juramos <juramos@student.42.fr>            +#+  +:+       +#+        */
+/*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 15:28:38 by juramos           #+#    #+#             */
-/*   Updated: 2024/02/21 10:30:28 by juramos          ###   ########.fr       */
+/*   Updated: 2024/02/22 11:12:17 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,4 +52,56 @@ void	clean_stack(t_stack	*stck)
 		}
 		free(t);
 	}
+}
+
+int	is_greater_than(t_stack *stck, int to_left)
+{
+	t_stack	*t;
+
+	t = stck;
+	if (to_left)
+	{
+		while (t->prev)
+		{
+			if ((t->prev)->value > stck->value)
+				return (0);
+			t = t->prev;
+		}
+	}
+	else
+	{
+		while (t->next)
+		{
+			if ((t->next)->value > stck->value)
+				return (0);
+			t = t->next;
+		}
+	}
+	return (1);
+}
+
+int	is_smaller_than(t_stack *stck, int to_right)
+{
+	t_stack	*t;
+
+	t = stck;
+	if (to_right)
+	{
+		while (t->next)
+		{
+			if ((t->next)->value < stck->value)
+				return (0);
+			t = t->next;
+		}
+	}
+	else
+	{
+		while (t->prev)
+		{
+			if ((t->prev)->value < stck->value)
+				return (0);
+			t = t->prev;
+		}
+	}
+	return (1);
 }
