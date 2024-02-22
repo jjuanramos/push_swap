@@ -6,7 +6,7 @@
 /*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 11:07:23 by juramos           #+#    #+#             */
-/*   Updated: 2024/02/22 11:13:18 by juramos          ###   ########.fr       */
+/*   Updated: 2024/02/22 11:17:37 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,23 @@ static void	small_iter_a(t_stack **a, t_stack **b)
 	*b = get_head(tmp_b);
 }
 
+static void	small_iter_b(t_stack **a, t_stack **b)
+{
+	t_stack	*tmp_a;
+	t_stack	*tmp_b;
+
+	tmp_a = *a;
+	tmp_b = *b;
+	while (tmp_b)
+	{
+		order(&tmp_a, &tmp_b, 0);
+		tmp_b = get_head(tmp_b);
+		tmp_a = get_tail(tmp_a);
+	}
+	*a = get_tail(tmp_a);
+	*b = get_head(tmp_b);
+}
+
 void	small_quicksort(t_stack **stack_a)
 {
 	t_stack	*a;
@@ -40,25 +57,8 @@ void	small_quicksort(t_stack **stack_a)
 
 	a = get_tail(*stack_a);
 	b = NULL;
-	// while (a->prev)
-	// {
-	// 	if (is_greater_than(a, 1) && is_smaller_than(a, 1))
-	// 		a = a->prev;
-	// 	else
-	// 	{
-	// 		order(&a, &b, 1);
-	// 		a = get_tail(a);
-	// 	}
-	// }
-	// b = get_head(b);
-	// a = get_tail(a);
 	small_iter_a(&a, &b);
-	while (b)
-	{
-		order(&a, &b, 0);
-		b = get_head(b);
-		a = get_tail(a);
-	}
+	small_iter_b(&a, &b);
 	if (b)
 		clean_stack(b);
 	*stack_a = a;

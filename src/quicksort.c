@@ -6,7 +6,7 @@
 /*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 11:25:37 by juramos           #+#    #+#             */
-/*   Updated: 2024/02/22 11:12:50 by juramos          ###   ########.fr       */
+/*   Updated: 2024/02/22 11:18:25 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@ void	quicksort(t_stack *stack_a)
 		chunks = 11;
 	else if (a_size > 49)
 		chunks = 6;
-	else if (a_size > 19)
-		chunks = 3;
 	else
 		chunks = 1;
 	if (chunks > 1)
