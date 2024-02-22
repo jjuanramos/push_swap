@@ -6,7 +6,7 @@
 /*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 15:24:13 by juramos           #+#    #+#             */
-/*   Updated: 2024/02/15 11:43:33 by juramos          ###   ########.fr       */
+/*   Updated: 2024/02/22 11:36:46 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,18 @@ static int	is_arg_unique(char *arr[], int pos)
 
 static int	is_eq_or_less_int_max(char *str)
 {
-	int	val;
+	int		val;
+	char	*itoa_val;
+	int		output;
 
 	val = ft_atoi(str);
+	itoa_val = ft_itoa(val);
+	output = 1;
 	if ((val < 0 && str[0] != '-')
-		|| (ft_strlen(str) != ft_strlen(ft_itoa(val))))
-		return (0);
-	return (1);
+		|| (ft_strlen(str) != ft_strlen(itoa_val)))
+		output = 0;
+	free(itoa_val);
+	return (output);
 }
 
 static t_stack	*arr_to_stack(int *arr, int len)
@@ -90,5 +95,6 @@ t_stack	*parse_to_stck(int argc, char *argv[])
 		}
 	}
 	stck = arr_to_stack(arr, argc - 1);
+	free(arr);
 	return (stck);
 }
