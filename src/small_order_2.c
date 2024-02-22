@@ -6,13 +6,13 @@
 /*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 11:05:05 by juramos           #+#    #+#             */
-/*   Updated: 2024/02/21 18:14:53 by juramos          ###   ########.fr       */
+/*   Updated: 2024/02/21 18:23:48 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int	pos_til_max_at_head(t_stack *head)
+int	pos_til_max_at_head(t_stack *head)
 {
 	int		max;
 	int		n;
