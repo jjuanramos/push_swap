@@ -6,7 +6,7 @@
 /*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 11:12:00 by juramos           #+#    #+#             */
-/*   Updated: 2024/02/21 18:33:52 by juramos          ###   ########.fr       */
+/*   Updated: 2024/02/22 11:20:00 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,6 @@ int	main(int argc, char *argv[])
 		quicksort(stack_a);
 		clean_stack(stack_a);
 	}
-	// atexit(leaks);
+	atexit(leaks);
 	return (0);
 }

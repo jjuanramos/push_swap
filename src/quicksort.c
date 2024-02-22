@@ -6,7 +6,7 @@
 /*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 11:25:37 by juramos           #+#    #+#             */
-/*   Updated: 2024/02/22 11:18:25 by juramos          ###   ########.fr       */
+/*   Updated: 2024/02/22 11:22:08 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,4 @@ void	quicksort(t_stack *stack_a)
 		chunk_quicksort(&stack_a, chunks);
 	else
 		small_quicksort(&stack_a);
-	print_stack(get_head(stack_a), "\nend result of A:\t");
 }
