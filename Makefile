@@ -6,7 +6,7 @@
 #    By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/15 16:43:25 by juramos           #+#    #+#              #
-#    Updated: 2024/02/22 10:12:43 by juramos          ###   ########.fr        #
+#    Updated: 2024/02/22 11:05:24 by juramos          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ CFLAGS 		= 	-Wall -Werror -Wextra
 SRC_DIR 	= 	src/
 SRC_FILES 	= 	main args_parse utils quicksort stack \
 				movements_1 movements_2 order_1 order_2 \
-				chunk_utils chunk_order
+				chunk_utils chunk_quicksort
 SRC 		=	$(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))
 
 # Objects
