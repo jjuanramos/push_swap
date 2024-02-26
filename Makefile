@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+         #
+#    By: juramos <juramos@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/15 16:43:25 by juramos           #+#    #+#              #
-#    Updated: 2024/02/22 11:11:25 by juramos          ###   ########.fr        #
+#    Updated: 2024/02/26 10:25:02 by juramos          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,7 +55,7 @@ MAKEFLAGS 	+=	--no-print-directory
 
 ###
 
-all: $(FT_PRINTF) $(NAME)
+all: $(NAME)
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c | $(OBJF)
 	@$(CC) $(CFLAGS) -c $< -o $@ $(INC)
@@ -67,7 +67,7 @@ $(FT_PRINTF):
 	@echo "Making ft_printf..."
 	@make -sC $(FT_PRINTF_PATH)
 
-$(NAME): $(OBJ)
+$(NAME): $(FT_PRINTF) $(OBJ)
 	@$(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(FT_PRINTF) $(INC)
 	@echo "$(GREEN)push_swap compiled!$(DEF_COLOR)"
 
