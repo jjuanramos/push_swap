@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   order_1.c                                          :+:      :+:    :+:   */
+/*   small_order_1.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
+/*   By: juramos <juramos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 13:51:48 by juramos           #+#    #+#             */
-/*   Updated: 2024/02/21 18:24:21 by juramos          ###   ########.fr       */
+/*   Updated: 2024/02/27 13:01:30 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static int	how_many_greater(t_stack *stck)
 	return (n);
 }
 
-static int	get_min_to_right(t_stack *stck)
+int	get_min_to_right(t_stack *stck)
 {
 	int		min;
 	t_stack	*t;

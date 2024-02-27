@@ -6,7 +6,7 @@
 /*   By: juramos <juramos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 10:35:27 by juramos           #+#    #+#             */
-/*   Updated: 2024/02/26 13:09:02 by juramos          ###   ########.fr       */
+/*   Updated: 2024/02/27 13:27:14 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ void	rrb(t_stack *stack_b);
 
 /*	small_order_1 */
 int		how_many_smaller(t_stack *stck);
+int		get_min_to_right(t_stack *stck);
 void	order_a(t_stack **stack_a, t_stack **stack_b);
 
 /*	small_order_2 */
