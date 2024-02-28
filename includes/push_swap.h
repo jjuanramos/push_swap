@@ -6,7 +6,7 @@
 /*   By: juramos <juramos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 10:35:27 by juramos           #+#    #+#             */
-/*   Updated: 2024/02/28 13:19:02 by juramos          ###   ########.fr       */
+/*   Updated: 2024/02/28 13:22:17 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ t_stack	*get_head(t_stack *stck);
 t_stack	*get_tail(t_stack *stck);
 int		get_stack_size(t_stack *stck);
 t_stack	*init_stack_on_value(int val);
+t_stack	*copy_stck(t_stack	*stck);
 
 /* movements_1 */
 void	pa(t_stack **stack_b, t_stack **stack_a);
