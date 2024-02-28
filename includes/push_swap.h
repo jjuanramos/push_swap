@@ -6,7 +6,7 @@
 /*   By: juramos <juramos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 10:35:27 by juramos           #+#    #+#             */
-/*   Updated: 2024/02/28 11:58:33 by juramos          ###   ########.fr       */
+/*   Updated: 2024/02/28 13:19:02 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ int		is_smaller_than(t_stack *stck, int to_right);
 t_stack	*get_head(t_stack *stck);
 t_stack	*get_tail(t_stack *stck);
 int		get_stack_size(t_stack *stck);
-t_stack	*get_max_to_right(t_stack *stck);
 t_stack	*init_stack_on_value(int val);
 
 /* movements_1 */
@@ -60,6 +59,7 @@ void	rrb(t_stack *stack_b);
 /*	small_order_1 */
 int		how_many_smaller(t_stack *stck);
 t_stack	*get_min_to_right(t_stack *stck);
+t_stack	*get_max_to_right(t_stack *stck);
 void	order_a(t_stack **stack_a, t_stack **stack_b);
 void	check_three(t_stack *stack_a);
 

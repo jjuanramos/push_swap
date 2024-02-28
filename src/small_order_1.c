@@ -6,7 +6,7 @@
 /*   By: juramos <juramos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 13:51:48 by juramos           #+#    #+#             */
-/*   Updated: 2024/02/28 12:01:49 by juramos          ###   ########.fr       */
+/*   Updated: 2024/02/28 13:19:17 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,22 @@ t_stack	*get_min_to_right(t_stack *stck)
 			min = t;
 	}
 	return (min);
+}
+
+t_stack	*get_max_to_right(t_stack *stck)
+{
+	t_stack	*max;
+	t_stack	*t;
+
+	t = stck;
+	max = t;
+	while (t->next)
+	{
+		t = t->next;
+		if (t->value > max->value)
+			max = t;
+	}
+	return (max);
 }
 
 void	order_a(t_stack **stack_a, t_stack **stack_b)
