@@ -6,7 +6,7 @@
 /*   By: juramos <juramos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 12:05:33 by juramos           #+#    #+#             */
-/*   Updated: 2024/02/28 12:14:57 by juramos          ###   ########.fr       */
+/*   Updated: 2024/02/28 13:14:39 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,15 +74,14 @@ int	check_mvmts(t_stack *a, t_stack *b)
 	{
 		mvmts_to_head(max_b, &mvmts);
 		mvmts_to_head(tmp_a, &mvmts);
-		mvmts += 1;
 	}
 	else
 	{
 		closest_min = get_closest_min(a->value, max_b);
 		mvmts_to_head(closest_min, &mvmts);
 		mvmts_to_head(tmp_a, &mvmts);
-		mvmts += 1;
 	}
+	mvmts += 1;
 	return (mvmts);
 }
 
@@ -94,12 +93,12 @@ void	move_to_head_b(t_stack **stck)
 	while ((*stck)->value != get_head(head)->value)
 	{
 		if ((head->next) && (head->next)->value == (*stck)->value)
-			sb(head);
+			sb(*stck);
 		else if (pos_til_head(*stck) < get_stack_size(head) / 2)
-			rb(head);
+			rb(*stck);
 		else
-			rrb(head);
-		head = get_head(head);
+			rrb(*stck);
+		head = get_head(*stck);
 	}
 	*stck = head;
 }
@@ -130,7 +129,8 @@ void	exec_mvmts(t_stack **a, t_stack **b)
 
 	tmp_a = *a;
 	max_b = get_max_to_right(*b);
-	if ((*a)-> value < get_min_to_right(*b)->value || (*a)->value > max_b->value)
+	if ((*a)-> value < get_min_to_right(*b)->value
+		|| (*a)->value > max_b->value)
 	{
 		move_to_head_b(&max_b);
 		move_to_head_a(&tmp_a);
@@ -157,6 +157,8 @@ t_stack	*get_min_pivot(t_stack *a, t_stack *b)
 	tmp_b = b;
 	min = check_mvmts(tmp_a, tmp_b);
 	min_pivot = tmp_a;
+	if (min <= 2)
+		return (min_pivot);
 	while (tmp_a)
 	{
 		if (check_mvmts(tmp_a, tmp_b) < min)
@@ -174,7 +176,6 @@ void	turk_order(t_stack **a, t_stack **b)
 	t_stack	*pivot_a;
 	t_stack	*tmp_b;
 
-	ft_printf("we got into turk");
 	pivot_a = get_min_pivot(*a, *b);
 	tmp_b = *b;
 	exec_mvmts(&pivot_a, &tmp_b);
