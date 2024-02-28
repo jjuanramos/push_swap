@@ -6,13 +6,13 @@
 /*   By: juramos <juramos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 13:51:48 by juramos           #+#    #+#             */
-/*   Updated: 2024/02/27 13:01:30 by juramos          ###   ########.fr       */
+/*   Updated: 2024/02/28 12:01:49 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	check_three(t_stack *stack_a)
+void	check_three(t_stack *stack_a)
 {
 	t_stack	*a;
 
@@ -58,18 +58,18 @@ static int	how_many_greater(t_stack *stck)
 	return (n);
 }
 
-int	get_min_to_right(t_stack *stck)
+t_stack	*get_min_to_right(t_stack *stck)
 {
-	int		min;
+	t_stack	*min;
 	t_stack	*t;
 
 	t = stck;
-	min = t->value;
+	min = t;
 	while (t->next)
 	{
 		t = t->next;
-		if (t->value < min)
-			min = t->value;
+		if (t->value < min->value)
+			min = t;
 	}
 	return (min);
 }
@@ -81,18 +81,19 @@ void	order_a(t_stack **stack_a, t_stack **stack_b)
 
 	head_a = get_head(*stack_a);
 	stack_size = get_stack_size(head_a);
-	if (stack_size <= 3 && ((*stack_b && get_min_to_right(head_a)
-				> get_max_to_right(get_head(*stack_b))) || !*stack_b))
+	if (stack_size <= 3 && ((*stack_b && get_min_to_right(head_a)->value
+				> get_max_to_right(get_head(*stack_b))->value) || !*stack_b))
 		check_three(*stack_a);
-	else if (head_a->next && (head_a->next)->value == get_min_to_right(head_a)
+	else if (head_a->next
+		&& (head_a->next)->value == get_min_to_right(head_a)->value
 		&& *stack_b
-		&& (head_a->next)->value > get_max_to_right(get_head(*stack_b)))
+		&& (head_a->next)->value > get_max_to_right(get_head(*stack_b))->value)
 		sa(*stack_a);
 	else if (head_a->value < (*stack_a)->value)
 		pb(stack_a, stack_b);
 	else if ((how_many_smaller(head_a) < how_many_greater(head_a)
-			&& get_max_to_right(head_a) != get_tail(head_a)->value)
-		|| (get_tail(head_a)->value == get_min_to_right(head_a)
+			&& get_max_to_right(head_a)->value != get_tail(head_a)->value)
+		|| (get_tail(head_a)->value == get_min_to_right(head_a)->value
 			&& how_many_smaller(*stack_a) < how_many_greater(*stack_a)))
 		rra(*stack_a);
 	else if (how_many_smaller(head_a) < how_many_greater(head_a))

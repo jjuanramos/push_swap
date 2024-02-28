@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
+/*   By: juramos <juramos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 15:27:52 by juramos           #+#    #+#             */
-/*   Updated: 2024/02/13 14:40:48 by juramos          ###   ########.fr       */
+/*   Updated: 2024/02/28 11:56:50 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,18 +64,18 @@ t_stack	*init_stack_on_value(int val)
 	return (stck);
 }
 
-int	get_max_to_right(t_stack *stck)
+t_stack	*get_max_to_right(t_stack *stck)
 {
-	int		max;
+	t_stack	*max;
 	t_stack	*t;
 
 	t = stck;
-	max = t->value;
+	max = t;
 	while (t->next)
 	{
 		t = t->next;
-		if (t->value > max)
-			max = t->value;
+		if (t->value > max->value)
+			max = t;
 	}
 	return (max);
 }
