@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   chunk_utils.c                                      :+:      :+:    :+:   */
+/*   chunk_order.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
+/*   By: juramos <juramos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 10:10:40 by juramos           #+#    #+#             */
-/*   Updated: 2024/02/22 10:11:08 by juramos          ###   ########.fr       */
+/*   Updated: 2024/02/28 12:33:43 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	reverse_order_chunk_in_b(t_stack **head_a, t_stack **b)
 	t_stack	*head_b;
 
 	head_b = get_head(*b);
-	max_b = get_max_to_right(head_b);
+	max_b = get_max_to_right(head_b)->value;
 	size_b = get_stack_size(head_b);
 	if (size_b <= 3)
 		check_three_reversed(*b);

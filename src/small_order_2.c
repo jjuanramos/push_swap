@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   order_2.c                                          :+:      :+:    :+:   */
+/*   small_order_2.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
+/*   By: juramos <juramos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 11:05:05 by juramos           #+#    #+#             */
-/*   Updated: 2024/02/21 18:23:48 by juramos          ###   ########.fr       */
+/*   Updated: 2024/02/28 12:33:24 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	pos_til_max_at_head(t_stack *head)
 	int		n;
 	t_stack	*t;
 
-	max = get_max_to_right(head);
+	max = get_max_to_right(head)->value;
 	t = head;
 	n = 0;
 	while (t->next && (t->next)->value != max)
@@ -37,7 +37,7 @@ static void	order_b(t_stack **stack_a, t_stack **stack_b)
 
 	head_a = get_head(*stack_a);
 	head_b = get_head(*stack_b);
-	max_b = get_max_to_right(head_b);
+	max_b = get_max_to_right(head_b)->value;
 	if (head_a->value < max_b)
 		pb(stack_a, stack_b);
 	else if (head_b->value == max_b)
