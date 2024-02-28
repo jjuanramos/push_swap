@@ -6,7 +6,7 @@
 /*   By: juramos <juramos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 12:05:33 by juramos           #+#    #+#             */
-/*   Updated: 2024/02/28 13:14:39 by juramos          ###   ########.fr       */
+/*   Updated: 2024/02/28 14:02:57 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,18 +30,21 @@ int	pos_til_head(t_stack *stck)
 void	mvmts_to_head(t_stack *stck, int *mvmts)
 {
 	t_stack	*head;
+	t_stack	*copy;
 
-	while (stck->value != get_head(stck)->value)
+	copy = copy_stck(stck);
+	while (copy->value != get_head(copy)->value)
 	{
-		head = get_head(stck);
-		if ((head->next) && (head->next)->value == stck->value)
-			sb(stck);
-		else if (pos_til_head(stck) < get_stack_size(head) / 2)
-			rb(stck);
+		head = get_head(copy);
+		if ((head->next) && (head->next)->value == copy->value)
+			sb(copy);
+		else if (pos_til_head(copy) < get_stack_size(head) / 2)
+			rb(copy);
 		else
-			rrb(stck);
+			rrb(copy);
 		(*mvmts)++;
 	}
+	clean_stack(copy);
 }
 
 t_stack	*get_closest_min(int ref, t_stack *stck)
@@ -82,6 +85,7 @@ int	check_mvmts(t_stack *a, t_stack *b)
 		mvmts_to_head(tmp_a, &mvmts);
 	}
 	mvmts += 1;
+	ft_printf(">>>> with %d movements, ", mvmts);
 	return (mvmts);
 }
 
@@ -128,8 +132,9 @@ void	exec_mvmts(t_stack **a, t_stack **b)
 	t_stack	*tmp_a;
 
 	tmp_a = *a;
-	max_b = get_max_to_right(*b);
-	if ((*a)-> value < get_min_to_right(*b)->value
+	ft_printf("\n----->into executing...\n");
+	max_b = get_max_to_right(get_head(*b));
+	if ((*a)-> value < get_min_to_right(get_head(*b))->value
 		|| (*a)->value > max_b->value)
 	{
 		move_to_head_b(&max_b);
@@ -144,6 +149,7 @@ void	exec_mvmts(t_stack **a, t_stack **b)
 	pb(&tmp_a, &max_b);
 	*a = get_head(tmp_a);
 	*b = get_head(max_b);
+	ft_printf("<-----out of executing...\n\n");
 }
 
 t_stack	*get_min_pivot(t_stack *a, t_stack *b)
@@ -155,8 +161,11 @@ t_stack	*get_min_pivot(t_stack *a, t_stack *b)
 
 	tmp_a = a;
 	tmp_b = b;
+	ft_printf("\n----->into checking...\n");
 	min = check_mvmts(tmp_a, tmp_b);
 	min_pivot = tmp_a;
+	ft_printf("chosen pivot is %d. <<<<\n", min_pivot->value);
+	ft_printf("<-----out of checking...\n\n");
 	if (min <= 2)
 		return (min_pivot);
 	while (tmp_a)
@@ -176,11 +185,16 @@ void	turk_order(t_stack **a, t_stack **b)
 	t_stack	*pivot_a;
 	t_stack	*tmp_b;
 
+	ft_printf("\n------------------iteration------------------\n");
 	pivot_a = get_min_pivot(*a, *b);
 	tmp_b = *b;
-	exec_mvmts(&pivot_a, &tmp_b);
-	*a = get_head(pivot_a);
-	*b = get_head(tmp_b);
+	print_stack(*a, "A looking like this: ");
+	print_stack(*b, "B looking like this: ");
+	exec_mvmts(a, b);
+	*a = get_head(*a);
+	*b = get_head(*b);
+	print_stack(*a, "A looking like this after: ");
+	print_stack(*b, "B looking like this after: ");
 }
 
 void	turk(t_stack *stack_a)
@@ -199,13 +213,7 @@ void	turk(t_stack *stack_a)
 		b = get_head(b);
 	}
 	while (get_stack_size(a) > 3)
-	{
-		print_stack(a, "A looking like this: ");
-		print_stack(b, "B looking like this: ");
 		turk_order(&a, &b);
-		print_stack(a, "A looking like this after: ");
-		print_stack(b, "B looking like this after: ");
-	}
 	exit(0);
 	check_three(a);
 	// while (b)
