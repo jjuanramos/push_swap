@@ -6,7 +6,7 @@
 /*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 10:35:27 by juramos           #+#    #+#             */
-/*   Updated: 2024/02/29 13:37:20 by juramos          ###   ########.fr       */
+/*   Updated: 2024/02/29 13:41:56 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,5 +67,8 @@ void	push_swap(t_stack *stack_a);
 
 /*	debug_turk	*/
 void	debug_turk(t_stack *stack_a);
+
+/*	debug_push_swap */
+void	debug_push_swap(t_stack **stack_a);
 
 #endif

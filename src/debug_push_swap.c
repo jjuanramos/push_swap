@@ -6,7 +6,7 @@
 /*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 12:05:33 by juramos           #+#    #+#             */
-/*   Updated: 2024/02/29 13:35:24 by juramos          ###   ########.fr       */
+/*   Updated: 2024/02/29 13:41:43 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,7 @@ static void	turk_order(t_stack **a, t_stack **b)
 	2.  We start sending A.values to B. We check which A.pivot has to be sent
 		based on the minimum number of mvmts that has to be performed.
 		How we decide:
-			- if we are pushing to B, pivot has to be above direct B.min.
-			- if we are pushing to A, pivot has to be abover direct A.max.
+			- when pushing to B, pivot has to be above direct B.min.
 	3.	How we calculate the mvmts:
 		- Identify direct B.min/A.max depending on the destination of the pivot.
 		- Identify first what mvmts B.min/A.max needs to get to the top.
@@ -50,14 +49,18 @@ static void	turk_order(t_stack **a, t_stack **b)
 			- if length of mvmts is the same for both and all values are unique
 			for each set, replace set of mvmts of pivot with mvmts of B.min/A.max
 			so we can replace them with rr/rrr's instead.
+	4.  When A.length == 3, we order it.
+	5.  We send B.values back to A, taking into account that:
+		- when pushing to A, pivot has to be above direct A.max.
+	6.	Make sure that latest value sent is min of A.
 */
-void	debug_push_swap(t_stack *stack_a)
+void	debug_push_swap(t_stack **stack_a)
 {
 	t_stack	*a;
 	t_stack	*b;
 	int		iters;
 
-	a = get_head(stack_a);
+	a = get_head(*stack_a);
 	b = NULL;
 	if (get_stack_size(a) <= 3)
 		check_three(a);
@@ -68,6 +71,8 @@ void	debug_push_swap(t_stack *stack_a)
 		b = get_head(b);
 	}
 	while (get_stack_size(a) > 3)
-		turk_order(&a, &b);
+		send_to_b(&a, &b);
+	check_three(a);
 	exit(0);
+	*stack_a = get_head(a);
 }
