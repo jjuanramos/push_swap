@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   quicksort.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juramos <juramos@student.42.fr>            +#+  +:+       +#+        */
+/*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 11:25:37 by juramos           #+#    #+#             */
-/*   Updated: 2024/02/26 10:17:48 by juramos          ###   ########.fr       */
+/*   Updated: 2024/02/29 12:46:39 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	quicksort(t_stack *stack_a)
+void	push_swap(t_stack *stack_a)
 {
 	int		a_size;
 	int		chunks;
