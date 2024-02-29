@@ -6,7 +6,7 @@
 /*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 12:05:33 by juramos           #+#    #+#             */
-/*   Updated: 2024/02/29 13:41:43 by juramos          ###   ########.fr       */
+/*   Updated: 2024/02/29 14:57:59 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,96 @@ static t_stack	*get_closest_greater(t_stack *ref, t_stack *stack_a);
 static void	turk_order_reversed(t_stack **a, t_stack **b);
 */
 
-static void	turk_order(t_stack **a, t_stack **b)
+void	set_stacks_for_order(t_stack **stack_a, t_stack **stack_b)
 {
-	ft_printf("\n------------------iteration------------------\n");
-	print_stack(*a, "A looking like this: ");
-	print_stack(*b, "B looking like this: ");
-	print_stack(*a, "A looking like this after: ");
-	print_stack(*b, "B looking like this after: ");
+	t_stack	*a;
+	t_stack	*b;
+
+	a = *stack_a;
+	b = NULL;
+	while (get_stack_size(a) > 3 && get_stack_size(b) < 2)
+	{
+		pb(&a, &b);
+		a = get_head(a);
+		b = get_head(b);
+	}
+	*stack_a = a;
+	*stack_b = b;
+}
+
+char	**simulate_mvmts(t_stack *stck)
+{
+	char	**mvmts;
+	t_stack	*tmp;
+	int		pos;
+
+	mvmts = ft_calloc(get_stack_size(get_head(stck)), sizeof(char *));
+	tmp = copy_stck(stck);
+	pos = 0;
+	while (stck->value != get_head(tmp)->value)
+	{
+		if (pos_til_head(tmp, stck->value) < get_stack_size(get_head(tmp)) / 2)
+		{
+			add_to_mvmts(mvmts, "rb", &pos);
+			rb(tmp);
+		}
+		else
+		{
+			add_to_mvmts(mvmts, "rrb", &pos);
+			rrb(tmp);
+		}
+		clean_stack(tmp);
+		tmp = copy_stck(stck);
+	}
+	clean_stack(tmp);
+	print_str_arr_len(mvmts);
+	exit(0);
+	return (mvmts);
+}
+
+char	**check_mvmts_to_b(t_stack *stack_a, t_stack *stack_b)
+{
+	t_stack	*pivot;
+	t_stack	*b_closest_min;
+	char	**b_mvmts;
+	char	**a_mvmts;
+	// char	**min_mvmts;
+
+	pivot = stack_a;
+	b_closest_min = get_closest_greater(pivot, stack_b);
+	b_mvmts = simulate_mvmts(b_closest_min);
+	a_mvmts = simulate_mvmts(pivot);
+	// min_mvmts = optimize_mvmts(b_mvmts, a_mvmts);
+	// actually we return min_mvmts, this is just to make it shut up
+	return (free_str_arr(b_mvmts), free_str_arr(a_mvmts), ft_calloc(3, sizeof(char **)));
+}
+
+void	send_to_b(t_stack **stack_a, t_stack **stack_b)
+{
+	t_stack	*a;
+	t_stack	*b;
+	char	**mvmts;
+	char	**pivot_mvmts;
+	int		min_mvmts;
+
+	a = *stack_a;
+	b = *stack_b;
+	min_mvmts = 0;
+	while (a)
+	{
+		mvmts = check_mvmts_to_b(a, b);
+		if (get_str_arr_len(mvmts) < min_mvmts)
+		{
+			// pivot = a;
+			pivot_mvmts = mvmts;
+		}
+		a = a->next;
+	}
+	// exec_mvmts_to_b(&pivot, &b, pivot_mvmts);
+	free_str_arr(mvmts);
+	free_str_arr(pivot_mvmts);
+	*stack_a = get_head(a);
+	*stack_b = get_head(b);
 }
 
 /*	push_swap:
@@ -58,21 +141,38 @@ void	debug_push_swap(t_stack **stack_a)
 {
 	t_stack	*a;
 	t_stack	*b;
-	int		iters;
 
-	a = get_head(*stack_a);
+	a = *stack_a;
 	b = NULL;
+	print_stack(a, "we receive A: ");
 	if (get_stack_size(a) <= 3)
-		check_three(a);
-	while (get_stack_size(a) > 3 && get_stack_size(b) < 2)
 	{
-		pb(&a, &b);
-		a = get_head(a);
-		b = get_head(b);
+		check_three(a);
+		return ;
 	}
+	set_stacks_for_order(&a, &b);
+	ft_printf("\n--->After moving all possible values to B, resulting stacks are:\n");
+	print_stack(a, "A: ");
+	print_stack(b, "B: ");
 	while (get_stack_size(a) > 3)
 		send_to_b(&a, &b);
+	ft_printf("\n--->After sending all values to B, resulting stacks are:\n");
+	print_stack(a, "A: ");
+	print_stack(b, "B: ");
 	check_three(a);
+	ft_printf("\n--->After ordering A, resulting stacks are:\n");
+	print_stack(a, "A: ");
+	print_stack(b, "B: ");
 	exit(0);
-	*stack_a = get_head(a);
+	/*
+	send_to_a(&b, &a);
+	ft_printf("\n--->After sending values from B to A, resulting stacks are:\n");
+	print_stack(a, "A: ");
+	print_stack(b, "B: ");
+	check_and_order(&a);
+	ft_printf("\n--->After last check of A, resulting stacks are:\n");
+	print_stack(a, "A: ");
+	print_stack(b, "B: ");
+	*stack_a = a;
+	*/
 }

@@ -6,7 +6,7 @@
 /*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 10:35:27 by juramos           #+#    #+#             */
-/*   Updated: 2024/02/29 14:44:13 by juramos          ###   ########.fr       */
+/*   Updated: 2024/02/29 14:59:49 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,10 @@ int		is_smaller_than(t_stack *stck, int to_right);
 /*	utils_2 */
 void	add_to_mvmts(char **mvmts, char *val, int *pos);
 void	free_str_arr(char **mvmts);
+int		get_str_arr_len(char **mvmts);
+t_stack	*get_closest_greater(t_stack *ref, t_stack *stack_a);
+void	print_str_arr_len(char **mvmts);
+int	pos_til_head(t_stack *stck, int n);
 
 /* stack_1 */
 t_stack	*get_head(t_stack *stck);

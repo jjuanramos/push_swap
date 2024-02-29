@@ -6,7 +6,7 @@
 /*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 11:12:00 by juramos           #+#    #+#             */
-/*   Updated: 2024/02/29 13:42:04 by juramos          ###   ########.fr       */
+/*   Updated: 2024/02/29 14:50:32 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,6 @@ static int	str_arr_len(char **str_arr)
 	while (str_arr[len])
 		len++;
 	return (len);
-}
-
-static	void	free_str_arr(char **str_arr, int len)
-{
-	while (--len)
-		free(str_arr[len]);
-	free(str_arr[len]);
-	free(str_arr);
 }
 
 int	main(int argc, char *argv[])
@@ -45,7 +37,7 @@ int	main(int argc, char *argv[])
 			helper = ft_split(argv[1], ' ');
 			len = str_arr_len(helper);
 			stack_a = parse_to_stck(len, helper);
-			free_str_arr(helper, len);
+			free_str_arr(helper);
 		}
 		else
 			stack_a = parse_to_stck(argc, argv);
