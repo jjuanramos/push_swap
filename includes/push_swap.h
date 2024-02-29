@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juramos <juramos@student.42.fr>            +#+  +:+       +#+        */
+/*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 10:35:27 by juramos           #+#    #+#             */
-/*   Updated: 2024/02/26 13:09:02 by juramos          ###   ########.fr       */
+/*   Updated: 2024/02/29 12:46:49 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void	get_chunks(t_stack *stck, int chunks);
 void	chunk_quicksort(t_stack **stack_a, int chunks);
 void	debug__chunk_quicksort(t_stack **stack_a, int chunks);
 
-/* quicksort */
-void	quicksort(t_stack *stack_a);
+/* push_swap */
+void	push_swap(t_stack *stack_a);
 
 #endif
