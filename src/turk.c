@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   turk.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juramos <juramos@student.42.fr>            +#+  +:+       +#+        */
+/*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 12:05:33 by juramos           #+#    #+#             */
-/*   Updated: 2024/02/28 14:02:57 by juramos          ###   ########.fr       */
+/*   Updated: 2024/02/29 11:32:14 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,9 @@ void	move_to_head_b(t_stack **stck)
 	head = get_head(*stck);
 	while ((*stck)->value != get_head(head)->value)
 	{
-		if ((head->next) && (head->next)->value == (*stck)->value)
+		if (head->value == (*stck)->value)
+			break ;
+		else if ((head->next) && (head->next)->value == (*stck)->value)
 			sb(*stck);
 		else if (pos_til_head(*stck) < get_stack_size(head) / 2)
 			rb(*stck);
@@ -114,6 +116,8 @@ void	move_to_head_a(t_stack **stck)
 	head = get_head(*stck);
 	while ((*stck)->value != get_head(head)->value)
 	{
+		if (head->value == (*stck)->value)
+			break ;
 		if ((head->next) && (head->next)->value == (*stck)->value)
 			sa(head);
 		else if (pos_til_head(*stck) < get_stack_size(head) / 2)
@@ -180,19 +184,57 @@ t_stack	*get_min_pivot(t_stack *a, t_stack *b)
 	return (min_pivot);
 }
 
+t_stack	*get_closest_greater(t_stack *ref, t_stack *stack_a)
+{
+	t_stack	*t;
+	t_stack	*closest_greater;
+
+	t = get_head(stack_a);
+	closest_greater = get_max_to_right(t);
+	if (ref->value > closest_greater->value)
+		return (NULL);
+	while (t)
+	{
+		if (t->value > ref->value && t->value < closest_greater->value)
+			closest_greater = t;
+		t = t->next;
+	}
+	return (closest_greater);
+}
+
+void	turk_order_reversed(t_stack **a, t_stack **b)
+{
+	t_stack	*closest_greater;
+	t_stack	*tmp_a;
+
+	tmp_a = *a;
+	ft_printf("\n------------------iteration on reversed------------------\n");
+	print_stack(*a, "A looking like this: ");
+	print_stack(*b, "B looking like this: ");
+	closest_greater = get_closest_greater(*b, *a);
+	if (closest_greater)
+	{
+		move_to_head_a(&closest_greater);
+		tmp_a = get_head(closest_greater);
+	}
+	pa(b, &tmp_a);
+	*a = get_head(tmp_a);
+	*b = get_head(*b);
+	print_stack(*a, "A looking like this after: ");
+	print_stack(*b, "B looking like this after: ");
+}
+
 void	turk_order(t_stack **a, t_stack **b)
 {
 	t_stack	*pivot_a;
-	t_stack	*tmp_b;
 
 	ft_printf("\n------------------iteration------------------\n");
 	pivot_a = get_min_pivot(*a, *b);
-	tmp_b = *b;
 	print_stack(*a, "A looking like this: ");
 	print_stack(*b, "B looking like this: ");
-	exec_mvmts(a, b);
-	*a = get_head(*a);
-	*b = get_head(*b);
+	exec_mvmts(&pivot_a, b);
+	*a = pivot_a;
+	*b = *b;
 	print_stack(*a, "A looking like this after: ");
 	print_stack(*b, "B looking like this after: ");
 }
@@ -201,6 +243,7 @@ void	turk(t_stack *stack_a)
 {
 	t_stack	*a;
 	t_stack	*b;
+	int		iters;
 
 	a = get_head(stack_a);
 	b = NULL;
@@ -214,8 +257,23 @@ void	turk(t_stack *stack_a)
 	}
 	while (get_stack_size(a) > 3)
 		turk_order(&a, &b);
-	exit(0);
-	check_three(a);
-	// while (b)
-	// 	turk_order_reversed(&a, &b);
+	iters = -1;
+	while (iters++ < 2)
+	{
+		if (!(is_greater_than(a, 1) && is_smaller_than(a, 1)))
+		{
+			check_three(a);
+			a = get_head(a);
+		}
+	}
+	print_stack(a, "A looking like this after check three: ");
+	while (b)
+		turk_order_reversed(&a, &b);
+	a = get_tail(a);
+	while (get_max_to_right(get_head(a))->value != a->value)
+	{
+		rra(a);
+		a = get_tail(a);
+	}
+	print_stack(a, "A looking like this after reverse tail: ");
 }
