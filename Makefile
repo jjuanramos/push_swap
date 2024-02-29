@@ -6,7 +6,7 @@
 #    By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/15 16:43:25 by juramos           #+#    #+#              #
-#    Updated: 2024/02/29 12:50:36 by juramos          ###   ########.fr        #
+#    Updated: 2024/02/29 12:56:04 by juramos          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,8 +20,8 @@ CFLAGS 		= 	-Wall -Werror -Wextra
 # Sources
 SRC_DIR 	= 	src/
 SRC_FILES 	= 	main args_parse utils push_swap stack \
-				movements_1 movements_2 small_order_1 small_order_2 \
-				chunk_order chunk_quicksort small_quicksort turk debug_turk
+				movements_1 movements_2 small_order_1 \
+				debug_turk
 SRC 		=	$(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))
 
 # Objects

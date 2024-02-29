@@ -6,7 +6,7 @@
 /*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 10:35:27 by juramos           #+#    #+#             */
-/*   Updated: 2024/02/29 12:50:59 by juramos          ###   ########.fr       */
+/*   Updated: 2024/02/29 12:56:31 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,35 +58,12 @@ void	rra(t_stack *stack_a);
 void	rrb(t_stack *stack_b);
 
 /*	small_order_1 */
-int		how_many_smaller(t_stack *stck);
 t_stack	*get_min_to_right(t_stack *stck);
 t_stack	*get_max_to_right(t_stack *stck);
-void	order_a(t_stack **stack_a, t_stack **stack_b);
 void	check_three(t_stack *stack_a);
-
-/*	small_order_2 */
-int		pos_til_max_at_head(t_stack *head);
-void	order(t_stack **stack_a, t_stack **stack_b, int is_a);
-
-/*	small_quicksort	*/
-void	small_quicksort(t_stack **stack_a);
-
-/* chunk_order */
-int		distance_to_head(t_stack *stck);
-void	move_to_stack_b(t_stack **a, t_stack **b);
-void	check_three_reversed(t_stack *stck);
-void	reverse_order_chunk_in_b(t_stack **head_a, t_stack **b);
-void	get_chunks(t_stack *stck, int chunks);
-
-/* chunk_quicksort */
-void	chunk_quicksort(t_stack **stack_a, int chunks);
-void	debug__chunk_quicksort(t_stack **stack_a, int chunks);
 
 /* push_swap */
 void	push_swap(t_stack *stack_a);
-
-/* turk */
-void	turk(t_stack *stack_a);
 
 /*	debug_turk	*/
 void	debug_turk(t_stack *stack_a);
