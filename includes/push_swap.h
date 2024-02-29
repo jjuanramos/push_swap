@@ -6,7 +6,7 @@
 /*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 10:35:27 by juramos           #+#    #+#             */
-/*   Updated: 2024/02/29 12:56:31 by juramos          ###   ########.fr       */
+/*   Updated: 2024/02/29 13:37:20 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,17 @@ void	clean_stack(t_stack	*stck);
 int		is_greater_than(t_stack *stck, int to_left);
 int		is_smaller_than(t_stack *stck, int to_right);
 
-/* stack */
+/* stack_1 */
 t_stack	*get_head(t_stack *stck);
 t_stack	*get_tail(t_stack *stck);
 int		get_stack_size(t_stack *stck);
 t_stack	*init_stack_on_value(int val);
 t_stack	*copy_stck(t_stack	*stck);
+
+/*	stack_2 */
+t_stack	*get_min_to_right(t_stack *stck);
+t_stack	*get_max_to_right(t_stack *stck);
+void	check_three(t_stack *stack_a);
 
 /* movements_1 */
 void	pa(t_stack **stack_b, t_stack **stack_a);
@@ -56,11 +61,6 @@ void	rb(t_stack *stack_b);
 void	rr(t_stack *stack_a, t_stack *stack_b);
 void	rra(t_stack *stack_a);
 void	rrb(t_stack *stack_b);
-
-/*	small_order_1 */
-t_stack	*get_min_to_right(t_stack *stck);
-t_stack	*get_max_to_right(t_stack *stck);
-void	check_three(t_stack *stack_a);
 
 /* push_swap */
 void	push_swap(t_stack *stack_a);
