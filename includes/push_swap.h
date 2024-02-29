@@ -6,7 +6,7 @@
 /*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 10:35:27 by juramos           #+#    #+#             */
-/*   Updated: 2024/02/29 14:07:07 by juramos          ###   ########.fr       */
+/*   Updated: 2024/02/29 14:44:13 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,16 @@ typedef struct s_stack
 /* args_parse */
 t_stack	*parse_to_stck(int argc, char *argv[]);
 
-/* utils */
+/* utils_1 */
 void	message_and_exit(char *str, int out, int exit_code);
 void	print_stack(t_stack	*stck, char *pre);
 void	clean_stack(t_stack	*stck);
 int		is_greater_than(t_stack *stck, int to_left);
 int		is_smaller_than(t_stack *stck, int to_right);
+
+/*	utils_2 */
+void	add_to_mvmts(char **mvmts, char *val, int *pos);
+void	free_str_arr(char **mvmts);
 
 /* stack_1 */
 t_stack	*get_head(t_stack *stck);
