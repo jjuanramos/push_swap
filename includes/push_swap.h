@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juramos <juramos@student.42.fr>            +#+  +:+       +#+        */
+/*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 10:35:27 by juramos           #+#    #+#             */
-/*   Updated: 2024/02/28 13:22:17 by juramos          ###   ########.fr       */
+/*   Updated: 2024/02/29 11:34:12 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,21 +71,24 @@ void	order(t_stack **stack_a, t_stack **stack_b, int is_a);
 /*	small_quicksort	*/
 void	small_quicksort(t_stack **stack_a);
 
-/*	chunk_order	*/
+/* chunk_order */
 int		distance_to_head(t_stack *stck);
 void	move_to_stack_b(t_stack **a, t_stack **b);
 void	check_three_reversed(t_stack *stck);
 void	reverse_order_chunk_in_b(t_stack **head_a, t_stack **b);
 void	get_chunks(t_stack *stck, int chunks);
 
-/*	chunk_quicksort	*/
+/* chunk_quicksort */
 void	chunk_quicksort(t_stack **stack_a, int chunks);
 void	debug__chunk_quicksort(t_stack **stack_a, int chunks);
 
 /* quicksort */
 void	quicksort(t_stack *stack_a);
 
-/*	turk	*/
+/* turk */
 void	turk(t_stack *stack_a);
+
+/*	debug_turk	*/
+void	debug_turk(t_stack *stack_a);
 
 #endif

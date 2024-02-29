@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juramos <juramos@student.42.fr>            +#+  +:+       +#+        */
+/*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 15:27:52 by juramos           #+#    #+#             */
-/*   Updated: 2024/02/28 13:53:11 by juramos          ###   ########.fr       */
+/*   Updated: 2024/02/29 12:14:06 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ t_stack	*copy_stck(t_stack	*stck)
 	t_stack	*new_stck;
 	t_stack	*head;
 
-	head = get_head(stck);
+	head = stck;
 	new_stck = init_stack_on_value(head->value);
 	while (head->next)
 	{

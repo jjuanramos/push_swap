@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juramos <juramos@student.42.fr>            +#+  +:+       +#+        */
+/*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 11:12:00 by juramos           #+#    #+#             */
-/*   Updated: 2024/02/28 11:19:37 by juramos          ###   ########.fr       */
+/*   Updated: 2024/02/29 12:07:18 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	main(int argc, char *argv[])
 			stack_a = parse_to_stck(argc, argv);
 		if (!stack_a)
 			message_and_exit("Error\n", 2, 1);
-		turk(stack_a);
+		debug_turk(stack_a);
 		clean_stack(stack_a);
 	}
 	return (0);

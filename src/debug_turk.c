@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   turk.c                                             :+:      :+:    :+:   */
+/*   debug_turk.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 12:05:33 by juramos           #+#    #+#             */
-/*   Updated: 2024/02/29 11:35:10 by juramos          ###   ########.fr       */
+/*   Updated: 2024/02/29 12:29:07 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	pos_til_head(t_stack *stck)
+static int	pos_til_head(t_stack *stck)
 {
 	t_stack	*t;
 	int		dist;
@@ -27,27 +27,30 @@ int	pos_til_head(t_stack *stck)
 	return (dist);
 }
 
-void	mvmts_to_head(t_stack *stck, int *mvmts)
+static void	mvmts_to_head(t_stack *stck, int *mvmts)
 {
 	t_stack	*head;
 	t_stack	*copy;
 
 	copy = copy_stck(stck);
+	ft_printf("copy is %d, head is %d\n", copy->value, get_head(copy)->value);
 	while (copy->value != get_head(copy)->value)
 	{
+		ft_printf("movements is %d\n", *mvmts);
 		head = get_head(copy);
-		if ((head->next) && (head->next)->value == copy->value)
-			sb(copy);
-		else if (pos_til_head(copy) < get_stack_size(head) / 2)
+		// if ((head->next) && (head->next)->value == copy->value)
+		// 	sb(copy);
+		if (pos_til_head(copy) < get_stack_size(head) / 2)
 			rb(copy);
 		else
 			rrb(copy);
-		(*mvmts)++;
+		*mvmts = *mvmts + 1;
 	}
+	ft_printf("out\n");
 	clean_stack(copy);
 }
 
-t_stack	*get_closest_min(int ref, t_stack *stck)
+static t_stack	*get_closest_min(int ref, t_stack *stck)
 {
 	t_stack	*t;
 	t_stack	*closest_min;
@@ -63,7 +66,7 @@ t_stack	*get_closest_min(int ref, t_stack *stck)
 	return (closest_min);
 }
 
-int	check_mvmts(t_stack *a, t_stack *b)
+static int	check_mvmts(t_stack *a, t_stack *b)
 {
 	t_stack	*max_b;
 	t_stack	*closest_min;
@@ -85,10 +88,11 @@ int	check_mvmts(t_stack *a, t_stack *b)
 		mvmts_to_head(tmp_a, &mvmts);
 	}
 	mvmts += 1;
+	ft_printf(">>>> with %d movements, ", mvmts);
 	return (mvmts);
 }
 
-void	move_to_head_b(t_stack **stck)
+static void	move_to_head_b(t_stack **stck)
 {
 	t_stack	*head;
 
@@ -97,18 +101,18 @@ void	move_to_head_b(t_stack **stck)
 	{
 		if (head->value == (*stck)->value)
 			break ;
-		else if ((head->next) && (head->next)->value == (*stck)->value)
-			sb(*stck);
+		// else if ((head->next) && (head->next)->value == (*stck)->value)
+		// 	sb(*stck);
 		else if (pos_til_head(*stck) < get_stack_size(head) / 2)
-			rb(*stck);
-		else
 			rrb(*stck);
+		else
+			rb(*stck);
 		head = get_head(*stck);
 	}
 	*stck = head;
 }
 
-void	move_to_head_a(t_stack **stck)
+static void	move_to_head_a(t_stack **stck)
 {
 	t_stack	*head;
 
@@ -117,8 +121,8 @@ void	move_to_head_a(t_stack **stck)
 	{
 		if (head->value == (*stck)->value)
 			break ;
-		if ((head->next) && (head->next)->value == (*stck)->value)
-			sa(head);
+		// if ((head->next) && (head->next)->value == (*stck)->value)
+		// 	sa(head);
 		else if (pos_til_head(*stck) < get_stack_size(head) / 2)
 			ra(head);
 		else
@@ -128,13 +132,14 @@ void	move_to_head_a(t_stack **stck)
 	*stck = head;
 }
 
-void	exec_mvmts(t_stack **a, t_stack **b)
+static void	exec_mvmts(t_stack **a, t_stack **b)
 {
 	t_stack	*max_b;
 	t_stack	*closest_min;
 	t_stack	*tmp_a;
 
 	tmp_a = *a;
+	ft_printf("\n----->into executing...\n");
 	max_b = get_max_to_right(get_head(*b));
 	if ((*a)-> value < get_min_to_right(get_head(*b))->value
 		|| (*a)->value > max_b->value)
@@ -151,9 +156,10 @@ void	exec_mvmts(t_stack **a, t_stack **b)
 	pb(&tmp_a, &max_b);
 	*a = get_head(tmp_a);
 	*b = get_head(max_b);
+	ft_printf("<-----out of executing...\n\n");
 }
 
-t_stack	*get_min_pivot(t_stack *a, t_stack *b)
+static t_stack	*get_min_pivot(t_stack *a, t_stack *b)
 {
 	int		min;
 	t_stack	*min_pivot;
@@ -162,8 +168,11 @@ t_stack	*get_min_pivot(t_stack *a, t_stack *b)
 
 	tmp_a = a;
 	tmp_b = b;
+	ft_printf("\n----->into checking...\n");
 	min = check_mvmts(tmp_a, tmp_b);
 	min_pivot = tmp_a;
+	ft_printf("chosen pivot is %d. <<<<\n", min_pivot->value);
+	ft_printf("<-----out of checking...\n\n");
 	if (min <= 2)
 		return (min_pivot);
 	while (tmp_a)
@@ -178,7 +187,7 @@ t_stack	*get_min_pivot(t_stack *a, t_stack *b)
 	return (min_pivot);
 }
 
-t_stack	*get_closest_greater(t_stack *ref, t_stack *stack_a)
+static t_stack	*get_closest_greater(t_stack *ref, t_stack *stack_a)
 {
 	t_stack	*t;
 	t_stack	*closest_greater;
@@ -196,12 +205,15 @@ t_stack	*get_closest_greater(t_stack *ref, t_stack *stack_a)
 	return (closest_greater);
 }
 
-void	turk_order_reversed(t_stack **a, t_stack **b)
+static void	turk_order_reversed(t_stack **a, t_stack **b)
 {
 	t_stack	*closest_greater;
 	t_stack	*tmp_a;
 
 	tmp_a = *a;
+	ft_printf("\n------------------iteration on reversed------------------\n");
+	print_stack(*a, "A looking like this: ");
+	print_stack(*b, "B looking like this: ");
 	closest_greater = get_closest_greater(*b, *a);
 	if (closest_greater)
 	{
@@ -211,19 +223,26 @@ void	turk_order_reversed(t_stack **a, t_stack **b)
 	pa(b, &tmp_a);
 	*a = get_head(tmp_a);
 	*b = get_head(*b);
+	print_stack(*a, "A looking like this after: ");
+	print_stack(*b, "B looking like this after: ");
 }
 
-void	turk_order(t_stack **a, t_stack **b)
+static void	turk_order(t_stack **a, t_stack **b)
 {
 	t_stack	*pivot_a;
 
+	ft_printf("\n------------------iteration------------------\n");
 	pivot_a = get_min_pivot(*a, *b);
+	print_stack(*a, "A looking like this: ");
+	print_stack(*b, "B looking like this: ");
 	exec_mvmts(&pivot_a, b);
 	*a = pivot_a;
 	*b = *b;
+	print_stack(*a, "A looking like this after: ");
+	print_stack(*b, "B looking like this after: ");
 }
 
-void	turk(t_stack *stack_a)
+void	debug_turk(t_stack *stack_a)
 {
 	t_stack	*a;
 	t_stack	*b;
@@ -250,6 +269,7 @@ void	turk(t_stack *stack_a)
 			a = get_head(a);
 		}
 	}
+	print_stack(a, "A looking like this after check three: ");
 	while (b)
 		turk_order_reversed(&a, &b);
 	a = get_tail(a);
@@ -258,4 +278,5 @@ void	turk(t_stack *stack_a)
 		rra(a);
 		a = get_tail(a);
 	}
+	print_stack(a, "A looking like this after reverse tail: ");
 }
