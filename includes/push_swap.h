@@ -6,7 +6,7 @@
 /*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 10:35:27 by juramos           #+#    #+#             */
-/*   Updated: 2024/03/01 10:34:14 by juramos          ###   ########.fr       */
+/*   Updated: 2024/03/01 11:02:30 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,10 @@ t_stack	*copy_stck(t_stack	*stck);
 t_stack	*get_min_to_right(t_stack *stck);
 t_stack	*get_max_to_right(t_stack *stck);
 void	check_three(t_stack *stack_a);
+
+/*	simulators */
+char	**simulate_mvmts_a(t_stack *stck);
+char	**simulate_mvmts_b(t_stack *stck);
 
 /* movements_1 */
 void	pa(t_stack **stack_b, t_stack **stack_a);
