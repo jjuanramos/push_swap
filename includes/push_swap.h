@@ -6,7 +6,7 @@
 /*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 10:35:27 by juramos           #+#    #+#             */
-/*   Updated: 2024/03/01 13:29:23 by juramos          ###   ########.fr       */
+/*   Updated: 2024/03/01 13:38:42 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,11 @@ char	**simulate_mvmts_b(t_stack *stck);
 
 /*	optimizers */
 char	**optimize_mvmts_to_b(char **mvmts_1, char **mvmts_2);
+char	**optimize_mvmts_to_a(char **mvmts_1, char **mvmts_2);
 
 /*	executors */
 void	exec_mvmts_to_b(t_stack **pivot, t_stack **b, char **pivot_mvmts);
+void	exec_mvmts_to_a(t_stack **a, t_stack **b, char **pivot_mvmts);
 
 /* movements_1 */
 void	pa(t_stack **stack_b, t_stack **stack_a);
@@ -96,5 +98,8 @@ void	debug_push_swap(t_stack **stack_a);
 
 /*	send_to_b */
 void	send_to_b(t_stack **stack_a, t_stack **stack_b);
+
+/*	send_to_a */
+void	send_to_a(t_stack **stack_a, t_stack **stack_b);
 
 #endif
