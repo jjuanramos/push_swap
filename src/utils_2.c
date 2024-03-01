@@ -6,7 +6,7 @@
 /*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 14:42:20 by juramos           #+#    #+#             */
-/*   Updated: 2024/03/01 10:33:43 by juramos          ###   ########.fr       */
+/*   Updated: 2024/03/01 12:06:43 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	get_str_arr_len(char **mvmts)
 	return (pos);
 }
 
-void	print_str_arr_len(char **mvmts)
+void	print_str_arr(char **mvmts)
 {
 	int	pos;
 
