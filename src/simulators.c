@@ -6,11 +6,31 @@
 /*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 11:01:31 by juramos           #+#    #+#             */
-/*   Updated: 2024/03/01 11:02:11 by juramos          ###   ########.fr       */
+/*   Updated: 2024/03/01 11:04:50 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+static void	add_to_mvmts(char **mvmts, char *val, int *pos, int is_a)
+{
+	int	str_len;
+	int	i;
+
+	i = 0;
+	str_len = ft_strlen(val);
+	mvmts[*pos] = ft_calloc(str_len + 2, sizeof(char));
+	while (i < str_len)
+	{
+		mvmts[*pos][i] = val[i];
+		i++;
+	}
+	if (is_a)
+		mvmts[*pos][i] = 'a';
+	else
+		mvmts[*pos][i] = 'b';
+	*pos = *pos + 1;
+}
 
 char	**simulate_mvmts_a(t_stack *stck)
 {

@@ -6,7 +6,7 @@
 /*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 10:35:27 by juramos           #+#    #+#             */
-/*   Updated: 2024/03/01 11:02:30 by juramos          ###   ########.fr       */
+/*   Updated: 2024/03/01 11:04:59 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ void	print_str_arr_len(char **mvmts);
 
 /*	utils_3 */
 int		pos_til_head(t_stack *stck, int n);
-void	add_to_mvmts(char **mvmts, char *val, int *pos, int is_a);
 
 /* stack_1 */
 t_stack	*get_head(t_stack *stck);
