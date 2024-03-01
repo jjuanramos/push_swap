@@ -6,7 +6,7 @@
 /*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 12:05:33 by juramos           #+#    #+#             */
-/*   Updated: 2024/03/01 13:38:17 by juramos          ###   ########.fr       */
+/*   Updated: 2024/03/01 14:10:30 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static t_stack	*get_closest_greater(t_stack *ref, t_stack *stack_a);
 static void	turk_order_reversed(t_stack **a, t_stack **b);
 */
 
-void	set_stacks_for_order(t_stack **stack_a, t_stack **stack_b)
+static void	set_stacks_for_order(t_stack **stack_a, t_stack **stack_b)
 {
 	t_stack	*a;
 	t_stack	*b;
@@ -89,16 +89,18 @@ void	debug_push_swap(t_stack **stack_a)
 	ft_printf("\n--->After ordering A, resulting stacks are:\n");
 	print_stack(a, "A: ");
 	print_stack(b, "B: ");
-	send_to_a(&b, &a);
+	while (b)
+		send_to_a(&a, &b);
 	ft_printf("\n--->After sending values from B to A, resulting stacks are:\n");
 	print_stack(a, "A: ");
 	print_stack(b, "B: ");
-	exit(0);
-	/*
-	check_and_order(&a);
+	while (get_min_to_right(get_head(a))->value != get_head(a)->value)
+	{
+		rra(a);
+		ft_printf("rra\n");
+	}
 	ft_printf("\n--->After last check of A, resulting stacks are:\n");
 	print_stack(a, "A: ");
 	print_stack(b, "B: ");
 	*stack_a = a;
-	*/
 }
