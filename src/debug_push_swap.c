@@ -6,7 +6,7 @@
 /*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 12:05:33 by juramos           #+#    #+#             */
-/*   Updated: 2024/02/29 14:57:59 by juramos          ###   ########.fr       */
+/*   Updated: 2024/03/01 10:51:42 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,33 +41,37 @@ void	set_stacks_for_order(t_stack **stack_a, t_stack **stack_b)
 	*stack_b = b;
 }
 
-char	**simulate_mvmts(t_stack *stck)
+char	**simulate_mvmts(t_stack *stck, int is_a)
 {
 	char	**mvmts;
 	t_stack	*tmp;
 	int		pos;
 
 	mvmts = ft_calloc(get_stack_size(get_head(stck)), sizeof(char *));
+	if (!stck)
+		return (mvmts);
 	tmp = copy_stck(stck);
 	pos = 0;
 	while (stck->value != get_head(tmp)->value)
 	{
 		if (pos_til_head(tmp, stck->value) < get_stack_size(get_head(tmp)) / 2)
 		{
-			add_to_mvmts(mvmts, "rb", &pos);
-			rb(tmp);
+			add_to_mvmts(mvmts, "r", &pos, is_a);
+			if (is_a)
+				ra(tmp);
+			else
+				rb(tmp);
 		}
 		else
 		{
-			add_to_mvmts(mvmts, "rrb", &pos);
-			rrb(tmp);
+			add_to_mvmts(mvmts, "rr", &pos, is_a);
+			if (is_a)
+				rra(tmp);
+			else
+				rrb(tmp);
 		}
-		clean_stack(tmp);
-		tmp = copy_stck(stck);
 	}
 	clean_stack(tmp);
-	print_str_arr_len(mvmts);
-	exit(0);
 	return (mvmts);
 }
 
@@ -80,9 +84,12 @@ char	**check_mvmts_to_b(t_stack *stack_a, t_stack *stack_b)
 	// char	**min_mvmts;
 
 	pivot = stack_a;
-	b_closest_min = get_closest_greater(pivot, stack_b);
-	b_mvmts = simulate_mvmts(b_closest_min);
-	a_mvmts = simulate_mvmts(pivot);
+	b_closest_min = get_closest_min(pivot, stack_b);
+	ft_printf("movements for b are: \n");
+	b_mvmts = simulate_mvmts(b_closest_min, 0);
+	ft_printf("movements for a are: \n");
+	a_mvmts = simulate_mvmts(pivot, 1);
+	exit(0);
 	// min_mvmts = optimize_mvmts(b_mvmts, a_mvmts);
 	// actually we return min_mvmts, this is just to make it shut up
 	return (free_str_arr(b_mvmts), free_str_arr(a_mvmts), ft_calloc(3, sizeof(char **)));

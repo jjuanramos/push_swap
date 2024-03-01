@@ -6,27 +6,11 @@
 /*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 14:42:20 by juramos           #+#    #+#             */
-/*   Updated: 2024/02/29 15:03:14 by juramos          ###   ########.fr       */
+/*   Updated: 2024/03/01 10:33:43 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void	add_to_mvmts(char **mvmts, char *val, int *pos)
-{
-	int	str_len;
-	int	i;
-
-	i = 0;
-	str_len = ft_strlen(val);
-	mvmts[*pos] = ft_calloc(str_len + 1, sizeof(char));
-	while (i < str_len)
-	{
-		mvmts[*pos][i] = val[i];
-		i++;
-	}
-	*pos = *pos + 1;
-}
 
 void	free_str_arr(char **mvmts)
 {
@@ -78,17 +62,20 @@ t_stack	*get_closest_greater(t_stack *ref, t_stack *stack_a)
 	return (closest_greater);
 }
 
-int	pos_til_head(t_stack *stck, int n)
+t_stack	*get_closest_min(t_stack *ref, t_stack *stck)
 {
 	t_stack	*t;
-	int		dist;
+	t_stack	*closest_min;
 
 	t = get_head(stck);
-	dist = 0;
-	while (t && t->value != n)
+	closest_min = get_min_to_right(t);
+	if (ref->value < closest_min->value)
+		return (NULL);
+	while (t)
 	{
-		dist++;
+		if (t->value < ref->value && t->value > closest_min->value)
+			closest_min = t;
 		t = t->next;
 	}
-	return (dist);
+	return (closest_min);
 }
