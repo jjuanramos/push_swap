@@ -6,7 +6,7 @@
 /*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 12:05:33 by juramos           #+#    #+#             */
-/*   Updated: 2024/03/01 12:57:04 by juramos          ###   ########.fr       */
+/*   Updated: 2024/03/01 13:26:07 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void	set_stacks_for_order(t_stack **stack_a, t_stack **stack_b)
 	while (get_stack_size(a) > 3 && get_stack_size(b) < 2)
 	{
 		pb(&a, &b);
+		ft_printf("pb\n");
 		a = get_head(a);
 		b = get_head(b);
 	}
@@ -54,7 +55,7 @@ char	**check_mvmts_to_b(t_stack *stack_a, t_stack *stack_b)
 	b_mvmts = simulate_mvmts_b(b_closest_min);
 	a_mvmts = simulate_mvmts_a(pivot);
 	min_mvmts = optimize_mvmts_to_b(b_mvmts, a_mvmts);
-	return (free_str_arr(b_mvmts), free_str_arr(a_mvmts), min_mvmts);
+	return (min_mvmts);
 }
 
 void	send_to_b(t_stack **stack_a, t_stack **stack_b)
@@ -76,10 +77,13 @@ void	send_to_b(t_stack **stack_a, t_stack **stack_b)
 			break ;
 		a = a->next;
 	}
+	ft_printf("------->resulting optimized mvmts are:\n");
+	print_str_arr(pivot_mvmts);
+	ft_printf("<------------->\n");
 	exec_mvmts_to_b(&a, &b, pivot_mvmts);
-	// free_str_arr(pivot_mvmts);
-	// if (mvmts)
-	// 	free_str_arr(mvmts);
+	ft_printf("\n--->After exect_mvmts_to_b:\n");
+	print_stack(a, "A: ");
+	print_stack(b, "B: ");
 	*stack_a = get_head(a);
 	*stack_b = get_head(b);
 }

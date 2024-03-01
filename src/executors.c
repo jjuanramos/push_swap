@@ -6,7 +6,7 @@
 /*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 11:54:02 by juramos           #+#    #+#             */
-/*   Updated: 2024/03/01 13:00:33 by juramos          ###   ########.fr       */
+/*   Updated: 2024/03/01 13:05:01 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,6 @@ void	exec_mvmts_to_b(t_stack **a, t_stack **b, char **pivot_mvmts)
 	pos = 0;
 	tmp_a = get_head(*a);
 	tmp_b = get_head(*b);
-	print_stack(*a, "during exec A: ");
-	print_stack(*b, "during exec B: ");
 	while (pivot_mvmts[pos])
 	{
 		if (ft_strncmp(pivot_mvmts[pos], "pb", 2) == 0)
