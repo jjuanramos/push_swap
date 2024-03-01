@@ -6,7 +6,7 @@
 /*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 12:05:33 by juramos           #+#    #+#             */
-/*   Updated: 2024/03/01 11:02:07 by juramos          ###   ########.fr       */
+/*   Updated: 2024/03/01 12:57:04 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,18 +47,14 @@ char	**check_mvmts_to_b(t_stack *stack_a, t_stack *stack_b)
 	t_stack	*b_closest_min;
 	char	**b_mvmts;
 	char	**a_mvmts;
-	// char	**min_mvmts;
+	char	**min_mvmts;
 
 	pivot = stack_a;
 	b_closest_min = get_closest_min(pivot, stack_b);
-	ft_printf("movements for b are: \n");
 	b_mvmts = simulate_mvmts_b(b_closest_min);
-	ft_printf("movements for a are: \n");
 	a_mvmts = simulate_mvmts_a(pivot);
-	exit(0);
-	// min_mvmts = optimize_mvmts(b_mvmts, a_mvmts);
-	// actually we return min_mvmts, this is just to make it shut up
-	return (free_str_arr(b_mvmts), free_str_arr(a_mvmts), ft_calloc(3, sizeof(char **)));
+	min_mvmts = optimize_mvmts_to_b(b_mvmts, a_mvmts);
+	return (free_str_arr(b_mvmts), free_str_arr(a_mvmts), min_mvmts);
 }
 
 void	send_to_b(t_stack **stack_a, t_stack **stack_b)
@@ -67,24 +63,23 @@ void	send_to_b(t_stack **stack_a, t_stack **stack_b)
 	t_stack	*b;
 	char	**mvmts;
 	char	**pivot_mvmts;
-	int		min_mvmts;
 
 	a = *stack_a;
 	b = *stack_b;
-	min_mvmts = 0;
+	pivot_mvmts = check_mvmts_to_b(a, b);
 	while (a)
 	{
 		mvmts = check_mvmts_to_b(a, b);
-		if (get_str_arr_len(mvmts) < min_mvmts)
-		{
-			// pivot = a;
+		if (get_str_arr_len(mvmts) < get_str_arr_len(pivot_mvmts))
 			pivot_mvmts = mvmts;
-		}
+		if (!(a->next))
+			break ;
 		a = a->next;
 	}
-	// exec_mvmts_to_b(&pivot, &b, pivot_mvmts);
-	free_str_arr(mvmts);
-	free_str_arr(pivot_mvmts);
+	exec_mvmts_to_b(&a, &b, pivot_mvmts);
+	// free_str_arr(pivot_mvmts);
+	// if (mvmts)
+	// 	free_str_arr(mvmts);
 	*stack_a = get_head(a);
 	*stack_b = get_head(b);
 }

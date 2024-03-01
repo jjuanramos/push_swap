@@ -6,7 +6,7 @@
 /*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 10:35:27 by juramos           #+#    #+#             */
-/*   Updated: 2024/03/01 11:04:59 by juramos          ###   ########.fr       */
+/*   Updated: 2024/03/01 12:10:53 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	free_str_arr(char **mvmts);
 int		get_str_arr_len(char **mvmts);
 t_stack	*get_closest_greater(t_stack *ref, t_stack *stack_a);
 t_stack	*get_closest_min(t_stack *ref, t_stack *stck);
-void	print_str_arr_len(char **mvmts);
+void	print_str_arr(char **mvmts);
 
 /*	utils_3 */
 int		pos_til_head(t_stack *stck, int n);
@@ -62,6 +62,12 @@ void	check_three(t_stack *stack_a);
 char	**simulate_mvmts_a(t_stack *stck);
 char	**simulate_mvmts_b(t_stack *stck);
 
+/*	optimizers */
+char	**optimize_mvmts_to_b(char **mvmts_1, char **mvmts_2);
+
+/*	executors */
+void	exec_mvmts_to_b(t_stack **pivot, t_stack **b, char **pivot_mvmts);
+
 /* movements_1 */
 void	pa(t_stack **stack_b, t_stack **stack_a);
 void	pb(t_stack **stack_a, t_stack **stack_b);
@@ -75,6 +81,9 @@ void	rb(t_stack *stack_b);
 void	rr(t_stack *stack_a, t_stack *stack_b);
 void	rra(t_stack *stack_a);
 void	rrb(t_stack *stack_b);
+
+/*	movements	*/
+void	rrr(t_stack *stack_a, t_stack *stack_b);
 
 /* push_swap */
 void	push_swap(t_stack **stack_a);

@@ -6,7 +6,7 @@
 /*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 11:01:31 by juramos           #+#    #+#             */
-/*   Updated: 2024/03/01 11:04:50 by juramos          ###   ########.fr       */
+/*   Updated: 2024/03/01 11:36:32 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,7 @@ char	**simulate_mvmts_a(t_stack *stck)
 			rra(tmp);
 		}
 	}
-	clean_stack(tmp);
-	return (mvmts);
+	return (clean_stack(tmp), mvmts);
 }
 
 char	**simulate_mvmts_b(t_stack *stck)
@@ -84,6 +83,5 @@ char	**simulate_mvmts_b(t_stack *stck)
 			rrb(tmp);
 		}
 	}
-	clean_stack(tmp);
-	return (mvmts);
+	return (clean_stack(tmp), mvmts);
 }
