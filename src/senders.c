@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   send_to_a.c                                        :+:      :+:    :+:   */
+/*   senders.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 13:28:12 by juramos           #+#    #+#             */
-/*   Updated: 2024/03/04 13:47:26 by juramos          ###   ########.fr       */
+/*   Updated: 2024/03/04 13:51:17 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,10 @@ void	send_to_b(t_stack **stack_a, t_stack **stack_b)
 			break ;
 		mvmts = check_mvmts_to_b(a, b);
 		if (get_int_arr_len(mvmts) < get_int_arr_len(pivot_mvmts))
+		{
+			free(pivot_mvmts);
 			pivot_mvmts = mvmts;
+		}
 		else
 			free(mvmts);
 		if (!(a->next))

@@ -6,7 +6,7 @@
 /*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 12:05:33 by juramos           #+#    #+#             */
-/*   Updated: 2024/03/04 10:20:35 by juramos          ###   ########.fr       */
+/*   Updated: 2024/03/04 13:54:47 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,19 @@ static void	set_stacks_for_order(t_stack **stack_a, t_stack **stack_b)
 	*stack_b = b;
 }
 
+static void	perform_rra(t_stack *a)
+{
+	rra(a);
+	ft_printf("rra\n");
+}
+
+static void	perform_on_three(t_stack *a)
+{
+	while (!(get_head(a)->value < get_head(a)->next->value
+			&& get_head(a)->next->value < get_tail(a)->value))
+		check_three(a);
+}
+
 /*	push_swap:
 	We used the turkish algorithm. This means:
 	1.  If A.length > 3, we send A.values to B until B.length == 2
@@ -72,21 +85,16 @@ void	push_swap(t_stack **stack_a)
 	b = NULL;
 	if (get_stack_size(a) <= 3)
 	{
-		check_three(a);
+		perform_on_three(a);
 		return ;
 	}
 	set_stacks_for_order(&a, &b);
 	while (get_stack_size(a) > 3)
 		send_to_b(&a, &b);
-	while (!(get_head(a)->value < get_head(a)->next->value
-			&& get_head(a)->next->value < get_tail(a)->value))
-		check_three(a);
+	perform_on_three(a);
 	while (b)
 		send_to_a(&a, &b);
 	while (get_min_to_right(get_head(a))->value != get_head(a)->value)
-	{
-		rra(a);
-		ft_printf("rra\n");
-	}
+		perform_rra(a);
 	*stack_a = a;
 }

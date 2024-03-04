@@ -6,7 +6,7 @@
 /*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 12:05:33 by juramos           #+#    #+#             */
-/*   Updated: 2024/03/04 13:36:05 by juramos          ###   ########.fr       */
+/*   Updated: 2024/03/04 13:55:29 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,19 @@ static void	set_stacks_for_order(t_stack **stack_a, t_stack **stack_b)
 	*stack_b = b;
 }
 
+static void	perform_rra(t_stack *a)
+{
+	rra(a);
+	ft_printf("rra\n");
+}
+
+static void	perform_on_three(t_stack *a)
+{
+	while (!(get_head(a)->value < get_head(a)->next->value
+			&& get_head(a)->next->value < get_tail(a)->value))
+		check_three(a);
+}
+
 /*	push_swap:
 	We used the turkish algorithm. This means:
 	1.  If A.length > 3, we send A.values to B until B.length == 2
@@ -73,9 +86,7 @@ void	debug_push_swap(t_stack **stack_a)
 	print_stack(a, "we receive A: ");
 	if (get_stack_size(a) <= 3)
 	{
-		while (!(get_head(a)->value < get_head(a)->next->value
-				&& get_head(a)->next->value < get_tail(a)->value))
-			check_three(a);
+		perform_on_three(a);
 		return ;
 	}
 	set_stacks_for_order(&a, &b);
@@ -87,9 +98,7 @@ void	debug_push_swap(t_stack **stack_a)
 	ft_printf("\n--->After sending all values to B, resulting stacks are:\n");
 	print_stack(a, "A: ");
 	print_stack(b, "B: ");
-	while (!(get_head(a)->value < get_head(a)->next->value
-			&& get_head(a)->next->value < get_tail(a)->value))
-		check_three(a);
+	perform_on_three(a);
 	ft_printf("\n--->After ordering A, resulting stacks are:\n");
 	print_stack(a, "A: ");
 	print_stack(b, "B: ");
@@ -99,10 +108,7 @@ void	debug_push_swap(t_stack **stack_a)
 	print_stack(a, "A: ");
 	print_stack(b, "B: ");
 	while (get_min_to_right(get_head(a))->value != get_head(a)->value)
-	{
-		rra(a);
-		ft_printf("rra\n");
-	}
+		perform_rra(a);
 	ft_printf("\n--->After last check of A, resulting stacks are:\n");
 	print_stack(a, "A: ");
 	print_stack(b, "B: ");
