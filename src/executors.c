@@ -6,7 +6,7 @@
 /*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 11:54:02 by juramos           #+#    #+#             */
-/*   Updated: 2024/03/01 13:35:44 by juramos          ###   ########.fr       */
+/*   Updated: 2024/03/04 12:21:52 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,7 @@
 
 static void	check_rr(t_stack *a, t_stack *b, char *mvmt)
 {
-	if (ft_strncmp(mvmt, "rrr", 3) == 0)
-	{
-		rrr(a, b);
-		ft_printf("rrr\n");
-	}
-	else if (ft_strncmp(mvmt, "rrb", 3) == 0)
+	if (ft_strncmp(mvmt, "rrb", 3) == 0)
 	{
 		rrb(b);
 		ft_printf("rrb\n");
@@ -33,12 +28,7 @@ static void	check_rr(t_stack *a, t_stack *b, char *mvmt)
 
 static void	check_r(t_stack *a, t_stack *b, char *mvmt)
 {
-	if (ft_strncmp(mvmt, "rr", 2) == 0)
-	{
-		rr(a, b);
-		ft_printf("rr\n");
-	}
-	else if (ft_strncmp(mvmt, "rb", 2) == 0)
+	if (ft_strncmp(mvmt, "rb", 2) == 0)
 	{
 		rb(b);
 		ft_printf("rb\n");
