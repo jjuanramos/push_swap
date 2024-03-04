@@ -6,7 +6,7 @@
 /*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 12:05:33 by juramos           #+#    #+#             */
-/*   Updated: 2024/03/01 14:10:30 by juramos          ###   ########.fr       */
+/*   Updated: 2024/03/04 10:20:27 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,10 +85,13 @@ void	debug_push_swap(t_stack **stack_a)
 	ft_printf("\n--->After sending all values to B, resulting stacks are:\n");
 	print_stack(a, "A: ");
 	print_stack(b, "B: ");
-	check_three(a);
+	while (!(get_head(a)->value < get_head(a)->next->value
+			&& get_head(a)->next->value < get_tail(a)->value))
+		check_three(a);
 	ft_printf("\n--->After ordering A, resulting stacks are:\n");
 	print_stack(a, "A: ");
 	print_stack(b, "B: ");
+	exit(0);
 	while (b)
 		send_to_a(&a, &b);
 	ft_printf("\n--->After sending values from B to A, resulting stacks are:\n");

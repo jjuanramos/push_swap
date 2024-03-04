@@ -6,7 +6,7 @@
 /*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 12:05:33 by juramos           #+#    #+#             */
-/*   Updated: 2024/03/01 14:12:57 by juramos          ###   ########.fr       */
+/*   Updated: 2024/03/04 10:20:35 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,9 @@ void	push_swap(t_stack **stack_a)
 	set_stacks_for_order(&a, &b);
 	while (get_stack_size(a) > 3)
 		send_to_b(&a, &b);
-	check_three(a);
+	while (!(get_head(a)->value < get_head(a)->next->value
+			&& get_head(a)->next->value < get_tail(a)->value))
+		check_three(a);
 	while (b)
 		send_to_a(&a, &b);
 	while (get_min_to_right(get_head(a))->value != get_head(a)->value)
