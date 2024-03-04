@@ -6,7 +6,7 @@
 /*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 11:01:31 by juramos           #+#    #+#             */
-/*   Updated: 2024/03/01 11:36:32 by juramos          ###   ########.fr       */
+/*   Updated: 2024/03/04 12:10:14 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,19 @@ static void	add_to_mvmts(char **mvmts, char *val, int *pos, int is_a)
 	else
 		mvmts[*pos][i] = 'b';
 	*pos = *pos + 1;
+}
+
+static void	append_to_main(char **main, int *pos_main, char **sec)
+{
+	int	pos_sec;
+
+	pos_sec = 0;
+	while (sec[pos_sec])
+	{
+		main[*pos_main] = sec[pos_sec];
+		pos_sec++;
+		*pos_main = *pos_main + 1;
+	}
 }
 
 char	**simulate_mvmts_a(t_stack *stck)
@@ -84,4 +97,21 @@ char	**simulate_mvmts_b(t_stack *stck)
 		}
 	}
 	return (clean_stack(tmp), mvmts);
+}
+
+char	**concat_mvmts(char **mvmts_1, char **mvmts_2, int to_a)
+{
+	int		pos_main;
+	char	**main;
+
+	pos_main = 0;
+	main = ft_calloc(get_str_arr_len(mvmts_1)
+			+ get_str_arr_len(mvmts_2) + 2, sizeof(char *));
+	append_to_main(main, &pos_main, mvmts_1);
+	append_to_main(main, &pos_main, mvmts_2);
+	if (to_a)
+		add_to_mvmts(main, "p", &pos_main, 1);
+	else
+		add_to_mvmts(main, "p", &pos_main, 0);
+	return (main);
 }

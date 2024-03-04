@@ -6,7 +6,7 @@
 /*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 13:28:12 by juramos           #+#    #+#             */
-/*   Updated: 2024/03/04 11:22:24 by juramos          ###   ########.fr       */
+/*   Updated: 2024/03/04 12:10:33 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static char	**check_mvmts_to_a(t_stack *stack_a, t_stack *stack_b)
 	else
 		a_mvmts = simulate_mvmts_a(a_closest_greater);
 	b_mvmts = simulate_mvmts_b(pivot);
-	min_mvmts = optimize_mvmts(b_mvmts, a_mvmts, 1);
+	min_mvmts = concat_mvmts(b_mvmts, a_mvmts, 1);
 	return (min_mvmts);
 }
 
