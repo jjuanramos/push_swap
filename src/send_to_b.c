@@ -6,7 +6,7 @@
 /*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 13:28:12 by juramos           #+#    #+#             */
-/*   Updated: 2024/03/04 12:09:47 by juramos          ###   ########.fr       */
+/*   Updated: 2024/03/04 12:19:38 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ void	send_to_b(t_stack **stack_a, t_stack **stack_b)
 	pivot_mvmts = check_mvmts_to_b(a, b);
 	while (a)
 	{
+		if (get_str_arr_len(pivot_mvmts) <= 2)
+			break ;
 		mvmts = check_mvmts_to_b(a, b);
 		if (get_str_arr_len(mvmts) < get_str_arr_len(pivot_mvmts))
 			pivot_mvmts = mvmts;
