@@ -6,7 +6,7 @@
 /*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 10:35:27 by juramos           #+#    #+#             */
-/*   Updated: 2024/03/04 12:11:30 by juramos          ###   ########.fr       */
+/*   Updated: 2024/03/04 13:33:45 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,14 @@
 # define PUSH_SWAP_H
 
 # define LEN_MAX_INT 10
+
+/*  movements	*/
+# define PA 1
+# define RA 2
+# define RRA 3
+# define PB 4
+# define RB 5
+# define RRB 6
 
 # include "include/ft_printf.h"
 # include "include/libft.h"
@@ -37,11 +45,10 @@ int		is_greater_than(t_stack *stck, int to_left);
 int		is_smaller_than(t_stack *stck, int to_right);
 
 /*	utils_2 */
-void	free_str_arr(char **mvmts);
-int		get_str_arr_len(char **mvmts);
+int		get_int_arr_len(int *mvmts);
 t_stack	*get_closest_greater(t_stack *ref, t_stack *stack_a);
 t_stack	*get_closest_min(t_stack *ref, t_stack *stck);
-void	print_str_arr(char **mvmts);
+void	print_int_arr(int *mvmts);
 
 /*	utils_3 */
 int		pos_til_head(t_stack *stck, int n);
@@ -59,13 +66,12 @@ t_stack	*get_max_to_right(t_stack *stck);
 void	check_three(t_stack *stack_a);
 
 /*	simulators */
-char	**simulate_mvmts_a(t_stack *stck);
-char	**simulate_mvmts_b(t_stack *stck);
-char	**concat_mvmts(char **mvmts_1, char **mvmts_2, int to_a);
+int		*simulate_mvmts_a(t_stack *stck);
+int		*simulate_mvmts_b(t_stack *stck);
+int		*concat_mvmts(int *mvmts_1, int *mvmts_2, int to_a);
 
 /*	executors */
-void	exec_mvmts_to_b(t_stack **pivot, t_stack **b, char **pivot_mvmts);
-void	exec_mvmts_to_a(t_stack **a, t_stack **b, char **pivot_mvmts);
+void	exec_mvmts(t_stack **pivot, t_stack **b, int *pivot_mvmts);
 
 /* movements_1 */
 void	pa(t_stack **stack_b, t_stack **stack_a);

@@ -6,23 +6,13 @@
 /*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 14:42:20 by juramos           #+#    #+#             */
-/*   Updated: 2024/03/01 12:06:43 by juramos          ###   ########.fr       */
+/*   Updated: 2024/03/04 13:33:08 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	free_str_arr(char **mvmts)
-{
-	int	pos;
-
-	pos = -1;
-	while (mvmts[pos++])
-		free(mvmts[pos]);
-	free(mvmts);
-}
-
-int	get_str_arr_len(char **mvmts)
+int	get_int_arr_len(int	*mvmts)
 {
 	int	pos;
 
@@ -32,14 +22,14 @@ int	get_str_arr_len(char **mvmts)
 	return (pos);
 }
 
-void	print_str_arr(char **mvmts)
+void	print_int_arr(int *mvmts)
 {
 	int	pos;
 
 	pos = 0;
 	while (mvmts[pos])
 	{
-		ft_printf("%s\n", mvmts[pos]);
+		ft_printf("%d\n", mvmts[pos]);
 		pos++;
 	}
 }

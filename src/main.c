@@ -6,7 +6,7 @@
 /*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 11:12:00 by juramos           #+#    #+#             */
-/*   Updated: 2024/03/04 10:46:36 by juramos          ###   ########.fr       */
+/*   Updated: 2024/03/04 13:33:36 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,16 @@ static int	str_arr_len(char **str_arr)
 	while (str_arr[len])
 		len++;
 	return (len);
+}
+
+static void	free_str_arr(char **arr)
+{
+	int	pos;
+
+	pos = -1;
+	while (arr[pos++])
+		free(arr[pos]);
+	free(arr);
 }
 
 int	main(int argc, char *argv[])
