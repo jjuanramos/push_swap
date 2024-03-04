@@ -6,7 +6,7 @@
 /*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 12:05:33 by juramos           #+#    #+#             */
-/*   Updated: 2024/03/04 13:54:47 by juramos          ###   ########.fr       */
+/*   Updated: 2024/03/04 14:15:25 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,16 @@ static void	perform_rra(t_stack *a)
 
 static void	perform_on_three(t_stack *a)
 {
-	while (!(get_head(a)->value < get_head(a)->next->value
-			&& get_head(a)->next->value < get_tail(a)->value))
+	if (get_stack_size(a) == 1)
+		return ;
+	else if (get_stack_size(a) == 2)
 		check_three(a);
+	else
+	{
+		while (!(get_head(a)->value < get_head(a)->next->value
+				&& get_head(a)->next->value < get_tail(a)->value))
+			check_three(a);
+	}
 }
 
 /*	push_swap:
