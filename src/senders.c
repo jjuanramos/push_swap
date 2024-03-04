@@ -6,7 +6,7 @@
 /*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 13:28:12 by juramos           #+#    #+#             */
-/*   Updated: 2024/03/04 13:51:17 by juramos          ###   ########.fr       */
+/*   Updated: 2024/03/04 13:58:41 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,12 @@ static int	*check_mvmts_to_b(t_stack *stack_a, t_stack *stack_b)
 	return (free(a_mvmts), free(b_mvmts), min_mvmts);
 }
 
+static void	update_pivot(int **pivot, int **new)
+{
+	free(*pivot);
+	*pivot = *new;
+}
+
 void	send_to_a(t_stack **stack_a, t_stack **stack_b)
 {
 	t_stack	*a;
@@ -66,7 +72,7 @@ void	send_to_a(t_stack **stack_a, t_stack **stack_b)
 			break ;
 		mvmts = check_mvmts_to_a(a, b);
 		if (get_int_arr_len(mvmts) < get_int_arr_len(pivot_mvmts))
-			pivot_mvmts = mvmts;
+			update_pivot(&pivot_mvmts, &mvmts);
 		else
 			free(mvmts);
 		if (!b->next)
@@ -95,10 +101,7 @@ void	send_to_b(t_stack **stack_a, t_stack **stack_b)
 			break ;
 		mvmts = check_mvmts_to_b(a, b);
 		if (get_int_arr_len(mvmts) < get_int_arr_len(pivot_mvmts))
-		{
-			free(pivot_mvmts);
-			pivot_mvmts = mvmts;
-		}
+			update_pivot(&pivot_mvmts, &mvmts);
 		else
 			free(mvmts);
 		if (!(a->next))
