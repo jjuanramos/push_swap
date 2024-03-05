@@ -6,7 +6,7 @@
 #    By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/15 16:43:25 by juramos           #+#    #+#              #
-#    Updated: 2024/03/05 17:06:01 by juramos          ###   ########.fr        #
+#    Updated: 2024/03/05 17:11:12 by juramos          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME 		= 	push_swap
 
 # Compiler
 CC 			= 	gcc
-CFLAGS 		= 	-Wall -Werror -Wextra -fsanitize=address
+CFLAGS 		= 	-Wall -Werror -Wextra
 
 # Sources
 SRC_DIR 	= 	src/
