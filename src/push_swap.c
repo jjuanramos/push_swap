@@ -6,23 +6,11 @@
 /*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 12:05:33 by juramos           #+#    #+#             */
-/*   Updated: 2024/03/04 14:15:25 by juramos          ###   ########.fr       */
+/*   Updated: 2024/03/05 09:18:23 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-/*
-static int	pos_til_head(t_stack *stck);
-static void	mvmts_to_head(t_stack *stck, int *mvmts);
-static t_stack	*get_closest_min(int ref, t_stack *stck);
-static int	check_mvmts(t_stack *a, t_stack *b);
-static void	move_to_head_b(t_stack **stck);
-static void	move_to_head_a(t_stack **stck);
-static void	exec_mvmts(t_stack **a, t_stack **b);
-static t_stack	*get_min_pivot(t_stack *a, t_stack *b);
-static t_stack	*get_closest_greater(t_stack *ref, t_stack *stack_a);
-static void	turk_order_reversed(t_stack **a, t_stack **b);
-*/
 
 static void	set_stacks_for_order(t_stack **stack_a, t_stack **stack_b)
 {
