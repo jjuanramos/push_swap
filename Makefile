@@ -6,7 +6,7 @@
 #    By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/15 16:43:25 by juramos           #+#    #+#              #
-#    Updated: 2024/03/04 13:47:42 by juramos          ###   ########.fr        #
+#    Updated: 2024/03/05 10:25:40 by juramos          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,8 @@ SRC_FILES 	= 	main args_parse utils_1 stack_1 \
 				movements_1 movements_2 stack_2 \
 				debug_push_swap utils_2 utils_3	\
 				simulators executors push_swap	\
-				movements_3 senders
+				movements_3 senders	\
+				tmp_senders tmp_executors
 SRC 		=	$(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))
 
 # Objects

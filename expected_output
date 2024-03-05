@@ -1,0 +1,64 @@
+we receive A: | 5 | 2 | 7 | 1 | 6 | 3 | 9 | 4 | 8 |
+pb
+pb
+
+--->After moving all possible values to B, resulting stacks are:
+A: | 7 | 1 | 6 | 3 | 9 | 4 | 8 |
+B: | 2 | 5 |
+----------
+A before execution| 7 | 1 | 6 | 3 | 9 | 4 | 8 |
+B before execution| 2 | 5 |
+
+...executing...
+rrb
+pb
+...done!...
+
+----------
+A after execution| 1 | 6 | 3 | 9 | 4 | 8 |
+B after execution| 7 | 5 | 2 |
+---------------
+----------
+A before execution| 1 | 6 | 3 | 9 | 4 | 8 |
+B before execution| 7 | 5 | 2 |
+
+...executing...
+pb
+...done!...
+
+----------
+A after execution| 6 | 3 | 9 | 4 | 8 |
+B after execution| 1 | 7 | 5 | 2 |
+---------------
+----------
+A before execution| 6 | 3 | 9 | 4 | 8 |
+B before execution| 1 | 7 | 5 | 2 |
+
+...executing...
+rrb
+rrb
+pb
+...done!...
+
+----------
+A after execution| 3 | 9 | 4 | 8 |
+B after execution| 6 | 5 | 2 | 1 | 7 |
+---------------
+----------
+A before execution| 3 | 9 | 4 | 8 |
+B before execution| 6 | 5 | 2 | 1 | 7 |
+
+...executing...
+rrb
+ra
+pb
+...done!...
+
+----------
+A after execution| 4 | 8 | 3 |
+B after execution| 9 | 7 | 6 | 5 | 2 | 1 |
+---------------
+
+--->After sending all values to B, resulting stacks are:
+A: | 4 | 8 | 3 |
+B: | 9 | 7 | 6 | 5 | 2 | 1 |

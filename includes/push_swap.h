@@ -6,7 +6,7 @@
 /*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 10:35:27 by juramos           #+#    #+#             */
-/*   Updated: 2024/03/04 13:48:00 by juramos          ###   ########.fr       */
+/*   Updated: 2024/03/05 10:45:29 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define PUSH_SWAP_H
 
 # define LEN_MAX_INT 10
+# define MAX_INT 2147483647
 
 /*  movements	*/
 # define PA 1
@@ -99,5 +100,10 @@ void	debug_push_swap(t_stack **stack_a);
 /*	senders */
 void	send_to_b(t_stack **stack_a, t_stack **stack_b);
 void	send_to_a(t_stack **stack_a, t_stack **stack_b);
+
+/*	tmp	*/
+void	tmp_send_to_b(t_stack **stack_a, t_stack **stack_b);
+void	tmp_send_to_a(t_stack **stack_a, t_stack **stack_b);
+void	tmp_exec_mvmts(t_stack **a, t_stack **b, int to_a);
 
 #endif

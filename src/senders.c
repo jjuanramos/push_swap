@@ -6,7 +6,7 @@
 /*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 13:28:12 by juramos           #+#    #+#             */
-/*   Updated: 2024/03/05 09:51:33 by juramos          ###   ########.fr       */
+/*   Updated: 2024/03/05 10:50:27 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,14 @@ void	send_to_b(t_stack **stack_a, t_stack **stack_b)
 			break ;
 		a = a->next;
 	}
+	print_stack(a, "----------\nA before execution");
+	print_stack(b, "B before execution");
+	ft_printf("\n...executing...\n");
 	exec_mvmts(&a, &b, pivot_mvmts);
+	ft_printf("...done!...\n\n");
+	print_stack(a, "----------\nA after execution");
+	print_stack(b, "B after execution");
+	ft_printf("---------------\n");
 	free(pivot_mvmts);
 	*stack_a = get_head(a);
 	*stack_b = get_head(b);

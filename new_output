@@ -1,0 +1,77 @@
+we receive A: | 5 | 2 | 7 | 1 | 6 | 3 | 9 | 4 | 8 |
+pb
+pb
+
+--->After moving all possible values to B, resulting stacks are:
+A: | 7 | 1 | 6 | 3 | 9 | 4 | 8 |
+B: | 2 | 5 |
+for pivot 7, we need 0 mvmts to put it in head A and 1 mvmts to put its counter in head B
+for pivot 7, we need 0 mvmts to put it in head A and 1 mvmts to put its counter in head B
+new pivot is 7 with counter 5, expecting 1 mvmts.
+----------
+A before execution| 7 | 1 | 6 | 3 | 9 | 4 | 8 |
+B before execution| 2 | 5 |
+
+...executing...
+rrb
+pb
+...done!...
+
+----------
+A after execution| 1 | 6 | 3 | 9 | 4 | 8 |
+B after execution| 7 | 5 | 2 |
+---------------
+for pivot 1, we need 0 mvmts to put it in head A and 0 mvmts to put its counter in head B
+for pivot 1, we need 0 mvmts to put it in head A and 0 mvmts to put its counter in head B
+new pivot is 1 with counter 7, expecting 0 mvmts.
+----------
+A before execution| 1 | 6 | 3 | 9 | 4 | 8 |
+B before execution| 7 | 5 | 2 |
+
+...executing...
+pb
+...done!...
+
+----------
+A after execution| 6 | 3 | 9 | 4 | 8 |
+B after execution| 1 | 7 | 5 | 2 |
+---------------
+for pivot 6, we need 0 mvmts to put it in head A and 2 mvmts to put its counter in head B
+for pivot 6, we need 0 mvmts to put it in head A and 2 mvmts to put its counter in head B
+new pivot is 6 with counter 5, expecting 2 mvmts.
+----------
+A before execution| 6 | 3 | 9 | 4 | 8 |
+B before execution| 1 | 7 | 5 | 2 |
+
+...executing...
+rrb
+rrb
+pb
+...done!...
+
+----------
+A after execution| 3 | 9 | 4 | 8 |
+B after execution| 6 | 5 | 2 | 1 | 7 |
+---------------
+for pivot 3, we need 0 mvmts to put it in head A and 2 mvmts to put its counter in head B
+for pivot 3, we need 0 mvmts to put it in head A and 2 mvmts to put its counter in head B
+new pivot is 3 with counter 2, expecting 2 mvmts.
+----------
+A before execution| 3 | 9 | 4 | 8 |
+B before execution| 6 | 5 | 2 | 1 | 7 |
+
+...executing...
+rrb
+rrb
+rrb
+pb
+...done!...
+
+----------
+A after execution| 9 | 4 | 8 |
+B after execution| 3 | 2 | 1 | 7 | 6 | 5 |
+---------------
+
+--->After sending all values to B, resulting stacks are:
+A: | 9 | 4 | 8 |
+B: | 3 | 2 | 1 | 7 | 6 | 5 |
