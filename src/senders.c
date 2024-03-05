@@ -6,7 +6,7 @@
 /*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 13:28:12 by juramos           #+#    #+#             */
-/*   Updated: 2024/03/05 09:51:33 by juramos          ###   ########.fr       */
+/*   Updated: 2024/03/05 11:54:58 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,58 +56,163 @@ static void	update_pivot(int **pivot, int **new)
 	*pivot = *new;
 }
 
-void	send_to_a(t_stack **stack_a, t_stack **stack_b)
+static void	search_opt_b(t_stack *a, t_stack *b, int **pivot, int iters)
+{
+	t_stack	*tmp_a;
+	t_stack	*tmp_b;
+	int		*tmp_mvmts;
+	int		pos;
+
+	tmp_a = a;
+	tmp_b = b;
+	pos = -1;
+	while (tmp_b && pos++ < iters)
+	{
+		if (get_int_arr_len(*pivot) <= 2)
+			break ;
+		tmp_mvmts = check_mvmts_to_a(tmp_a, tmp_b);
+		if (get_int_arr_len(tmp_mvmts) < get_int_arr_len(*pivot))
+			update_pivot(pivot, &tmp_mvmts);
+		else
+			free(tmp_mvmts);
+		if (!(b->next))
+			break ;
+		tmp_b = tmp_b->next;
+	}
+}
+
+static void	search_rev_b(t_stack *a, t_stack *b, int **pivot, int iters)
+{
+	t_stack	*tmp_a;
+	t_stack	*tmp_b;
+	int		*tmp_mvmts;
+	int		pos;
+
+	tmp_a = a;
+	tmp_b = get_tail(b);
+	pos = -1;
+	while (tmp_b && pos++ < iters)
+	{
+		if (get_int_arr_len(*pivot) <= 2)
+			break ;
+		tmp_mvmts = check_mvmts_to_a(tmp_a, tmp_b);
+		if (get_int_arr_len(tmp_mvmts) < get_int_arr_len(*pivot))
+			update_pivot(pivot, &tmp_mvmts);
+		else
+			free(tmp_mvmts);
+		if (!(tmp_b->prev))
+			break ;
+		tmp_b = tmp_b->prev;
+	}
+}
+
+void	send_to_a(t_stack **stack_a, t_stack **stack_b, int iters)
 {
 	t_stack	*a;
 	t_stack	*b;
-	int		*mvmts;
 	int		*pivot_mvmts;
 
-	a = get_head(*stack_a);
+	a = *stack_a;
 	b = *stack_b;
 	pivot_mvmts = check_mvmts_to_a(a, b);
-	while (b)
-	{
-		if (get_int_arr_len(pivot_mvmts) <= 2)
-			break ;
-		mvmts = check_mvmts_to_a(a, b);
-		if (get_int_arr_len(mvmts) < get_int_arr_len(pivot_mvmts))
-			update_pivot(&pivot_mvmts, &mvmts);
-		else
-			free(mvmts);
-		if (!b->next)
-			break ;
-		b = b->next;
-	}
+	search_opt_b(a, b, &pivot_mvmts, iters);
+	search_rev_b(a, b, &pivot_mvmts, iters);
 	exec_mvmts(&a, &b, pivot_mvmts);
 	free(pivot_mvmts);
 	*stack_a = get_head(a);
 	*stack_b = get_head(b);
 }
 
-void	send_to_b(t_stack **stack_a, t_stack **stack_b)
+// void	send_to_a(t_stack **stack_a, t_stack **stack_b)
+// {
+// 	t_stack	*a;
+// 	t_stack	*b;
+// 	int		*mvmts;
+// 	int		*pivot_mvmts;
+
+// 	a = get_head(*stack_a);
+// 	b = *stack_b;
+// 	pivot_mvmts = check_mvmts_to_a(a, b);
+// 	while (b)
+// 	{
+// 		if (get_int_arr_len(pivot_mvmts) <= 2)
+// 			break ;
+// 		mvmts = check_mvmts_to_a(a, b);
+// 		if (get_int_arr_len(mvmts) < get_int_arr_len(pivot_mvmts))
+// 			update_pivot(&pivot_mvmts, &mvmts);
+// 		else
+// 			free(mvmts);
+// 		if (!b->next)
+// 			break ;
+// 		b = b->next;
+// 	}
+// 	exec_mvmts(&a, &b, pivot_mvmts);
+// 	free(pivot_mvmts);
+// 	*stack_a = get_head(a);
+// 	*stack_b = get_head(b);
+// }
+
+static void	search_opt_a(t_stack *a, t_stack *b, int **pivot, int iters)
+{
+	t_stack	*tmp_a;
+	t_stack	*tmp_b;
+	int		*tmp_mvmts;
+	int		pos;
+
+	tmp_a = a;
+	tmp_b = b;
+	pos = -1;
+	while (tmp_a && pos++ < iters)
+	{
+		if (get_int_arr_len(*pivot) <= 2)
+			break ;
+		tmp_mvmts = check_mvmts_to_b(tmp_a, tmp_b);
+		if (get_int_arr_len(tmp_mvmts) < get_int_arr_len(*pivot))
+			update_pivot(pivot, &tmp_mvmts);
+		else
+			free(tmp_mvmts);
+		if (!(a->next))
+			break ;
+		tmp_a = tmp_a->next;
+	}
+}
+
+static void	search_rev_a(t_stack *a, t_stack *b, int **pivot, int iters)
+{
+	t_stack	*tmp_a;
+	t_stack	*tmp_b;
+	int		*tmp_mvmts;
+	int		pos;
+
+	tmp_a = get_tail(a);
+	tmp_b = b;
+	pos = -1;
+	while (tmp_a && pos++ < iters)
+	{
+		if (get_int_arr_len(*pivot) <= 2)
+			break ;
+		tmp_mvmts = check_mvmts_to_b(tmp_a, tmp_b);
+		if (get_int_arr_len(tmp_mvmts) < get_int_arr_len(*pivot))
+			update_pivot(pivot, &tmp_mvmts);
+		else
+			free(tmp_mvmts);
+		if (!(tmp_a->prev))
+			break ;
+		tmp_a = tmp_a->prev;
+	}
+}
+
+void	send_to_b(t_stack **stack_a, t_stack **stack_b, int iters)
 {
 	t_stack	*a;
 	t_stack	*b;
-	int		*mvmts;
 	int		*pivot_mvmts;
 
 	a = *stack_a;
 	b = *stack_b;
 	pivot_mvmts = check_mvmts_to_b(a, b);
-	while (a)
-	{
-		if (get_int_arr_len(pivot_mvmts) <= 2)
-			break ;
-		mvmts = check_mvmts_to_b(a, b);
-		if (get_int_arr_len(mvmts) < get_int_arr_len(pivot_mvmts))
-			update_pivot(&pivot_mvmts, &mvmts);
-		else
-			free(mvmts);
-		if (!(a->next))
-			break ;
-		a = a->next;
-	}
+	search_opt_a(a, b, &pivot_mvmts, iters);
+	search_rev_a(a, b, &pivot_mvmts, iters);
 	exec_mvmts(&a, &b, pivot_mvmts);
 	free(pivot_mvmts);
 	*stack_a = get_head(a);

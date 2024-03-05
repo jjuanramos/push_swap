@@ -6,7 +6,7 @@
 /*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 12:05:33 by juramos           #+#    #+#             */
-/*   Updated: 2024/03/05 09:18:23 by juramos          ###   ########.fr       */
+/*   Updated: 2024/03/05 11:59:58 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,12 +83,13 @@ void	push_swap(t_stack **stack_a)
 		perform_on_three(a);
 		return ;
 	}
+	// check whether we want to optimize iters for 100 and 500
 	set_stacks_for_order(&a, &b);
 	while (get_stack_size(a) > 3)
-		send_to_b(&a, &b);
+		send_to_b(&a, &b, 20);
 	perform_on_three(a);
 	while (b)
-		send_to_a(&a, &b);
+		send_to_a(&a, &b, 20);
 	while (get_min_to_right(get_head(a))->value != get_head(a)->value)
 		perform_rra(a);
 	*stack_a = a;
