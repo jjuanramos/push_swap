@@ -6,7 +6,7 @@
 /*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 15:36:04 by juramos           #+#    #+#             */
-/*   Updated: 2024/02/21 18:24:41 by juramos          ###   ########.fr       */
+/*   Updated: 2024/03/01 12:58:30 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ void	pa(t_stack **stack_b, t_stack **stack_a)
 		else
 			(*stack_a)->next = NULL;
 	}
-	ft_printf("pa\n");
 }
 
 void	pb(t_stack **stack_a, t_stack **stack_b)
@@ -70,7 +69,6 @@ void	pb(t_stack **stack_a, t_stack **stack_b)
 		else
 			(*stack_b)->next = NULL;
 	}
-	ft_printf("pb\n");
 }
 
 void	sa(t_stack	*stack_a)
@@ -86,7 +84,6 @@ void	sa(t_stack	*stack_a)
 	new_head->next = old_head;
 	old_head->prev = new_head;
 	new_head->prev = NULL;
-	ft_printf("sa\n");
 }
 
 void	sb(t_stack	*stack_b)
@@ -102,12 +99,10 @@ void	sb(t_stack	*stack_b)
 	new_head->next = old_head;
 	old_head->prev = new_head;
 	new_head->prev = NULL;
-	ft_printf("sb\n");
 }
 
 void	ss(t_stack *stack_a, t_stack *stack_b)
 {
 	sa(stack_a);
 	sb(stack_b);
-	ft_printf("ss\n");
 }

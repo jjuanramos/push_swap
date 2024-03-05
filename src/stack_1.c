@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack.c                                            :+:      :+:    :+:   */
+/*   stack_1.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 15:27:52 by juramos           #+#    #+#             */
-/*   Updated: 2024/02/13 14:40:48 by juramos          ###   ########.fr       */
+/*   Updated: 2024/02/29 14:26:32 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,18 +64,20 @@ t_stack	*init_stack_on_value(int val)
 	return (stck);
 }
 
-int	get_max_to_right(t_stack *stck)
+t_stack	*copy_stck(t_stack	*stck)
 {
-	int		max;
-	t_stack	*t;
+	t_stack	*new_stck;
+	t_stack	*head;
 
-	t = stck;
-	max = t->value;
-	while (t->next)
+	head = get_head(stck);
+	new_stck = init_stack_on_value(head->value);
+	while (head->next)
 	{
-		t = t->next;
-		if (t->value > max)
-			max = t->value;
+		new_stck->next = init_stack_on_value(head->next->value);
+		new_stck->next->prev = new_stck;
+		new_stck = new_stck->next;
+		head = head->next;
 	}
-	return (max);
+	new_stck = get_head(new_stck);
+	return (new_stck);
 }

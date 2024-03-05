@@ -6,7 +6,7 @@
 /*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 15:24:13 by juramos           #+#    #+#             */
-/*   Updated: 2024/02/22 11:36:46 by juramos          ###   ########.fr       */
+/*   Updated: 2024/02/29 13:47:45 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ static t_stack	*arr_to_stack(int *arr, int len)
 		new->prev = stck;
 		stck = new;
 	}
-	return (stck);
+	return (get_head(stck));
 }
 
 t_stack	*parse_to_stck(int argc, char *argv[])
