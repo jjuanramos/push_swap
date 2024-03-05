@@ -6,7 +6,7 @@
 #    By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/15 16:43:25 by juramos           #+#    #+#              #
-#    Updated: 2024/03/04 13:47:42 by juramos          ###   ########.fr        #
+#    Updated: 2024/03/05 17:06:01 by juramos          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,9 +21,9 @@ CFLAGS 		= 	-Wall -Werror -Wextra -fsanitize=address
 SRC_DIR 	= 	src/
 SRC_FILES 	= 	main args_parse utils_1 stack_1 \
 				movements_1 movements_2 stack_2 \
-				debug_push_swap utils_2 utils_3	\
-				simulators executors push_swap	\
-				movements_3 senders
+				utils_2 utils_3	simulators \
+				executors push_swap	\
+				movements_3 send_to_a send_to_b
 SRC 		=	$(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))
 
 # Objects

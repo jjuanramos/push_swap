@@ -6,7 +6,7 @@
 /*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 10:35:27 by juramos           #+#    #+#             */
-/*   Updated: 2024/03/05 11:55:06 by juramos          ###   ########.fr       */
+/*   Updated: 2024/03/05 13:25:56 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ t_stack	*get_closest_min(t_stack *ref, t_stack *stck);
 void	print_int_arr(int *mvmts);
 
 /*	utils_3 */
+void	update_pivot(int **pivot, int **new);
 int		pos_til_head(t_stack *stck, int n);
 
 /* stack_1 */
@@ -96,8 +97,10 @@ void	push_swap(t_stack **stack_a);
 /*	debug_push_swap */
 void	debug_push_swap(t_stack **stack_a);
 
-/*	senders */
-void	send_to_b(t_stack **stack_a, t_stack **stack_b, int iters);
+/*	send_to_a */
 void	send_to_a(t_stack **stack_a, t_stack **stack_b, int iters);
+
+/*	send_to_b */
+void	send_to_b(t_stack **stack_a, t_stack **stack_b, int iters);
 
 #endif

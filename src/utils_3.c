@@ -6,7 +6,7 @@
 /*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 10:33:09 by juramos           #+#    #+#             */
-/*   Updated: 2024/03/01 11:04:25 by juramos          ###   ########.fr       */
+/*   Updated: 2024/03/05 13:23:48 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,4 +25,10 @@ int	pos_til_head(t_stack *stck, int n)
 		t = t->next;
 	}
 	return (dist);
+}
+
+void	update_pivot(int **pivot, int **new)
+{
+	free(*pivot);
+	*pivot = *new;
 }
