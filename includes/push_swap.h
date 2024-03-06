@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
+/*   By: juramos <juramos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 10:35:27 by juramos           #+#    #+#             */
-/*   Updated: 2024/03/05 13:25:56 by juramos          ###   ########.fr       */
+/*   Updated: 2024/03/06 11:32:18 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,10 @@ typedef struct s_stack
 }	t_stack;
 
 /* args_parse */
+t_stack	*arr_to_stack(int *arr, int len);
+int		is_arg_unique(char *arr[], int pos);
+int		is_str_digit(char *str);
+int		is_eq_or_less_int_max(char *str);
 t_stack	*parse_to_stck(int argc, char *argv[]);
 
 /* utils_1 */

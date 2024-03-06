@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
+/*   By: juramos <juramos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 11:12:00 by juramos           #+#    #+#             */
-/*   Updated: 2024/03/05 17:05:35 by juramos          ###   ########.fr       */
+/*   Updated: 2024/03/06 11:32:31 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,33 @@ static void	free_str_arr(char **arr)
 	free(arr);
 }
 
+static t_stack	*parse_to_stck_from_str(int len, char **str_arr)
+{
+	int		*arr;
+	int		pos;
+	t_stack	*stck;
+
+	arr = ft_calloc(len, sizeof(int));
+	if (!arr)
+		message_and_exit("Error\n", 2, 1);
+	pos = 0;
+	while (str_arr[pos])
+	{
+		if (is_str_digit(str_arr[pos]) && is_arg_unique(str_arr, pos)
+			&& is_eq_or_less_int_max(str_arr[pos]))
+			arr[pos] = ft_atoi(str_arr[pos]);
+		else
+		{
+			free(arr);
+			message_and_exit("Error\n", 2, 1);
+		}
+		pos++;
+	}
+	stck = arr_to_stack(arr, len);
+	free(arr);
+	return (stck);
+}
+
 int	main(int argc, char *argv[])
 {
 	t_stack	*stack_a;
@@ -46,7 +73,7 @@ int	main(int argc, char *argv[])
 		{
 			helper = ft_split(argv[1], ' ');
 			len = str_arr_len(helper);
-			stack_a = parse_to_stck(len, helper);
+			stack_a = parse_to_stck_from_str(len, helper);
 			free_str_arr(helper);
 		}
 		else

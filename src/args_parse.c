@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   args_parse.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
+/*   By: juramos <juramos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 15:24:13 by juramos           #+#    #+#             */
-/*   Updated: 2024/02/29 13:47:45 by juramos          ###   ########.fr       */
+/*   Updated: 2024/03/06 11:29:23 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int	is_str_digit(char *str)
+int	is_str_digit(char *str)
 {
 	int	pos;
 
@@ -26,7 +26,7 @@ static int	is_str_digit(char *str)
 	return (1);
 }
 
-static int	is_arg_unique(char *arr[], int pos)
+int	is_arg_unique(char *arr[], int pos)
 {
 	char	*ref;
 
@@ -39,7 +39,7 @@ static int	is_arg_unique(char *arr[], int pos)
 	return (1);
 }
 
-static int	is_eq_or_less_int_max(char *str)
+int	is_eq_or_less_int_max(char *str)
 {
 	int		val;
 	char	*itoa_val;
@@ -55,7 +55,7 @@ static int	is_eq_or_less_int_max(char *str)
 	return (output);
 }
 
-static t_stack	*arr_to_stack(int *arr, int len)
+t_stack	*arr_to_stack(int *arr, int len)
 {
 	t_stack	*stck;
 	t_stack	*new;
