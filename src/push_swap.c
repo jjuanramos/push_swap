@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
+/*   By: juramos <juramos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 12:05:33 by juramos           #+#    #+#             */
-/*   Updated: 2024/03/05 17:06:24 by juramos          ###   ########.fr       */
+/*   Updated: 2024/03/06 10:43:35 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,9 @@ static void	perform_on_three(t_stack *a)
 {
 	if (get_stack_size(a) == 1)
 		return ;
-	else if (get_stack_size(a) == 2)
+	else if (get_stack_size(a) == 2 && get_head(a)->value > get_tail(a)->value)
 		check_three(a);
-	else
+	else if (get_stack_size(a) == 3)
 	{
 		while (!(get_head(a)->value < get_head(a)->next->value
 				&& get_head(a)->next->value < get_tail(a)->value))
@@ -75,6 +75,7 @@ void	push_swap(t_stack **stack_a)
 {
 	t_stack	*a;
 	t_stack	*b;
+	int		iters;
 
 	a = *stack_a;
 	b = NULL;
@@ -83,12 +84,16 @@ void	push_swap(t_stack **stack_a)
 		perform_on_three(a);
 		return ;
 	}
+	if (get_stack_size(a) > 100)
+		iters = 25;
+	else
+		iters = 100;
 	set_stacks_for_order(&a, &b);
 	while (get_stack_size(a) > 3)
-		send_to_b(&a, &b, 25);
+		send_to_b(&a, &b, iters);
 	perform_on_three(a);
 	while (b)
-		send_to_a(&a, &b, 25);
+		send_to_a(&a, &b, iters);
 	while (get_min_to_right(get_head(a))->value != get_head(a)->value)
 		perform_rra(a);
 	*stack_a = a;
