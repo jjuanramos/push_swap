@@ -6,7 +6,7 @@
 /*   By: juramos <juramos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 11:12:00 by juramos           #+#    #+#             */
-/*   Updated: 2024/03/06 11:32:31 by juramos          ###   ########.fr       */
+/*   Updated: 2024/03/06 12:43:51 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,21 @@ static t_stack	*parse_to_stck_from_str(int len, char **str_arr)
 	return (stck);
 }
 
+static int	check_if_ordered(t_stack *stck)
+{
+	t_stack	*h;
+
+	h = get_head(stck);
+
+	while (h && h->next)
+	{
+		if (h->value > h->next->value)
+			return (0);
+		h = h->next;
+	}
+	return (1);
+}
+
 int	main(int argc, char *argv[])
 {
 	t_stack	*stack_a;
@@ -80,7 +95,8 @@ int	main(int argc, char *argv[])
 			stack_a = parse_to_stck(argc, argv);
 		if (!stack_a)
 			message_and_exit("Error\n", 2, 1);
-		push_swap(&stack_a);
+		if (!check_if_ordered(stack_a))
+			push_swap(&stack_a);
 		clean_stack(stack_a);
 	}
 	return (0);
