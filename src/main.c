@@ -6,7 +6,7 @@
 /*   By: juramos <juramos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 11:12:00 by juramos           #+#    #+#             */
-/*   Updated: 2024/03/06 12:43:51 by juramos          ###   ########.fr       */
+/*   Updated: 2024/03/07 13:28:58 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,12 @@ static void	free_str_arr(char **arr)
 {
 	int	pos;
 
-	pos = -1;
-	while (arr[pos++])
+	pos = 0;
+	while (arr[pos])
+	{
 		free(arr[pos]);
+		pos++;
+	}
 	free(arr);
 }
 
