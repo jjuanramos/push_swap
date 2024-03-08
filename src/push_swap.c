@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juramos <juramos@student.42.fr>            +#+  +:+       +#+        */
+/*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 12:05:33 by juramos           #+#    #+#             */
-/*   Updated: 2024/03/06 10:43:35 by juramos          ###   ########.fr       */
+/*   Updated: 2024/03/08 10:47:09 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,22 @@ static void	set_stacks_for_order(t_stack **stack_a, t_stack **stack_b)
 	*stack_b = b;
 }
 
-static void	perform_rra(t_stack *a)
+static void	check_min_is_on_head(t_stack *a)
 {
-	rra(a);
-	ft_printf("rra\n");
+	while (get_min_to_right(get_head(a))->value != get_head(a)->value)
+	{
+		if (pos_til_head(a, get_min_to_right(get_head(a))->value)
+			< get_stack_size(get_head(a)) / 2)
+		{
+			ra(a);
+			ft_printf("ra\n");
+		}
+		else
+		{
+			rra(a);
+			ft_printf("rra\n");
+		}
+	}
 }
 
 static void	perform_on_three(t_stack *a)
@@ -94,7 +106,6 @@ void	push_swap(t_stack **stack_a)
 	perform_on_three(a);
 	while (b)
 		send_to_a(&a, &b, iters);
-	while (get_min_to_right(get_head(a))->value != get_head(a)->value)
-		perform_rra(a);
+	check_min_is_on_head(a);
 	*stack_a = a;
 }
