@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   args_parse.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juramos <juramos@student.42.fr>            +#+  +:+       +#+        */
+/*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 15:24:13 by juramos           #+#    #+#             */
-/*   Updated: 2024/03/06 11:29:23 by juramos          ###   ########.fr       */
+/*   Updated: 2024/03/08 10:29:52 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ int	is_str_digit(char *str)
 	while (str[++pos])
 	{
 		if (!ft_isdigit(str[pos])
-			&& !(str[pos] == '-' && pos == 0))
+			&& !(str[pos] == '-' && pos == 0
+				&& ft_isdigit(str[pos + 1])))
 			return (0);
 	}
 	return (1);
