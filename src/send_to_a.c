@@ -6,7 +6,7 @@
 /*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 13:28:12 by juramos           #+#    #+#             */
-/*   Updated: 2024/03/05 13:28:33 by juramos          ###   ########.fr       */
+/*   Updated: 2024/03/08 10:16:04 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,26 @@
 static int	*check_mvmts_to_a(t_stack *stack_a, t_stack *stack_b)
 {
 	t_stack	*pivot;
-	t_stack	*a_closest_greater;
+	t_stack	*opposite_pivot;
 	int		*b_mvmts;
 	int		*a_mvmts;
 	int		*min_mvmts;
 
 	pivot = stack_b;
-	a_closest_greater = get_closest_greater(pivot, stack_a);
-	if (!a_closest_greater)
-		a_mvmts = simulate_mvmts_a(get_min_to_right(get_head(stack_a)));
-	else
-		a_mvmts = simulate_mvmts_a(a_closest_greater);
-	b_mvmts = simulate_mvmts_b(pivot);
-	min_mvmts = concat_mvmts(b_mvmts, a_mvmts, 1);
-	return (free(a_mvmts), free(b_mvmts), min_mvmts);
+	opposite_pivot = get_closest_greater(pivot, stack_a);
+	if (!opposite_pivot)
+		opposite_pivot = get_min_to_right(get_head(stack_a));
+	min_mvmts = check_if_double_mov(pivot, opposite_pivot, 1);
+	if (get_int_arr_len(min_mvmts) == 1)
+	{
+		free(min_mvmts);
+		a_mvmts = simulate_mvmts_a(opposite_pivot);
+		b_mvmts = simulate_mvmts_b(pivot);
+		min_mvmts = concat_mvmts(b_mvmts, a_mvmts, 1);
+		free(a_mvmts);
+		free(b_mvmts);
+	}
+	return (min_mvmts);
 }
 
 static void	search_opt_b(t_stack *a, t_stack *b, int **pivot, int iters)

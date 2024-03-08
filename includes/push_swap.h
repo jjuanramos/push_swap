@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juramos <juramos@student.42.fr>            +#+  +:+       +#+        */
+/*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 10:35:27 by juramos           #+#    #+#             */
-/*   Updated: 2024/03/06 11:32:18 by juramos          ###   ########.fr       */
+/*   Updated: 2024/03/08 10:08:04 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@
 # define PB 4
 # define RB 5
 # define RRB 6
+# define RR 8
+# define RRR 9
 
 # include "include/ft_printf.h"
 # include "include/libft.h"
@@ -57,6 +59,8 @@ void	print_int_arr(int *mvmts);
 /*	utils_3 */
 void	update_pivot(int **pivot, int **new);
 int		pos_til_head(t_stack *stck, int n);
+void	append_to_main(int *main, int *pos_main, int *sec);
+void	add_to_mvmts(int *mvmts, int val, int *pos);
 
 /* stack_1 */
 t_stack	*get_head(t_stack *stck);
@@ -74,6 +78,7 @@ void	check_three(t_stack *stack_a);
 int		*simulate_mvmts_a(t_stack *stck);
 int		*simulate_mvmts_b(t_stack *stck);
 int		*concat_mvmts(int *mvmts_1, int *mvmts_2, int to_a);
+int		*check_if_double_mov(t_stack *pivot, t_stack *opp, int to_a);
 
 /*	executors */
 void	exec_mvmts(t_stack **pivot, t_stack **b, int *pivot_mvmts);
@@ -88,12 +93,8 @@ void	ss(t_stack *stack_a, t_stack *stack_b);
 /* movements_2 */
 void	ra(t_stack *stack_a);
 void	rb(t_stack *stack_b);
-void	rr(t_stack *stack_a, t_stack *stack_b);
 void	rra(t_stack *stack_a);
 void	rrb(t_stack *stack_b);
-
-/*	movements	*/
-void	rrr(t_stack *stack_a, t_stack *stack_b);
 
 /* push_swap */
 void	push_swap(t_stack **stack_a);

@@ -6,7 +6,7 @@
 /*   By: juramos <juramos@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 15:38:39 by juramos           #+#    #+#             */
-/*   Updated: 2024/03/01 12:59:14 by juramos          ###   ########.fr       */
+/*   Updated: 2024/03/08 10:02:05 by juramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,6 @@ void	rb(t_stack *stack_b)
 	head->prev = tail;
 	(head->next)->prev = NULL;
 	head->next = NULL;
-}
-
-void	rr(t_stack *stack_a, t_stack *stack_b)
-{
-	ra(stack_a);
-	rb(stack_b);
 }
 
 void	rra(t_stack *stack_a)
